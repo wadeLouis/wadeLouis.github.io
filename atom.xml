@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
-  
+  <title>小老鼠的测试之路</title>
+  <subtitle>一个关于软件测试的博客</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
@@ -9,7 +9,7 @@
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>小老鼠</name>
     
   </author>
   
