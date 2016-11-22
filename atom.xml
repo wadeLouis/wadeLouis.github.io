@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-22T02:39:00.052Z</updated>
+  <updated>2016-11-22T02:41:51.784Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -19,15 +19,15 @@
     <title>《Flask Framework Cookbook》 学习笔记 - Flask 应用的配置</title>
     <link href="http://yoursite.com/2016/11/22/flaskcoolbook_1/"/>
     <id>http://yoursite.com/2016/11/22/flaskcoolbook_1/</id>
-    <published>2016-11-22T02:39:00.052Z</published>
-    <updated>2016-11-22T02:39:00.052Z</updated>
+    <published>2016-11-22T02:41:51.784Z</published>
+    <updated>2016-11-22T02:41:51.784Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>简单的Flask例子和安装就不讲了，大家去看官网的文档吧。</p>
 </blockquote>
 <h2 id="1-基础的配置"><a href="#1-基础的配置" class="headerlink" title="1. 基础的配置"></a>1. 基础的配置</h2><p>想让我们的程序运行在调试模式下，可以这样配置：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">app = Flask(__name__)</div><div class="line">app.config[<span class="string">'DEBUG'</span>] = <span class="keyword">True</span></div></pre></td></tr></table></figure></p>
 <p>这个布尔值也可以通过Flask对象来设置：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.debug = <span class="keyword">True</span></div></pre></td></tr></table></figure></p>
-<p>一般情况下，我们都使用最开始那种方式去配置这个选项。</p>
+<p>一般情况下，我们都使用最开始那种方式去配置这个选项。<br><a id="more"></a></p>
 <h2 id="2-常见的配置方式"><a href="#2-常见的配置方式" class="headerlink" title="2. 常见的配置方式"></a>2. 常见的配置方式</h2><ol>
 <li><p>通过外部文件（*.cfg）等配置</p>
  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.config.from_pyfile(<span class="string">'myconfig.cfg'</span>)</div></pre></td></tr></table></figure>
@@ -60,7 +60,9 @@
       &lt;blockquote&gt;
 &lt;p&gt;简单的Flask例子和安装就不讲了，大家去看官网的文档吧。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&quot;1-基础的配置&quot;&gt;&lt;a href=&quot;#1-基础的配置&quot; class=&quot;headerlink&quot; title=&quot;1. 基础的配置&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;1-基础的配置&quot;&gt;&lt;a href=&quot;#1-基础的配置&quot; class=&quot;headerlink&quot; title=&quot;1. 基础的配置&quot;&gt;&lt;/a&gt;1. 基础的配置&lt;/h2&gt;&lt;p&gt;想让我们的程序运行在调试模式下，可以这样配置：&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;app = Flask(__name__)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;app.config[&lt;span class=&quot;string&quot;&gt;&#39;DEBUG&#39;&lt;/span&gt;] = &lt;span class=&quot;keyword&quot;&gt;True&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;这个布尔值也可以通过Flask对象来设置：&lt;br&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;app.debug = &lt;span class=&quot;keyword&quot;&gt;True&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;一般情况下，我们都使用最开始那种方式去配置这个选项。&lt;br&gt;
     
     </summary>
     

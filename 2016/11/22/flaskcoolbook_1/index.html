@@ -16,7 +16,7 @@ ga('send', 'pageview');</script></head><body><div id="main"><header><a href="/."
 </blockquote>
 <h2 id="1-基础的配置"><a href="#1-基础的配置" class="headerlink" title="1. 基础的配置"></a>1. 基础的配置</h2><p>想让我们的程序运行在调试模式下，可以这样配置：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">app = Flask(__name__)</div><div class="line">app.config[<span class="string">'DEBUG'</span>] = <span class="keyword">True</span></div></pre></td></tr></table></figure></p>
 <p>这个布尔值也可以通过Flask对象来设置：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.debug = <span class="keyword">True</span></div></pre></td></tr></table></figure></p>
-<p>一般情况下，我们都使用最开始那种方式去配置这个选项。</p>
+<p>一般情况下，我们都使用最开始那种方式去配置这个选项。<br><a id="more"></a></p>
 <h2 id="2-常见的配置方式"><a href="#2-常见的配置方式" class="headerlink" title="2. 常见的配置方式"></a>2. 常见的配置方式</h2><ol>
 <li><p>通过外部文件（*.cfg）等配置</p>
  <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.config.from_pyfile(<span class="string">'myconfig.cfg'</span>)</div></pre></td></tr></table></figure>
