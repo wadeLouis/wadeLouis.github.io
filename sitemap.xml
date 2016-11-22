@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2016/11/22/about/</loc>
+    <loc>http://yoursite.com/2016/11/22/flaskcoolbook_1/</loc>
     
-    <lastmod>2016-11-22T00:52:41.058Z</lastmod>
+    <lastmod>2016-11-22T02:01:51.408Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/404.html</loc>
+    
+    <lastmod>2016-11-22T01:14:29.488Z</lastmod>
     
   </url>
   

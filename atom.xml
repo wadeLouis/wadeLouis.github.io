@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-22T00:52:41.058Z</updated>
+  <updated>2016-11-22T02:01:51.408Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,20 +16,40 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>关于我</title>
-    <link href="http://yoursite.com/2016/11/22/about/"/>
-    <id>http://yoursite.com/2016/11/22/about/</id>
-    <published>2016-11-22T00:49:32.000Z</published>
-    <updated>2016-11-22T00:52:41.058Z</updated>
+    <title>《Flask Framework Cookbook》 学习笔记 - Flask 应用的配置</title>
+    <link href="http://yoursite.com/2016/11/22/flaskcoolbook_1/"/>
+    <id>http://yoursite.com/2016/11/22/flaskcoolbook_1/</id>
+    <published>2016-11-22T02:01:51.408Z</published>
+    <updated>2016-11-22T02:01:51.408Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h1><h1 id="关于工作"><a href="#关于工作" class="headerlink" title="关于工作"></a>关于工作</h1><h1 id="关于生活"><a href="#关于生活" class="headerlink" title="关于生活"></a>关于生活</h1><h1 id="关于学习"><a href="#关于学习" class="headerlink" title="关于学习"></a>关于学习</h1>]]></content>
+    <content type="html"><![CDATA[<blockquote>
+<p>简单的Flask例子和安装就不讲了，大家去看官网的文档吧。</p>
+</blockquote>
+<h2 id="1-基础的配置"><a href="#1-基础的配置" class="headerlink" title="1. 基础的配置"></a>1. 基础的配置</h2><p>想让我们的程序运行在调试模式下，可以这样配置：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">app = Flask(__name__)</div><div class="line">app.config[<span class="string">'DEBUG'</span>] = <span class="keyword">True</span></div></pre></td></tr></table></figure></p>
+<p>这个布尔值也可以通过Flask对象来设置：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.debug = <span class="keyword">True</span></div></pre></td></tr></table></figure></p>
+<p>一般情况下，我们都使用最开始那种方式去配置这个选项。</p>
+<h2 id="2-常见的配置方式"><a href="#2-常见的配置方式" class="headerlink" title="2. 常见的配置方式"></a>2. 常见的配置方式</h2><ol>
+<li><p>通过外部文件（*.cfg）等配置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">app.config.from_pyfile(<span class="string">'myconfig.cfg'</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过一个对象来配置，一般这个对象是一个类，当然也可以是模块等等</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">app.config.from_object(<span class="string">'myapplication.default_settings'</span>)</div><div class="line"><span class="comment"># 如果是要加载当前文件的配置，我们可以使用下面的方式 </span></div><div class="line">app.config.from_object(__name__) <span class="comment">#To load from same file</span></div></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;关于我&quot;&gt;&lt;a href=&quot;#关于我&quot; class=&quot;headerlink&quot; title=&quot;关于我&quot;&gt;&lt;/a&gt;关于我&lt;/h1&gt;&lt;h1 id=&quot;关于工作&quot;&gt;&lt;a href=&quot;#关于工作&quot; class=&quot;headerlink&quot; title=&quot;关于工作&quot;&gt;&lt;/a&gt;关于工
+      &lt;blockquote&gt;
+&lt;p&gt;简单的Flask例子和安装就不讲了，大家去看官网的文档吧。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;1-基础的配置&quot;&gt;&lt;a href=&quot;#1-基础的配置&quot; class=&quot;headerlink&quot; title=&quot;1. 基础的配置&quot;&gt;&lt;/a&gt;
     
     </summary>
     
+      <category term="Python" scheme="http://yoursite.com/categories/Python/"/>
+    
+    
+      <category term="Flask Python" scheme="http://yoursite.com/tags/Flask-Python/"/>
     
   </entry>
   
