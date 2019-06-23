@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hbase on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/categories/hbase/</link>
+    <description>Recent content in Hbase on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 20 Mar 2017 16:18:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/categories/hbase/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Centos Hbase安装</title>
+      <link>http://www.weihaosi.me/post/centos-hbase%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Mon, 20 Mar 2017 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/centos-hbase%E5%AE%89%E8%A3%85/</guid>
+      <description>JDK环境配置 具体这里不描述，步骤请百度 下载Hbase 下载地址：清华大学Hbase镜像 安装 直接解压文件就好tar -xzvf hbase-1.2.5-bin.tar.gz -C /data/。 单机版本</description>
+    </item>
+    
+  </channel>
+</rss>

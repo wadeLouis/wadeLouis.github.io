@@ -1,0 +1,1979 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Fastdfs 并发测试和相关配置说明 - 韦昊斯的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Little Mice" /><meta name="description" content="Fastdfs 并发测试和相关配置说明" /><meta name="keywords" content="Linux, Centos, Fastdfs, 性能测试, 软件测试" />
+
+
+
+<meta name="google-site-verification" content="iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI" />
+
+
+<meta name="generator" content="Hugo 0.53 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://www.weihaosi.me/post/fastdfs-%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Fastdfs 并发测试和相关配置说明" />
+<meta property="og:description" content="Fastdfs 并发测试和相关配置说明" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.weihaosi.me/post/fastdfs-%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95/" /><meta property="article:published_time" content="2017-03-20T16:18:28&#43;08:00"/>
+<meta property="article:modified_time" content="2017-03-20T16:18:28&#43;08:00"/>
+
+<meta itemprop="name" content="Fastdfs 并发测试和相关配置说明">
+<meta itemprop="description" content="Fastdfs 并发测试和相关配置说明">
+
+
+<meta itemprop="datePublished" content="2017-03-20T16:18:28&#43;08:00" />
+<meta itemprop="dateModified" content="2017-03-20T16:18:28&#43;08:00" />
+<meta itemprop="wordCount" content="11501">
+
+
+
+<meta itemprop="keywords" content="Linux,Centos,Fastdfs,性能测试,软件测试," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Fastdfs 并发测试和相关配置说明"/>
+<meta name="twitter:description" content="Fastdfs 并发测试和相关配置说明"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">韦昊斯的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/life/">
+        <li class="mobile-menu-item">记事</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">韦昊斯的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/life/">记事</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Fastdfs 并发测试和相关配置说明</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-03-20 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            <a href="/categories/centos/"> Centos </a>
+            <a href="/categories/fastdfs/"> Fastdfs </a>
+            <a href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"> 性能测试 </a>
+            <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/"> 软件测试 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#fastdfs-并发测试">fastdfs 并发测试</a>
+<ul>
+<li><a href="#基本的并发测试">基本的并发测试</a></li>
+</ul></li>
+<li><a href="#fastdfs-配置文件详细说明">fastdfs 配置文件详细说明</a>
+<ul>
+<li><a href="#tracker-conf">tracker.conf</a></li>
+<li><a href="#storage-conf">storage.conf</a></li>
+<li><a href="#client-conf">client.conf</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>最近接触了一个新的平台，准备对平台的性能进行测试。开始收集性能需求和问题的时候，反馈最多的是平台的图片加载非常慢，甚至错乱。新平台的图片存储使用了Fastdfs服务进行管理，只有一个tracker和storage。那很明显，这个性能问题首先要从图片服务器Fastdfs开始测试。</p>
+</blockquote>
+
+<h1 id="fastdfs-并发测试">fastdfs 并发测试</h1>
+
+<h2 id="基本的并发测试">基本的并发测试</h2>
+
+<ul>
+<li>1). 安装工具</li>
+</ul>
+
+<p>第一步可以使用Fastdfs自带的测试工具进行测试。这个工具是开源的，默认会在fastdfs的源码包中自带。整个fastdfs目录的结构如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">.
+├── client
+│   └── <span class="nb">test</span>
+├── common
+├── conf
+├── init.d
+├── php_client
+├── storage
+│   ├── fdht_client
+│   └── trunk_mgr
+├── <span class="nb">test</span>
+│   └── upload
+└── tracker</code></pre></td></tr></table>
+</div>
+</div>
+<p>这个测试工具的源码就保存在test里面，进入到这个目录，执行<code>make &amp;&amp; make install</code> 既可以安装完成。当然，这步之前，你需要先配置好你的fastdfs，即<code>/etc/fdfs</code>的配置文件要配置好了。
+<strong>注意</strong>
+测试工具默认的模拟的客户端tcp连接数是10，测试脚本默认的并发数也是10，如果需要改客户端模拟连接数，请在编译之前修改好，修改方法：修改test_upload.c文件中的PROCESS_COUNT 为你需要设置的数。
+测试脚本test_upload.sh中需要修改成你希望的循环的次数，这部分不影响编译工具，但是数值不能大于PROCESS_COUNT设置的值。</p>
+
+<ul>
+<li>2). 生成测试文件</li>
+</ul>
+
+<p>在test目录下执行<code>./gen_file</code>  会生成测试用的文件，如果不执行，测试过程会报错。</p>
+
+<ul>
+<li>3). 执行测试</li>
+</ul>
+
+<p>运行<code>sh ./test_upload.sh</code></p>
+
+<ul>
+<li>4). 生成测试报告</li>
+</ul>
+
+<p>进入upload目录，执行命令<code>../combine_result 10</code>  10 表示test_upload.sh中的循环次数。
+报告如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">total_count</span><span class="o">=</span><span class="m">32500</span>, <span class="nv">success_count</span><span class="o">=</span><span class="m">32500</span>, success ratio: <span class="m">100</span>.00% <span class="nv">time_used</span><span class="o">=</span>55s, avg <span class="nb">time</span> used: 1ms, <span class="nv">QPS</span><span class="o">=</span><span class="m">590</span>.91
+
+file_type total_count success_count time_used<span class="o">(</span>s<span class="o">)</span> avg<span class="o">(</span>ms<span class="o">)</span> QPS success_ratio
+5K <span class="m">25000</span> <span class="m">25000</span> <span class="m">31</span> <span class="m">1</span> <span class="m">806</span>.45 <span class="m">100</span>.00
+50K <span class="m">5000</span> <span class="m">5000</span> <span class="m">16</span> <span class="m">3</span> <span class="m">312</span>.50 <span class="m">100</span>.00
+200K <span class="m">2500</span> <span class="m">2500</span> <span class="m">7</span> <span class="m">3</span> <span class="m">357</span>.14 <span class="m">100</span>.00
+1M <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>.00 <span class="m">0</span>.00
+10M <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>.00 <span class="m">0</span>.00
+100M <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span> <span class="m">0</span>.00 <span class="m">0</span>.00
+
+IO <span class="nv">speed</span> <span class="o">=</span> <span class="m">15909</span> KB
+ip_addr  total_count success_count time_used<span class="o">(</span>s<span class="o">)</span> avg<span class="o">(</span>ms<span class="o">)</span> QPS success_ratio
+<span class="m">172</span>.18.121.42 <span class="m">32500</span> <span class="m">32500</span> <span class="m">55</span> <span class="m">1</span> <span class="m">590</span>.91 <span class="m">100</span>.00</code></pre></td></tr></table>
+</div>
+</div>
+<p>报告分三部分：</p>
+
+<ul>
+<li>总概述：总的测试数，成功测次数，成功百分比，用时，平均用时，QPS</li>
+<li>不同文件大小的测试结果，和总概述一样</li>
+<li>io 速度</li>
+</ul>
+
+<blockquote>
+<p>并发测试的这部分内容可以参考一下这里:<a href="http://blog.csdn.net/xiaofei0859/article/details/52816782">http://blog.csdn.net/xiaofei0859/article/details/52816782</a></p>
+</blockquote>
+
+<h1 id="fastdfs-配置文件详细说明">fastdfs 配置文件详细说明</h1>
+
+<h2 id="tracker-conf">tracker.conf</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span><span class="lnt">327
+</span><span class="lnt">328
+</span><span class="lnt">329
+</span><span class="lnt">330
+</span><span class="lnt">331
+</span><span class="lnt">332
+</span><span class="lnt">333
+</span><span class="lnt">334
+</span><span class="lnt">335
+</span><span class="lnt">336
+</span><span class="lnt">337
+</span><span class="lnt">338
+</span><span class="lnt">339
+</span><span class="lnt">340
+</span><span class="lnt">341
+</span><span class="lnt">342
+</span><span class="lnt">343
+</span><span class="lnt">344
+</span><span class="lnt">345
+</span><span class="lnt">346
+</span><span class="lnt">347
+</span><span class="lnt">348
+</span><span class="lnt">349
+</span><span class="lnt">350
+</span><span class="lnt">351
+</span><span class="lnt">352
+</span><span class="lnt">353
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 这个配置文件是否无效，false表示有效</span>
+<span class="c1"># is this config file disabled</span>
+<span class="c1"># false for enabled</span>
+<span class="c1"># true for disabled</span>
+<span class="nv">disabled</span><span class="o">=</span><span class="nb">false</span>
+
+<span class="c1"># 是否绑定IP</span>
+<span class="c1"># bind_addr= 后面为绑定的IP地址 (常用于服务器有多个IP但只希望一个IP提供服务)。如果不填则表示所有的(一般不填就OK)</span>
+<span class="c1"># bind an address of this host</span>
+<span class="c1"># empty for bind all addresses of this host</span>
+<span class="nv">bind_addr</span><span class="o">=</span>
+
+<span class="c1"># 提供服务的端口</span>
+<span class="c1"># the tracker server port</span>
+<span class="nv">port</span><span class="o">=</span><span class="m">22122</span>
+
+<span class="c1"># 连接超时时间，针对socket套接字函数connect</span>
+<span class="c1"># connect timeout in seconds</span>
+<span class="c1"># default value is 30s</span>
+<span class="nv">connect_timeout</span><span class="o">=</span><span class="m">30</span>
+
+<span class="c1"># tracker server的网络超时，单位为秒。发送或接收数据时，如果在超时时间后还不能发送或接收数据，则本次网络通信失败</span>
+<span class="c1"># network timeout in seconds</span>
+<span class="c1"># default value is 30s</span>
+<span class="nv">network_timeout</span><span class="o">=</span><span class="m">60</span>
+
+<span class="c1"># the base path to store data and log files</span>
+<span class="nv">base_path</span><span class="o">=</span>/home/yuqing/fastdfs
+
+<span class="c1"># base_path 目录地址(根目录必须存在,子目录会自动创建)</span>
+<span class="c1"># 附目录说明:</span>
+<span class="c1">#  tracker server目录及文件结构：</span>
+<span class="c1">#  ${base_path}</span>
+<span class="c1">#    |__data</span>
+<span class="c1">#    |     |__storage_groups.dat：存储分组信息</span>
+<span class="c1">#    |     |__storage_servers.dat：存储服务器列表</span>
+<span class="c1">#    |__logs</span>
+<span class="c1">#          |__trackerd.log：tracker server日志文件</span>
+
+<span class="c1">#数据文件storage_groups.dat和storage_servers.dat中的记录之间以换行符（\n）分隔，字段之间以西文逗号（,）分隔。</span>
+<span class="c1">#storage_groups.dat中的字段依次为：</span>
+<span class="c1">#  1. group_name：组名</span>
+<span class="c1">#  2. storage_port：storage server端口号</span>
+
+<span class="c1">#storage_servers.dat中记录storage server相关信息，字段依次为：</span>
+<span class="c1">#  1. group_name：所属组名</span>
+<span class="c1">#  2. ip_addr：ip地址</span>
+<span class="c1">#  3. status：状态</span>
+<span class="c1">#  4. sync_src_ip_addr：向该storage server同步已有数据文件的源服务器</span>
+<span class="c1">#  5. sync_until_timestamp：同步已有数据文件的截至时间（UNIX时间戳）</span>
+<span class="c1">#  6. stat.total_upload_count：上传文件次数</span>
+<span class="c1">#  7. stat.success_upload_count：成功上传文件次数</span>
+<span class="c1">#  8. stat.total_set_meta_count：更改meta data次数</span>
+<span class="c1">#  9. stat.success_set_meta_count：成功更改meta data次数</span>
+<span class="c1">#  10. stat.total_delete_count：删除文件次数</span>
+<span class="c1">#  11. stat.success_delete_count：成功删除文件次数</span>
+<span class="c1">#  12. stat.total_download_count：下载文件次数</span>
+<span class="c1">#  13. stat.success_download_count：成功下载文件次数</span>
+<span class="c1">#  14. stat.total_get_meta_count：获取meta data次数</span>
+<span class="c1">#  15. stat.success_get_meta_count：成功获取meta data次数</span>
+<span class="c1">#  16. stat.last_source_update：最近一次源头更新时间（更新操作来自客户端）</span>
+<span class="c1">#  17. stat.last_sync_update：最近一次同步更新时间（更新操作来自其他storage server的同步）</span>
+
+<span class="c1"># 系统提供服务时的最大连接数。对于V1.x，因一个连接由一个线程服务，也就是工作线程数。</span>
+<span class="c1"># 对于V2.x，最大连接数和工作线程数没有任何关系</span>
+<span class="c1"># max concurrent connections this server supported</span>
+<span class="nv">max_connections</span><span class="o">=</span><span class="m">256</span>
+
+<span class="c1"># work thread count, should &lt;= max_connections</span>
+<span class="c1"># default value is 4</span>
+<span class="c1"># since V2.00</span>
+<span class="c1"># V2.0引入的这个参数，工作线程数，通常设置为CPU数</span>
+<span class="nv">work_threads</span><span class="o">=</span><span class="m">4</span>
+
+<span class="c1"># 上传组(卷) 的方式 0:轮询方式 1: 指定组 2: 平衡负载(选择最大剩余空间的组(卷)上传)</span>
+<span class="c1"># 这里如果在应用层指定了上传到一个固定组,那么这个参数被绕过</span>
+<span class="c1"># the method of selecting group to upload files</span>
+<span class="c1"># 0: round robin</span>
+<span class="c1"># 1: specify group</span>
+<span class="c1"># 2: load balance, select the max free space group to upload file</span>
+<span class="nv">store_lookup</span><span class="o">=</span><span class="m">2</span>
+
+<span class="c1"># 当上一个参数设定为1 时 (store_lookup=1，即指定组名时)，必须设置本参数为系统中存在的一个组名。如果选择其他的上传方式，这个参数就没有效了</span>
+<span class="c1"># which group to upload file</span>
+<span class="c1"># when store_lookup set to 1, must set store_group to the group name</span>
+<span class="nv">store_group</span><span class="o">=</span>group2
+
+<span class="c1"># 选择哪个storage server 进行上传操作(一个文件被上传后，这个storage server就相当于这个文件的storage server源，会对同组的storage server推送这个文件达到同步效果)</span>
+<span class="c1"># 0: 轮询方式</span>
+<span class="c1"># 1: 根据ip 地址进行排序选择第一个服务器（IP地址最小者）</span>
+<span class="c1"># 2: 根据优先级进行排序（上传优先级由storage server来设置，参数名为upload_priority）</span>
+<span class="c1"># which storage server to upload file</span>
+<span class="c1"># 0: round robin (default)</span>
+<span class="c1"># 1: the first server order by ip address</span>
+<span class="c1"># 2: the first server order by priority (the minimal)</span>
+<span class="nv">store_server</span><span class="o">=</span><span class="m">0</span>
+
+<span class="c1"># 选择storage server 中的哪个目录进行上传。storage server可以有多个存放文件的base path（可以理解为多个磁盘）。</span>
+<span class="c1"># 0: 轮流方式，多个目录依次存放文件</span>
+<span class="c1"># 2: 选择剩余空间最大的目录存放文件（注意：剩余磁盘空间是动态的，因此存储到的目录或磁盘可能也是变化的）</span>
+<span class="c1"># which path(means disk or mount point) of the storage server to upload file</span>
+<span class="c1"># 0: round robin</span>
+<span class="c1"># 2: load balance, select the max free space path to upload file</span>
+<span class="nv">store_path</span><span class="o">=</span><span class="m">0</span>
+
+<span class="c1"># 选择哪个 storage server 作为下载服务器</span>
+<span class="c1"># 0: 轮询方式，可以下载当前文件的任一storage server</span>
+<span class="c1"># 1: 哪个为源storage server 就用哪一个 (前面说过了这个storage server源 是怎样产生的) 就是之前上传到哪个storage server服务器就是哪个了</span>
+<span class="c1"># which storage server to download file</span>
+<span class="c1"># 0: round robin (default)</span>
+<span class="c1"># 1: the source storage server which the current file uploaded to</span>
+<span class="nv">download_server</span><span class="o">=</span><span class="m">0</span>
+
+<span class="c1"># storage server 上保留的空间，保证系统或其他应用需求空间。可以用绝对值或者百分比（V4开始支持百分比方式）。</span>
+<span class="c1">#(指出 如果同组的服务器的硬盘大小一样,以最小的为准,也就是只要同组中有一台服务器达到这个标准了,这个标准就生效,原因就是因为他们进行备份)</span>
+<span class="c1"># reserved storage space for system or other applications.</span>
+<span class="c1"># if the free(available) space of any stoarge server in</span>
+<span class="c1"># a group &lt;= reserved_storage_space,</span>
+<span class="c1"># no file can be uploaded to this group.</span>
+<span class="c1"># bytes unit can be one of follows:</span>
+<span class="c1">### G or g for gigabyte(GB)</span>
+<span class="c1">### M or m for megabyte(MB)</span>
+<span class="c1">### K or k for kilobyte(KB)</span>
+<span class="c1">### no unit for byte(B)</span>
+<span class="c1">### XX.XX% as ratio such as reserved_storage_space = 10%</span>
+<span class="nv">reserved_storage_space</span> <span class="o">=</span> <span class="m">10</span>%
+
+<span class="c1"># 选择日志级别</span>
+<span class="c1">#standard log level as syslog, case insensitive, value list:</span>
+<span class="c1">### emerg for emergency</span>
+<span class="c1">### alert</span>
+<span class="c1">### crit for critical</span>
+<span class="c1">### error</span>
+<span class="c1">### warn for warning</span>
+<span class="c1">### notice</span>
+<span class="c1">### info</span>
+<span class="c1">### debug</span>
+<span class="nv">log_level</span><span class="o">=</span>info
+
+<span class="c1"># 操作系统运行FastDFS的用户组 (不填 就是当前用户组,哪个启动进程就是哪个)</span>
+<span class="c1">#unix group name to run this program,</span>
+<span class="c1">#not set (empty) means run by the group of current user</span>
+<span class="nv">run_by_group</span><span class="o">=</span>
+
+<span class="c1"># 操作系统运行FastDFS的用户 (不填 就是当前用户,哪个启动进程就是哪个)</span>
+<span class="c1">#unix username to run this program,</span>
+<span class="c1">#not set (empty) means run by current user</span>
+<span class="nv">run_by_user</span><span class="o">=</span>
+
+<span class="c1"># 可以连接到此 tracker server 的ip范围（对所有类型的连接都有影响，包括客户端，storage server）</span>
+<span class="c1"># allow_hosts can ocur more than once, host can be hostname or ip address,</span>
+<span class="c1"># &#34;*&#34; means match all ip addresses, can use range like this: 10.0.1.[1-15,20] or</span>
+<span class="c1"># host[01-08,20-25].domain.com, for example:</span>
+<span class="c1"># allow_hosts=10.0.1.[1-15,20]</span>
+<span class="c1"># allow_hosts=host[01-08,20-25].domain.com</span>
+<span class="nv">allow_hosts</span><span class="o">=</span>*
+
+<span class="c1"># 同步或刷新日志信息到硬盘的时间间隔，单位为秒</span>
+<span class="c1"># 注意：tracker server 的日志不是时时写硬盘的，而是先写内存</span>
+<span class="c1"># sync log buff to disk every interval seconds</span>
+<span class="c1"># default value is 10 seconds</span>
+<span class="nv">sync_log_buff_interval</span> <span class="o">=</span> <span class="m">10</span>
+
+<span class="c1"># 检测 storage server 存活的时间隔，单位为秒。</span>
+<span class="c1"># storage server定期向tracker server 发心跳，如果tracker server在一个check_active_interval内还没有收到storage server的一次心跳，那边将认为该storage server已经下线。所以本参数值必须大于storage server配置的心跳时间间隔。通常配置为storage server心跳时间间隔的2倍或3倍</span>
+<span class="c1"># check storage server alive interval seconds</span>
+<span class="nv">check_active_interval</span> <span class="o">=</span> <span class="m">120</span>
+
+<span class="c1"># 线程栈的大小。FastDFS server端采用了线程方式。tracker server线程栈不应小于64KB</span>
+<span class="c1"># 线程栈越大，一个线程占用的系统资源就越多。如果要启动更多的线程（V1.x对应的参数为max_connections，</span>
+V2.0为work_threads），可以适当降低本参数值
+<span class="c1"># thread stack size, should &gt;= 64KB</span>
+<span class="c1"># default value is 64KB</span>
+<span class="nv">thread_stack_size</span> <span class="o">=</span> 64KB
+
+<span class="c1"># 这个参数控制当storage server IP地址改变时，集群是否自动调整。注：只有在storage server进程重启时才完成自动调整</span>
+<span class="c1"># auto adjust when the ip address of the storage server changed</span>
+<span class="c1"># default value is true</span>
+<span class="nv">storage_ip_changed_auto_adjust</span> <span class="o">=</span> <span class="nb">true</span>
+
+<span class="c1"># V2.0引入的参数。存储服务器之间同步文件的最大延迟时间，缺省为1天。根据实际情况进行调整</span>
+<span class="c1"># 注：本参数并不影响文件同步过程。本参数仅在下载文件时，判断文件是否已经被同步完成的一个阀值（经验值）</span>
+<span class="c1"># storage sync file max delay seconds</span>
+<span class="c1"># default value is 86400 seconds (one day)</span>
+<span class="c1"># since V2.00</span>
+<span class="nv">storage_sync_file_max_delay</span> <span class="o">=</span> <span class="m">86400</span>
+
+<span class="c1"># V2.0引入的参数。存储服务器同步一个文件需要消耗的最大时间，缺省为300s，即5分钟。</span>
+<span class="c1"># 注：本参数并不影响文件同步过程。本参数仅在下载文件时，作为判断当前文件是否被同步完成的一个阀值（经验值）</span>
+<span class="c1"># the max time of storage sync a file</span>
+<span class="c1"># default value is 300 seconds</span>
+<span class="c1"># since V2.00</span>
+<span class="nv">storage_sync_file_max_time</span> <span class="o">=</span> <span class="m">300</span>
+
+<span class="c1"># V3.0引入的参数。是否使用小文件合并存储特性，缺省是关闭的</span>
+<span class="c1"># if use a trunk file to store several small files</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V3.00</span>
+<span class="nv">use_trunk_file</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c1"># V3.0引入的参数。</span>
+<span class="c1"># trunk file分配的最小字节数。比如文件只有16个字节，系统也会分配slot_min_size个字节</span>
+<span class="c1"># the min slot size, should &lt;= 4KB</span>
+<span class="c1"># default value is 256 bytes</span>
+<span class="c1"># since V3.00</span>
+<span class="nv">slot_min_size</span> <span class="o">=</span> <span class="m">256</span>
+
+<span class="c1"># V3.0引入的参数。</span>
+<span class="c1"># 只有文件大小&lt;=这个参数值的文件，才会合并存储。如果一个文件的大小大于这个参数值，将直接保存到一个文件中（即不采用合并存储方式）。</span>
+<span class="c1"># the max slot size, should &gt; slot_min_size</span>
+<span class="c1"># store the upload file to trunk file when it&#39;s size &lt;=  this value</span>
+<span class="c1"># default value is 16MB</span>
+<span class="c1"># since V3.00</span>
+<span class="nv">slot_max_size</span> <span class="o">=</span> 16MB
+
+<span class="c1"># V3.0引入的参数。</span>
+<span class="c1"># 合并存储的trunk file大小，至少4MB，缺省值是64MB。不建议设置得过大</span>
+<span class="c1"># the trunk file size, should &gt;= 4MB</span>
+<span class="c1"># default value is 64MB</span>
+<span class="c1"># since V3.00</span>
+<span class="nv">trunk_file_size</span> <span class="o">=</span> 64MB
+
+<span class="c1"># 是否提前创建trunk file。只有当这个参数为true，下面3个以trunk_create_file_打头的参数才有效</span>
+<span class="c1"># if create trunk file advancely</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V3.06</span>
+<span class="nv">trunk_create_file_advance</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c1"># 提前创建trunk file的起始时间点（基准时间），02:00表示第一次创建的时间点是凌晨2点</span>
+<span class="c1"># the time base to create trunk file</span>
+<span class="c1"># the time format: HH:MM</span>
+<span class="c1"># default value is 02:00</span>
+<span class="c1"># since V3.06</span>
+<span class="nv">trunk_create_file_time_base</span> <span class="o">=</span> <span class="m">02</span>:00
+
+<span class="c1"># 创建trunk file的时间间隔，单位为秒。如果每天只提前创建一次，则设置为86400</span>
+<span class="c1"># the interval of create trunk file, unit: second</span>
+<span class="c1"># default value is 38400 (one day)</span>
+<span class="c1"># since V3.06</span>
+<span class="nv">trunk_create_file_interval</span> <span class="o">=</span> <span class="m">86400</span>
+
+<span class="c1"># 提前创建trunk file时，需要达到的空闲trunk大小</span>
+<span class="c1"># 比如本参数为20G，而当前空闲trunk为4GB，那么只需要创建16GB的trunk file即可</span>
+<span class="c1"># the threshold to create trunk file</span>
+<span class="c1"># when the free trunk file size less than the threshold, will create</span>
+<span class="c1"># the trunk files</span>
+<span class="c1"># default value is 0</span>
+<span class="c1"># since V3.06</span>
+<span class="nv">trunk_create_file_space_threshold</span> <span class="o">=</span> 20G
+
+<span class="c1"># trunk初始化时，是否检查可用空间是否被占用</span>
+<span class="c1"># if check trunk space occupying when loading trunk free spaces</span>
+<span class="c1"># the occupied spaces will be ignored</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V3.09</span>
+<span class="c1"># NOTICE: set this parameter to true will slow the loading of trunk spaces</span>
+<span class="c1"># when startup. you should set this parameter to true when neccessary.</span>
+<span class="nv">trunk_init_check_occupying</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c1"># 是否无条件从trunk binlog中加载trunk可用空间信息</span>
+<span class="c1"># FastDFS缺省是从快照文件storage_trunk.dat中加载trunk可用空间，</span>
+<span class="c1"># 该文件的第一行记录的是trunk binlog的offset，然后从binlog的offset开始加载</span>
+<span class="c1"># if ignore storage_trunk.dat, reload from trunk binlog</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V3.10</span>
+<span class="c1"># set to true once for version upgrade when your version less than V3.10</span>
+<span class="nv">trunk_init_reload_from_binlog</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c1"># 是否使用server ID作为storage server标识</span>
+<span class="c1"># if use storage ID instead of IP address</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V4.00</span>
+<span class="nv">use_storage_id</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c1"># use_storage_id 设置为true，才需要设置本参数</span>
+<span class="c1"># 在文件中设置组名、server ID和对应的IP地址，参见源码目录下的配置示例：conf/storage_ids.conf</span>
+<span class="c1"># specify storage ids filename, can use relative or absolute path</span>
+<span class="c1"># since V4.00</span>
+<span class="nv">storage_ids_filename</span> <span class="o">=</span> storage_ids.conf
+
+<span class="c1">#文件名中的id类型，有ip和id两种，只有当use_storage_id设置为true时该参数才有效</span>
+<span class="c1"># id type of the storage server in the filename, values are:</span>
+<span class="c1">## ip: the ip address of the storage server</span>
+<span class="c1">## id: the server id of the storage server</span>
+<span class="c1"># this paramter is valid only when use_storage_id set to true</span>
+<span class="c1"># default value is ip</span>
+<span class="c1"># since V4.03</span>
+<span class="nv">id_type_in_filename</span> <span class="o">=</span> ip
+
+<span class="c1"># 存储从文件是否采用symbol link（符号链接）方式</span>
+<span class="c1"># 如果设置为true，一个从文件将占用两个文件：原始文件及指向它的符号链接</span>
+<span class="c1"># if store slave file use symbol link</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V4.01</span>
+<span class="nv">store_slave_file_use_link</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c1"># 是否定期轮转error log，目前仅支持一天轮转一次</span>
+<span class="c1"># if rotate the error log every day</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V4.02</span>
+<span class="nv">rotate_error_log</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c1"># error log定期轮转的时间点，只有当rotate_error_log设置为true时有效</span>
+<span class="c1"># rotate error log time base, time format: Hour:Minute</span>
+<span class="c1"># Hour from 0 to 23, Minute from 0 to 59</span>
+<span class="c1"># default value is 00:00</span>
+<span class="c1"># since V4.02</span>
+<span class="nv">error_log_rotate_time</span><span class="o">=</span><span class="m">00</span>:00
+
+<span class="c1"># error log按大小轮转</span>
+<span class="c1"># 设置为0表示不按文件大小轮转，否则当error log达到该大小，就会轮转到新文件中</span>
+<span class="c1"># rotate error log when the log file exceeds this size</span>
+<span class="c1"># 0 means never rotates log file by log file size</span>
+<span class="c1"># default value is 0</span>
+<span class="c1"># since V4.02</span>
+<span class="nv">rotate_error_log_size</span> <span class="o">=</span> <span class="m">0</span>
+
+<span class="c1"># 是否使用连接池</span>
+<span class="c1"># if use connection pool</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V4.05</span>
+<span class="nv">use_connection_pool</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c1"># 如果一个连接的空闲时间超过这个值将会被自动关闭</span>
+<span class="c1"># connections whose the idle time exceeds this time will be closed</span>
+<span class="c1"># unit: second</span>
+<span class="c1"># default value is 3600</span>
+<span class="c1"># since V4.05</span>
+<span class="nv">connection_pool_max_idle_time</span> <span class="o">=</span> <span class="m">3600</span>
+
+<span class="c1"># 用于提供http服务的端口</span>
+<span class="c1"># HTTP port on this tracker server</span>
+http.server_port<span class="o">=</span><span class="m">8080</span>
+
+<span class="c1"># 检查http server是否还在工作的时间间隔，如果该值小于0则永远不检查</span>
+<span class="c1"># check storage HTTP server alive interval seconds</span>
+<span class="c1"># &lt;= 0 for never check</span>
+<span class="c1"># default value is 30</span>
+http.check_alive_interval<span class="o">=</span><span class="m">30</span>
+
+<span class="c1"># 检查http server是否存活的类型，有tcp和http两种</span>
+<span class="c1"># tcp方式只有http端口被连接</span>
+<span class="c1"># http方式检查必须返回状态值200</span>
+<span class="c1"># check storage HTTP server alive type, values are:</span>
+<span class="c1">#   tcp : connect to the storge server with HTTP port only,</span>
+<span class="c1">#        do not request and get response</span>
+<span class="c1">#   http: storage check alive url must return http status 200</span>
+<span class="c1"># default value is tcp</span>
+http.check_alive_type<span class="o">=</span>tcp
+
+<span class="c1"># check storage HTTP server alive uri/url</span>
+<span class="c1"># NOTE: storage embed HTTP server support uri: /status.html</span>
+http.check_alive_uri<span class="o">=</span>/status.html</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="storage-conf">storage.conf</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span><span class="lnt">327
+</span><span class="lnt">328
+</span><span class="lnt">329
+</span><span class="lnt">330
+</span><span class="lnt">331
+</span><span class="lnt">332
+</span><span class="lnt">333
+</span><span class="lnt">334
+</span><span class="lnt">335
+</span><span class="lnt">336
+</span><span class="lnt">337
+</span><span class="lnt">338
+</span><span class="lnt">339
+</span><span class="lnt">340
+</span><span class="lnt">341
+</span><span class="lnt">342
+</span><span class="lnt">343
+</span><span class="lnt">344
+</span><span class="lnt">345
+</span><span class="lnt">346
+</span><span class="lnt">347
+</span><span class="lnt">348
+</span><span class="lnt">349
+</span><span class="lnt">350
+</span><span class="lnt">351
+</span><span class="lnt">352
+</span><span class="lnt">353
+</span><span class="lnt">354
+</span><span class="lnt">355
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 这个配置文件是否无效，false表示有效</span>
+<span class="c1"># is this config file disabled</span>
+<span class="c1"># false for enabled</span>
+<span class="c1"># true for disabled</span>
+<span class="nv">disabled</span><span class="o">=</span><span class="nb">false</span>
+
+<span class="c1"># 指定 此 storage server 所在组(卷)</span>
+<span class="c1"># the name of the group this storage server belongs to</span>
+<span class="nv">group_name</span><span class="o">=</span>group1
+
+<span class="c1"># 是否绑定IP</span>
+<span class="c1"># bind_addr= 后面为绑定的IP地址 (常用于服务器有多个IP但只希望一个IP提供服务)。如果不填则表示所有的(一般不填就OK)</span>
+<span class="c1"># bind an address of this host</span>
+<span class="c1"># empty for bind all addresses of this host</span>
+<span class="nv">bind_addr</span><span class="o">=</span>
+
+<span class="c1"># bind_addr通常是针对server的。当指定bind_addr时，本参数才有效。</span>
+<span class="c1"># 本storage server作为client连接其他服务器（如tracker server、其他storage server），是否绑定bind_addr。</span>
+<span class="c1"># if bind an address of this host when connect to other servers</span>
+<span class="c1"># (this storage server as a client)</span>
+<span class="c1"># true for binding the address configed by above parameter: &#34;bind_addr&#34;</span>
+<span class="c1"># false for binding any address of this host</span>
+<span class="nv">client_bind</span><span class="o">=</span><span class="nb">true</span>
+
+<span class="c1"># storage server服务端口</span>
+<span class="c1"># the storage server port</span>
+<span class="nv">port</span><span class="o">=</span><span class="m">23000</span>
+
+<span class="c1"># 连接超时时间，针对socket套接字函数connect</span>
+<span class="c1"># connect timeout in seconds</span>
+<span class="c1"># default value is 30s</span>
+<span class="nv">connect_timeout</span><span class="o">=</span><span class="m">30</span>
+
+<span class="c1"># storage server 网络超时时间，单位为秒。发送或接收数据时，如果在超时时间后还不能发送或接收数据，则本次网络通信失败。</span>
+<span class="c1"># network timeout in seconds</span>
+<span class="c1"># default value is 30s</span>
+<span class="nv">network_timeout</span><span class="o">=</span><span class="m">60</span>
+
+<span class="c1"># 心跳间隔时间，单位为秒 (这里是指主动向tracker server 发送心跳)</span>
+<span class="c1"># heart beat interval in seconds</span>
+<span class="nv">heart_beat_interval</span><span class="o">=</span><span class="m">30</span>
+
+<span class="c1"># storage server向tracker server报告磁盘剩余空间的时间间隔，单位为秒</span>
+<span class="c1"># disk usage report interval in seconds</span>
+<span class="nv">stat_report_interval</span><span class="o">=</span><span class="m">60</span>
+
+<span class="c1"># base_path 目录地址,根目录必须存在  子目录会自动生成 (注 :这里不是上传的文件存放的地址,之前是的,在某个版本后更改了)</span>
+<span class="c1"># the base path to store data and log files</span>
+<span class="nv">base_path</span><span class="o">=</span>/home/yuqing/fastdfs
+
+<span class="c1"># 系统提供服务时的最大连接数</span>
+<span class="c1"># max concurrent connections the server supported</span>
+<span class="c1"># default value is 256</span>
+<span class="c1"># more max_connections means more memory will be used</span>
+<span class="nv">max_connections</span><span class="o">=</span><span class="m">256</span>
+
+<span class="c1"># V2.0引入本参数。设置队列结点的buffer大小。工作队列消耗的内存大小 = buff_size * max_connections</span>
+<span class="c1"># 设置得大一些，系统整体性能会有所提升。</span>
+<span class="c1"># 消耗的内存请不要超过系统物理内存大小。另外，对于32位系统，请注意使用到的内存不要超过3GB</span>
+<span class="c1"># the buff size to recv / send data</span>
+<span class="c1"># this parameter must more than 8KB</span>
+<span class="c1"># default value is 64KB</span>
+<span class="c1"># since V2.00</span>
+<span class="nv">buff_size</span> <span class="o">=</span> 256KB
+
+<span class="c1"># 工作线程的数量，工作线程用于处理网络IO，应当小于max_connections的值</span>
+<span class="c1"># work thread count, should &lt;= max_connections</span>
+<span class="c1"># work thread deal network io</span>
+<span class="c1"># default value is 4</span>
+<span class="c1"># since V2.00</span>
+<span class="nv">work_threads</span><span class="o">=</span><span class="m">4</span>
+
+<span class="c1"># V2.0引入本参数。磁盘IO读写是否分离，缺省是分离的</span>
+<span class="c1"># if disk read / write separated</span>
+<span class="c1">##  false for mixed read and write</span>
+<span class="c1">##  true for separated read and write</span>
+<span class="c1"># default value is true</span>
+<span class="c1"># since V2.00</span>
+<span class="nv">disk_rw_separated</span> <span class="o">=</span> <span class="nb">true</span>
+
+<span class="c1"># V2.0引入本参数。针对单个存储路径的读线程数，缺省值为1。</span>
+<span class="c1"># 读写分离时，系统中的读线程数 = disk_reader_threads * store_path_count</span>
+<span class="c1"># 读写混合时，系统中的读写线程数 = (disk_reader_threads + disk_writer_threads) * store_path_count</span>
+<span class="c1"># disk reader thread count per store base path</span>
+<span class="c1"># for mixed read / write, this parameter can be 0</span>
+<span class="c1"># default value is 1</span>
+<span class="c1"># since V2.00</span>
+<span class="nv">disk_reader_threads</span> <span class="o">=</span> <span class="m">1</span>
+
+<span class="c1"># V2.0引入本参数。针对单个存储路径的写线程数，缺省值为1。</span>
+<span class="c1"># 读写分离时，系统中的写线程数 = disk_writer_threads * store_path_count</span>
+<span class="c1"># 读写混合时，系统中的读写线程数 = (disk_reader_threads + disk_writer_threads) * store_path_count</span>
+<span class="c1"># disk writer thread count per store base path</span>
+<span class="c1"># for mixed read / write, this parameter can be 0</span>
+<span class="c1"># default value is 1</span>
+<span class="c1"># since V2.00</span>
+<span class="nv">disk_writer_threads</span> <span class="o">=</span> <span class="m">1</span>
+
+<span class="c1"># 同步文件时，如果从binlog中没有读到要同步的文件，休眠N毫秒后重新读取。0表示不休眠，立即再次尝试读取。</span>
+<span class="c1"># 出于CPU消耗考虑，不建议设置为0。如何希望同步尽可能快一些，可以将本参数设置得小一些，比如设置为10ms</span>
+<span class="c1"># when no entry to sync, try read binlog again after X milliseconds</span>
+<span class="c1"># must &gt; 0, default value is 200ms</span>
+<span class="nv">sync_wait_msec</span><span class="o">=</span><span class="m">50</span>
+
+<span class="c1"># 同步上一个文件后，再同步下一个文件的时间间隔，单位为毫秒，0表示不休眠，直接同步下一个文件。</span>
+<span class="c1"># after sync a file, usleep milliseconds</span>
+<span class="c1"># 0 for sync successively (never call usleep)</span>
+<span class="nv">sync_interval</span><span class="o">=</span><span class="m">0</span>
+
+<span class="c1"># 下面二个一起解释。允许系统同步的时间段 (默认是全天) 。一般用于避免高峰同步产生一些问题而设定，相信sa都会明白</span>
+<span class="c1"># storage sync start time of a day, time format: Hour:Minute</span>
+<span class="c1"># Hour from 0 to 23, Minute from 0 to 59</span>
+<span class="nv">sync_start_time</span><span class="o">=</span><span class="m">00</span>:00
+
+<span class="c1"># storage sync end time of a day, time format: Hour:Minute</span>
+<span class="c1"># Hour from 0 to 23, Minute from 0 to 59</span>
+<span class="nv">sync_end_time</span><span class="o">=</span><span class="m">23</span>:59
+
+<span class="c1"># 同步完N个文件后，把storage的mark文件同步到磁盘</span>
+<span class="c1"># 注：如果mark文件内容没有变化，则不会同步</span>
+<span class="c1"># write to the mark file after sync N files</span>
+<span class="c1"># default value is 500</span>
+<span class="nv">write_mark_file_freq</span><span class="o">=</span><span class="m">500</span>
+
+<span class="c1"># 存放文件时storage server支持多个路径（例如磁盘）。这里配置存放文件的基路径数目，通常只配一个目录。</span>
+<span class="c1"># path(disk or mount point) count, default value is 1</span>
+<span class="nv">store_path_count</span><span class="o">=</span><span class="m">1</span>
+
+<span class="c1"># 逐一配置store_path个路径，索引号基于0。注意配置方法后面有0,1,2 ......，需要配置0到store_path - 1。</span>
+<span class="c1"># 如果不配置base_path0，那边它就和base_path对应的路径一样。</span>
+<span class="c1"># store_path#, based 0, if store_path0 not exists, it&#39;s value is base_path</span>
+<span class="c1"># the paths must be exist</span>
+<span class="nv">store_path0</span><span class="o">=</span>/home/yuqing/fastdfs
+<span class="c1">#store_path1=/home/yuqing/fastdfs2</span>
+
+<span class="c1"># FastDFS存储文件时，采用了两级目录。这里配置存放文件的目录个数 (系统的存储机制,大家看看文件存储的目录就知道了)</span>
+<span class="c1"># 如果本参数只为N（如：256），那么storage server在初次运行时，会自动创建 N * N 个存放文件的子目录。</span>
+<span class="c1"># subdir_count  * subdir_count directories will be auto created under each</span>
+<span class="c1"># store_path (disk), value can be 1 to 256, default value is 256</span>
+<span class="nv">subdir_count_per_path</span><span class="o">=</span><span class="m">256</span>
+
+<span class="c1"># tracker_server 的列表 要写端口的哦 (再次提醒是主动连接tracker_server )</span>
+<span class="c1"># 有多个tracker server时，每个tracker server写一行</span>
+<span class="c1"># tracker_server can ocur more than once, and tracker_server format is</span>
+<span class="c1">#  &#34;host:port&#34;, host can be hostname or ip address</span>
+<span class="nv">tracker_server</span><span class="o">=</span><span class="m">192</span>.168.209.121:22122
+
+<span class="c1"># 日志级别</span>
+<span class="c1">#standard log level as syslog, case insensitive, value list:</span>
+<span class="c1">### emerg for emergency</span>
+<span class="c1">### alert</span>
+<span class="c1">### crit for critical</span>
+<span class="c1">### error</span>
+<span class="c1">### warn for warning</span>
+<span class="c1">### notice</span>
+<span class="c1">### info</span>
+<span class="c1">### debug</span>
+<span class="nv">log_level</span><span class="o">=</span>info
+
+<span class="c1"># 操作系统运行FastDFS的用户组 (不填 就是当前用户组,哪个启动进程就是哪个)</span>
+<span class="c1">#unix group name to run this program,</span>
+<span class="c1">#not set (empty) means run by the group of current user</span>
+<span class="nv">run_by_group</span><span class="o">=</span>
+
+<span class="c1"># 操作系统运行FastDFS的用户 (不填 就是当前用户,哪个启动进程就是哪个)</span>
+<span class="c1">#unix username to run this program,</span>
+<span class="c1">#not set (empty) means run by current user</span>
+<span class="nv">run_by_user</span><span class="o">=</span>
+
+<span class="c1"># 允许连接本storage server的IP地址列表 （不包括自带HTTP服务的所有连接）</span>
+<span class="c1"># 可以配置多行，每行都会起作用</span>
+<span class="c1"># allow_hosts can ocur more than once, host can be hostname or ip address,</span>
+<span class="c1"># &#34;*&#34; means match all ip addresses, can use range like this: 10.0.1.[1-15,20] or</span>
+<span class="c1"># host[01-08,20-25].domain.com, for example:</span>
+<span class="c1"># allow_hosts=10.0.1.[1-15,20]</span>
+<span class="c1"># allow_hosts=host[01-08,20-25].domain.com</span>
+<span class="nv">allow_hosts</span><span class="o">=</span>*
+
+<span class="c1">#  文件在data目录下分散存储策略。</span>
+<span class="c1"># 0: 轮流存放，在一个目录下存储设置的文件数后（参数file_distribute_rotate_count中设置文件数），使用下一个目录进行存储。</span>
+<span class="c1"># 1: 随机存储，根据文件名对应的hash code来分散存储。</span>
+<span class="c1"># the mode of the files distributed to the data path</span>
+<span class="c1"># 0: round robin(default)</span>
+<span class="c1"># 1: random, distributted by hash code</span>
+<span class="nv">file_distribute_path_mode</span><span class="o">=</span><span class="m">0</span>
+
+<span class="c1"># 当上面的参数file_distribute_path_mode配置为0（轮流存放方式）时，本参数有效。</span>
+<span class="c1"># 当一个目录下的文件存放的文件数达到本参数值时，后续上传的文件存储到下一个目录中。</span>
+<span class="c1"># valid when file_distribute_to_path is set to 0 (round robin),</span>
+<span class="c1"># when the written file count reaches this number, then rotate to next path</span>
+<span class="c1"># default value is 100</span>
+<span class="nv">file_distribute_rotate_count</span><span class="o">=</span><span class="m">100</span>
+
+<span class="c1"># 当写入大文件时，每写入N个字节，调用一次系统函数fsync将内容强行同步到硬盘。0表示从不调用fsync</span>
+<span class="c1"># call fsync to disk when write big file</span>
+<span class="c1"># 0: never call fsync</span>
+<span class="c1"># other: call fsync when written bytes &gt;= this bytes</span>
+<span class="c1"># default value is 0 (never call fsync)</span>
+<span class="nv">fsync_after_written_bytes</span><span class="o">=</span><span class="m">0</span>
+
+<span class="c1"># 同步或刷新日志信息到硬盘的时间间隔，单位为秒</span>
+<span class="c1"># 注意：storage server 的日志信息不是时时写硬盘的，而是先写内存。</span>
+<span class="c1"># sync log buff to disk every interval seconds</span>
+<span class="c1"># must &gt; 0, default value is 10 seconds</span>
+<span class="nv">sync_log_buff_interval</span><span class="o">=</span><span class="m">10</span>
+
+<span class="c1"># 同步binglog（更新操作日志）到硬盘的时间间隔，单位为秒</span>
+<span class="c1"># 本参数会影响新上传文件同步延迟时间</span>
+<span class="c1"># sync binlog buff / cache to disk every interval seconds</span>
+<span class="c1"># default value is 60 seconds</span>
+<span class="nv">sync_binlog_buff_interval</span><span class="o">=</span><span class="m">10</span>
+
+<span class="c1"># 把storage的stat文件同步到磁盘的时间间隔，单位为秒。</span>
+<span class="c1"># 注：如果stat文件内容没有变化，不会进行同步</span>
+<span class="c1"># sync storage stat info to disk every interval seconds</span>
+<span class="c1"># default value is 300 seconds</span>
+<span class="nv">sync_stat_file_interval</span><span class="o">=</span><span class="m">300</span>
+
+<span class="c1"># 线程栈的大小。FastDFS server端采用了线程方式。</span>
+<span class="c1"># 对于V1.x，storage server线程栈不应小于512KB；对于V2.0，线程栈大于等于128KB即可。</span>
+<span class="c1"># 线程栈越大，一个线程占用的系统资源就越多。</span>
+<span class="c1"># 对于V1.x，如果要启动更多的线程（max_connections），可以适当降低本参数值。</span>
+<span class="c1"># thread stack size, should &gt;= 512KB</span>
+<span class="c1"># default value is 512KB</span>
+<span class="nv">thread_stack_size</span><span class="o">=</span>512KB
+
+<span class="c1"># 本storage server作为源服务器，上传文件的优先级，可以为负数。值越小，优先级越高。这里就和 tracker.conf 中store_server= 2时的配置相对应了</span>
+<span class="c1"># the priority as a source server for uploading file.</span>
+<span class="c1"># the lower this value, the higher its uploading priority.</span>
+<span class="c1"># default value is 10</span>
+<span class="nv">upload_priority</span><span class="o">=</span><span class="m">10</span>
+
+<span class="c1"># 网卡别名前缀，就像Linux中的eth，可以使用ifconfig -a命令来查看</span>
+<span class="c1"># 多个别名之间使用逗号分隔，如果不设置这个值表示自动的被系统类型设置</span>
+<span class="c1"># the NIC alias prefix, such as eth in Linux, you can see it by ifconfig -a</span>
+<span class="c1"># multi aliases split by comma. empty value means auto set by OS type</span>
+<span class="c1"># default values is empty</span>
+<span class="nv">if_alias_prefix</span><span class="o">=</span>
+
+<span class="c1"># 是否检测上传文件已经存在。如果已经存在，则不存在文件内容，建立一个符号链接以节省磁盘空间。</span>
+<span class="c1"># 这个应用要配合FastDHT 使用，所以打开前要先安装FastDHT</span>
+<span class="c1"># 1或yes 是检测，0或no 是不检测</span>
+<span class="c1"># if check file duplicate, when set to true, use FastDHT to store file indexes</span>
+<span class="c1"># 1 or yes: need check</span>
+<span class="c1"># 0 or no: do not check</span>
+<span class="c1"># default value is 0</span>
+<span class="nv">check_file_duplicate</span><span class="o">=</span><span class="m">0</span>
+
+<span class="c1"># 文件去重时，文件内容的签名方式：</span>
+<span class="c1"># hash： 4个hash code</span>
+<span class="c1"># md5：MD5</span>
+<span class="c1"># file signature method for check file duplicate</span>
+<span class="c1">## hash: four 32 bits hash code</span>
+<span class="c1">## md5: MD5 signature</span>
+<span class="c1"># default value is hash</span>
+<span class="c1"># since V4.01</span>
+<span class="nv">file_signature_method</span><span class="o">=</span><span class="nb">hash</span>
+
+<span class="c1"># 当上个参数设定为1 或 yes时 (true/on也是可以的) ， 在FastDHT中的命名空间</span>
+<span class="c1"># namespace for storing file indexes (key-value pairs)</span>
+<span class="c1"># this item must be set when check_file_duplicate is true / on</span>
+<span class="nv">key_namespace</span><span class="o">=</span>FastDFS
+
+<span class="c1"># 与FastDHT servers 的连接方式 (是否为持久连接) ，默认是0（短连接方式）。可以考虑使用长连接，这要看FastDHT server的连接数是否够用。</span>
+<span class="c1"># set keep_alive to 1 to enable persistent connection with FastDHT servers</span>
+<span class="c1"># default value is 0 (short connection)</span>
+<span class="nv">keep_alive</span><span class="o">=</span><span class="m">0</span>
+
+<span class="c1"># 下面是关于FastDHT servers 的设定 需要对FastDHT servers 有所了解,这里只说字面意思了</span>
+<span class="c1"># 可以通过 #include filename 方式来加载 FastDHT servers  的配置，装上FastDHT就知道该如何配置啦。</span>
+<span class="c1"># 同样要求 check_file_duplicate=1 时才有用，不然系统会忽略</span>
+<span class="c1"># fdht_servers.conf 记载的是 FastDHT servers 列表</span>
+<span class="c1"># you can use &#34;#include filename&#34; (not include double quotes) directive to</span>
+<span class="c1"># load FastDHT server list, when the filename is a relative path such as</span>
+<span class="c1"># pure filename, the base path is the base path of current/this config file.</span>
+<span class="c1"># must set FastDHT server list when check_file_duplicate is true / on</span>
+<span class="c1"># please see INSTALL of FastDHT for detail</span>
+<span class="c1">##include /home/yuqing/fastdht/conf/fdht_servers.conf</span>
+
+<span class="c1"># 是否将文件操作记录到access log</span>
+<span class="c1"># if log to access log</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V4.00</span>
+<span class="nv">use_access_log</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c1"># 是否定期轮转access log，目前仅支持一天轮转一次</span>
+<span class="c1"># if rotate the access log every day</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V4.00</span>
+<span class="nv">rotate_access_log</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c1"># access log定期轮转的时间点，只有当rotate_access_log设置为true时有效</span>
+<span class="c1"># rotate access log time base, time format: Hour:Minute</span>
+<span class="c1"># Hour from 0 to 23, Minute from 0 to 59</span>
+<span class="c1"># default value is 00:00</span>
+<span class="c1"># since V4.00</span>
+<span class="nv">access_log_rotate_time</span><span class="o">=</span><span class="m">00</span>:00
+
+<span class="c1"># 是否定期轮转error log，目前仅支持一天轮转一次</span>
+<span class="c1"># if rotate the error log every day</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V4.02</span>
+<span class="nv">rotate_error_log</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c1"># error log定期轮转的时间点，只有当rotate_error_log设置为true时有效</span>
+<span class="c1"># rotate error log time base, time format: Hour:Minute</span>
+<span class="c1"># Hour from 0 to 23, Minute from 0 to 59</span>
+<span class="c1"># default value is 00:00</span>
+<span class="c1"># since V4.02</span>
+<span class="nv">error_log_rotate_time</span><span class="o">=</span><span class="m">00</span>:00
+
+<span class="c1"># access log按文件大小轮转</span>
+<span class="c1"># 设置为0表示不按文件大小轮转，否则当access log达到该大小，就会轮转到新文件中</span>
+<span class="c1"># rotate access log when the log file exceeds this size</span>
+<span class="c1"># 0 means never rotates log file by log file size</span>
+<span class="c1"># default value is 0</span>
+<span class="c1"># since V4.02</span>
+<span class="nv">rotate_access_log_size</span> <span class="o">=</span> <span class="m">0</span>
+
+<span class="c1"># error log按文件大小轮转</span>
+<span class="c1"># 设置为0表示不按文件大小轮转，否则当error log达到该大小，就会轮转到新文件中</span>
+<span class="c1"># rotate error log when the log file exceeds this size</span>
+<span class="c1"># 0 means never rotates log file by log file size</span>
+<span class="c1"># default value is 0</span>
+<span class="c1"># since V4.02</span>
+<span class="nv">rotate_error_log_size</span> <span class="o">=</span> <span class="m">0</span>
+
+<span class="c1"># 文件同步的时候，是否忽略无效的binlog记录</span>
+<span class="c1"># if skip the invalid record when sync file</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V4.02</span>
+<span class="nv">file_sync_skip_invalid_record</span><span class="o">=</span><span class="nb">false</span>
+
+<span class="c1"># 是否使用连接池</span>
+<span class="c1"># if use connection pool</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V4.05</span>
+<span class="nv">use_connection_pool</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c1"># 如果一个连接的空闲时间超过这个值将会被自动关闭</span>
+<span class="c1"># connections whose the idle time exceeds this time will be closed</span>
+<span class="c1"># unit: second</span>
+<span class="c1"># default value is 3600</span>
+<span class="c1"># since V4.05</span>
+<span class="nv">connection_pool_max_idle_time</span> <span class="o">=</span> <span class="m">3600</span>
+
+<span class="c1"># storage server上web server域名，通常仅针对单独部署的web server。这样URL中就可以通过域名方式来访问storage server上的文件了，</span>
+<span class="c1"># 这个参数为空就是IP地址的方式。</span>
+<span class="c1"># use the ip address of this storage server if domain_name is empty,</span>
+<span class="c1"># else this domain name will ocur in the url redirected by the tracker server</span>
+http.domain_name<span class="o">=</span>
+
+<span class="c1"># web server的端口</span>
+<span class="c1"># the port of the web server on this storage server</span>
+http.server_port<span class="o">=</span><span class="m">8888</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="client-conf">client.conf</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 连接超时时间，针对socket套接字函数connect</span>
+<span class="c1"># connect timeout in seconds</span>
+<span class="c1"># default value is 30s</span>
+<span class="nv">connect_timeout</span><span class="o">=</span><span class="m">30</span>
+
+<span class="c1"># client的网络超时，单位为秒。发送或接收数据时，如果在超时时间后还不能发送或接收数据，则本次网络通信失败</span>
+<span class="c1"># network timeout in seconds</span>
+<span class="c1"># default value is 30s</span>
+<span class="nv">network_timeout</span><span class="o">=</span><span class="m">60</span>
+
+<span class="c1"># 存储日志的根目录</span>
+<span class="c1"># the base path to store log files</span>
+<span class="nv">base_path</span><span class="o">=</span>/home/yuqing/fastdfs
+
+<span class="c1"># tracker_server 的列表 要写端口</span>
+<span class="c1"># tracker_server can ocur more than once, and tracker_server format is</span>
+<span class="c1">#  &#34;host:port&#34;, host can be hostname or ip address</span>
+<span class="nv">tracker_server</span><span class="o">=</span><span class="m">192</span>.168.0.197:22122
+
+<span class="c1"># 日志的级别</span>
+<span class="c1">#standard log level as syslog, case insensitive, value list:</span>
+<span class="c1">### emerg for emergency</span>
+<span class="c1">### alert</span>
+<span class="c1">### crit for critical</span>
+<span class="c1">### error</span>
+<span class="c1">### warn for warning</span>
+<span class="c1">### notice</span>
+<span class="c1">### info</span>
+<span class="c1">### debug</span>
+<span class="nv">log_level</span><span class="o">=</span>info
+
+<span class="c1"># 是否使用连接池</span>
+<span class="c1"># if use connection pool</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V4.05</span>
+<span class="nv">use_connection_pool</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c1"># 如果一个连接的空闲时间超过这个值将会被自动关闭</span>
+<span class="c1"># connections whose the idle time exceeds this time will be closed</span>
+<span class="c1"># unit: second</span>
+<span class="c1"># default value is 3600</span>
+<span class="c1"># since V4.05</span>
+<span class="nv">connection_pool_max_idle_time</span> <span class="o">=</span> <span class="m">3600</span>
+
+<span class="c1"># 是否从FastDFS的tracker server加载参数</span>
+<span class="c1"># if load FastDFS parameters from tracker server</span>
+<span class="c1"># since V4.05</span>
+<span class="c1"># default value is false</span>
+<span class="nv">load_fdfs_parameters_from_tracker</span><span class="o">=</span><span class="nb">false</span>
+
+是否使用storage ID 代替IP，只有当load_fdfs_parameters_from_tracker为false时才有效
+<span class="c1"># if use storage ID instead of IP address</span>
+<span class="c1"># same as tracker.conf</span>
+<span class="c1"># valid only when load_fdfs_parameters_from_tracker is false</span>
+<span class="c1"># default value is false</span>
+<span class="c1"># since V4.05</span>
+<span class="nv">use_storage_id</span> <span class="o">=</span> <span class="nb">false</span>
+
+<span class="c1"># 指定storage_ids的路径，可以使用绝对路径和相对路径，只有当load_fdfs_parameters_from_tracker为false时才有效</span>
+<span class="c1"># specify storage ids filename, can use relative or absolute path</span>
+<span class="c1"># same as tracker.conf</span>
+<span class="c1"># valid only when load_fdfs_parameters_from_tracker is false</span>
+<span class="c1"># since V4.05</span>
+<span class="nv">storage_ids_filename</span> <span class="o">=</span> storage_ids.conf
+
+
+<span class="c1">#tracker server的http端口</span>
+<span class="c1">#HTTP settings</span>
+http.tracker_server_port<span class="o">=</span><span class="m">8080</span>
+
+<span class="c1">#use &#34;#include&#34; directive to include HTTP other settiongs</span>
+<span class="c1">##include http.conf</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Little Mice</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2017-03-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          <a href="/tags/centos/">Centos</a>
+          <a href="/tags/fastdfs/">Fastdfs</a>
+          <a href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">性能测试</a>
+          <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/centos-systemctl-%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE%E4%BE%8B%E5%AD%90/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Centos Systemctl服务配置例子</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2017-03-20-linux-iptables-%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%85%8D%E7%BD%AE-%E5%9F%BA%E4%BA%8Eubuntu/">
+            <span class="next-text nav-default">Linux iptables 端口转发配置 -- 基于ubuntu</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:whsfightup@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/wadeLouis" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.weihaosi.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">West</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

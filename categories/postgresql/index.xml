@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Postgresql on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/categories/postgresql/</link>
+    <description>Recent content in Postgresql on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 01 Apr 2019 10:42:16 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/categories/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Postgresql 10 主从配置</title>
+      <link>http://www.weihaosi.me/post/postgresql-10-%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Mon, 01 Apr 2019 10:42:16 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/postgresql-10-%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/</guid>
+      <description>实验环境 主从方案: 主数据库： db1 从数据库： db2 主从方式: 流复制 数据库版本: 10.3 操作系统: Centos 7.3 数据库安装 具体手动安装的详细方法，自行百度，这里提供一</description>
+    </item>
+    
+  </channel>
+</rss>

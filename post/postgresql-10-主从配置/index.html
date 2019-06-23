@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Postgresql 10 主从配置 - 韦昊斯的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="West" /><meta name="description" content="实验环境 主从方案: 主数据库： db1 从数据库： db2 主从方式: 流复制 数据库版本: 10.3 操作系统: Centos 7.3 数据库安装 具体手动安装的详细方法，自行百度，这里提供一" /><meta name="keywords" content="韦昊斯, 软件测试, 自动化测试, 性能测试, 软件实施, 运维" />
+
+
+
+<meta name="google-site-verification" content="iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI" />
+
+
+<meta name="generator" content="Hugo 0.53 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://www.weihaosi.me/post/postgresql-10-%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Postgresql 10 主从配置" />
+<meta property="og:description" content="实验环境 主从方案: 主数据库： db1 从数据库： db2 主从方式: 流复制 数据库版本: 10.3 操作系统: Centos 7.3 数据库安装 具体手动安装的详细方法，自行百度，这里提供一" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.weihaosi.me/post/postgresql-10-%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/" /><meta property="article:published_time" content="2019-04-01T10:42:16&#43;08:00"/>
+<meta property="article:modified_time" content="2019-04-01T10:42:16&#43;08:00"/>
+
+<meta itemprop="name" content="Postgresql 10 主从配置">
+<meta itemprop="description" content="实验环境 主从方案: 主数据库： db1 从数据库： db2 主从方式: 流复制 数据库版本: 10.3 操作系统: Centos 7.3 数据库安装 具体手动安装的详细方法，自行百度，这里提供一">
+
+
+<meta itemprop="datePublished" content="2019-04-01T10:42:16&#43;08:00" />
+<meta itemprop="dateModified" content="2019-04-01T10:42:16&#43;08:00" />
+<meta itemprop="wordCount" content="1816">
+
+
+
+<meta itemprop="keywords" content="Postgresql,数据库," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Postgresql 10 主从配置"/>
+<meta name="twitter:description" content="实验环境 主从方案: 主数据库： db1 从数据库： db2 主从方式: 流复制 数据库版本: 10.3 操作系统: Centos 7.3 数据库安装 具体手动安装的详细方法，自行百度，这里提供一"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">韦昊斯的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/life/">
+        <li class="mobile-menu-item">记事</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">韦昊斯的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/life/">记事</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Postgresql 10 主从配置</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-04-01 </span>
+        <div class="post-category">
+            <a href="/categories/postgresql/"> Postgresql </a>
+            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"> 数据库 </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#实验环境">实验环境</a></li>
+<li><a href="#数据库安装">数据库安装</a></li>
+<li><a href="#主从配置">主从配置</a>
+<ul>
+<li><a href="#创建流复制帐号">创建流复制帐号</a></li>
+<li><a href="#设置流复制帐号的访问权限">设置流复制帐号的访问权限</a></li>
+<li><a href="#设置postgresql-conf">设置postgresql.conf</a></li>
+<li><a href="#从主库同步目前的所有数据">从主库同步目前的所有数据</a></li>
+<li><a href="#配置从库recovery-conf">配置从库recovery.conf</a></li>
+<li><a href="#启动从库-查看同步状态">启动从库 查看同步状态</a></li>
+</ul></li>
+<li><a href="#主从切换测试">主从切换测试</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="实验环境">实验环境</h1>
+
+<ol>
+<li><strong>主从方案:</strong> 主数据库： db1 从数据库： db2</li>
+<li><strong>主从方式:</strong> 流复制</li>
+<li><strong>数据库版本:</strong> 10.3</li>
+<li><strong>操作系统:</strong> Centos 7.3</li>
+</ol>
+
+<h1 id="数据库安装">数据库安装</h1>
+
+<p>具体手动安装的详细方法，自行百度，这里提供一个简单的安装脚本作为参考：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="nv">PG_DATA_HOME</span><span class="o">=</span>/usr/local/pgsql/data
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$PG_DATA_HOME</span><span class="s2">&#34;</span> <span class="o">==</span> <span class="s2">&#34;&#34;</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+   <span class="nb">echo</span> <span class="s2">&#34;没有提供postgresql的data目录&#34;</span>
+   <span class="nb">exit</span> <span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="nv">basepath</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span> <span class="sb">`</span>dirname <span class="nv">$0</span><span class="sb">`</span><span class="p">;</span> <span class="nb">pwd</span><span class="k">)</span>
+rm -rf /opt/postgresql-10.3
+rm -rf /opt/geos-3.6.1
+rm -rf /opt/proj-4.9.1
+rm -rf /opt/gdal-2.1.2
+rm -rf /opt/postgis-2.4.0
+rm -rf <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+<span class="nv">zlibpack</span><span class="o">=</span><span class="sb">`</span>rpm -qa <span class="p">|</span>grep zlib<span class="p">|</span>grep i686<span class="sb">`</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$zlibpack</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+   yum remove <span class="nv">$zlibpack</span> -y
+<span class="k">fi</span>
+
+
+yum install -y gcc gcc-c++ make ncurses ncurses-devel readline readline-devel zlib zlib-devel xml2 libxml2-devel &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+
+tar -xzvf postgresql-10.3.tar.gz -C /opt/ &gt;&gt;/dev/null
+tar -xzvf geos-3.6.1-make.tar.gz  -C /opt/ &gt;&gt; /dev/null
+tar -xzvf proj-4.9.1-make.tar.gz -C /opt &gt;&gt; /dev/null
+tar -xzvf gdal-2.1.2-make.tar.gz -C /opt/ &gt;&gt; /dev/null
+tar -xzvf postgis-2.4.0.tar.gz -C /opt/ &gt;&gt; /dev/null
+
+<span class="nb">cd</span> /opt/proj-4.9.1
+<span class="nb">echo</span> <span class="s2">&#34;安装proj&#34;</span> &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+make install &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+
+<span class="nb">cd</span> /opt/gdal-2.1.2
+<span class="nb">echo</span> <span class="s2">&#34;安装gdal&#34;</span> &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+./configure &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+make -j &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+make install &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+
+<span class="nb">cd</span> /opt/geos-3.6.1
+<span class="nb">echo</span> <span class="s2">&#34;安装geos&#34;</span> &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+./configure &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+make -j &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+make install &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+
+mkdir /usr/local/pgsql
+
+<span class="nb">cd</span> /opt/postgresql-10.3
+<span class="nb">echo</span> <span class="s2">&#34;安装postgresql&#34;</span> &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+./configure --prefix<span class="o">=</span>/usr/local/pgsql &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+make -j &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+make install &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+
+<span class="nb">cd</span> /opt/postgis-2.4.0
+<span class="nb">echo</span> <span class="s2">&#34;安装postgis&#34;</span> &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+./configure --with-pgconfig<span class="o">=</span>/usr/local/pgsql/bin/pg_config  --with-xml2config<span class="o">=</span>/usr/bin/xml2-config --with-projdir<span class="o">=</span>/usr/local/proj4 &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+make -j &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+make install &gt;&gt; <span class="si">${</span><span class="nv">basepath</span><span class="si">}</span>/install.log
+cp -rf /usr/local/lib/libgeos_c.so.1.10.1 /usr/local/pgsql/lib/libgeos_c.so.1
+cp -rf /usr/local/proj4/lib/libproj.so.9.0.0 /usr/local/pgsql/lib/libproj.so.9
+cp -rf /usr/local/lib/libgdal.so.20.1.2  /usr/local/pgsql/lib/libgdal.so.20
+
+
+<span class="nb">echo</span> <span class="s2">&#34;LD_LIBRARY_PATH=/usr/local/postgresql/lib&#34;</span> &gt;&gt; /etc/profile
+<span class="nb">echo</span> <span class="s2">&#34;export LD_LIBRARY_PATH&#34;</span> &gt;&gt; /etc/profile
+<span class="nb">source</span> /etc/profile
+mkdir <span class="nv">$PG_DATA_HOME</span>
+<span class="nb">echo</span> <span class="s2">&#34;postgres        hard    nofile          65535&#34;</span> &gt;&gt; /etc/security/limits.conf
+<span class="nb">echo</span> <span class="s2">&#34;postgres        soft    nofile          65535&#34;</span> &gt;&gt; /etc/security/limits.conf
+<span class="nv">g</span><span class="o">=</span><span class="sb">`</span>egrep <span class="s2">&#34;^postgres&#34;</span> /etc/group <span class="p">|</span>wc -l<span class="sb">`</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$g</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span>
+<span class="k">then</span>
+    groupadd postgres
+<span class="k">fi</span>
+
+<span class="nv">u</span><span class="o">=</span><span class="sb">`</span>egrep <span class="s2">&#34;^postgres&#34;</span> /etc/passwd <span class="p">|</span>wc -l <span class="sb">`</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$u</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span>
+<span class="k">then</span>
+    useradd -d /home/postgres -g postgres postgres
+<span class="k">fi</span>
+rm -rf /usr/local/pgsql/data/*
+<span class="c1">#useradd  -d /home/postgresql -g postgresql postgresql</span>
+chown -R  postgres:postgres  <span class="nv">$PG_DATA_HOME</span>
+su  - postgres -c <span class="s1">&#39;/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data&#39;</span>
+su - postgres -c <span class="s1">&#39;echo &#34;PATH=/usr/local/pgsql/bin:\$PATH&#34; &gt;&gt; /home/postgres/.bashrc&#39;</span>
+
+su - postgres -c <span class="s1">&#39;echo &#34;port = 5432&#34; &gt;&gt; /usr/local/pgsql/data/postgresql.conf&#39;</span>
+<span class="nb">echo</span> <span class="s2">&#34;listen_addresses = &#39;*&#39;&#34;</span> &gt;&gt; /usr/local/pgsql/data/postgresql.conf 
+<span class="nb">echo</span> <span class="s2">&#34;host    all             all             0.0.0.0/0            trust&#34;</span> &gt;&gt; /usr/local/pgsql/data/pg_hba.conf
+chown -R  postgres:postgres  <span class="nv">$PG_DATA_HOME</span>
+cp -rf /opt/postgresql-10.3/contrib/start-scripts/linux /etc/init.d/postgresql
+chmod +x /etc/init.d/postgresql
+chkconfig postgresql on
+/etc/init.d/postgresql restart
+<span class="nb">echo</span> <span class="s2">&#34;postgrsql安装完成&#34;</span>
+<span class="nb">echo</span> <span class="s2">&#34;请注意自己修改内核参数!!!!&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="主从配置">主从配置</h1>
+
+<h2 id="创建流复制帐号">创建流复制帐号</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">USER</span> <span class="n">repuser</span> <span class="n">replication</span> <span class="n">LOGIN</span> <span class="k">CONNECTION</span> <span class="k">LIMIT</span> <span class="mi">5</span> <span class="k">ENCRYPTED</span> <span class="n">PASSWORD</span> <span class="s1">&#39;123456&#39;</span><span class="p">;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="设置流复制帐号的访问权限">设置流复制帐号的访问权限</h2>
+
+<p>修改主库pg_hba.conf文件，添加如下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-properties" data-lang="properties"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-properties" data-lang="properties">host replication repuser 0.0.0.0/0 md5</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="设置postgresql-conf">设置postgresql.conf</h2>
+
+<p>修改的内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">max_connections</span> <span class="o">=</span> <span class="m">100</span> <span class="c1"># 这个设置要注意下，从库的max_connections必须要大于主库的</span>
+<span class="nv">max_wal_senders</span> <span class="o">=</span> <span class="m">1</span>   <span class="c1"># 这个设置了可以最多有几个流复制连接，差不多有几个从，就设置几个 但是，还需要注意，pg_basebackup也会用到一个。</span>
+<span class="nv">wal_level</span> <span class="o">=</span> replica 
+<span class="nv">archive_mode</span> <span class="o">=</span> on   <span class="c1"># 设置自动归档</span>
+<span class="nv">hot_standby</span> <span class="o">=</span> on 
+<span class="nv">archive_command</span> <span class="o">=</span> ‘test ! -f /data/pgarchive/%f <span class="o">&amp;&amp;</span> /bin/rsync -a  %p /data/pgarchive/%f’ <span class="c1"># 设置归档命令</span>
+<span class="nv">wal_keep_segments</span> <span class="o">=</span> <span class="m">128</span>  <span class="c1"># 设置流复制保留的最多的wal文件</span>
+<span class="nv">full_page_writes</span> <span class="o">=</span> on <span class="c1"># 开启全页写入 pg_rewind 前提条件 如果不将整个page写入WAL中，在介质恢复的时候WAL中记录的数据不足以实现完整的恢复</span>
+<span class="nv">wal_log_hints</span> <span class="o">=</span> on <span class="c1"># pg_rewind 前提条件</span>
+<span class="nv">min_wal_size</span> <span class="o">=</span> 512MB <span class="c1">#最小的wal 空间</span>
+<span class="nv">max_wal_size</span> <span class="o">=</span> 2GB <span class="c1"># max_wal_size = (3 * checkpoint_segments) * 16MB CheckPointSegments得到的值范围是 max_wal_size 的 1/3 ～ 1/2，最小为1</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>修改完成后启动主库</p>
+
+<h2 id="从主库同步目前的所有数据">从主库同步目前的所有数据</h2>
+
+<p>执行命令：<code>pg_basebackup -h 172.30.9.118 -U repuser -F p -X stream -P -R -D /var/lib</code></p>
+
+<p>pg_basebackup参数说明如下：</p>
+
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>-h</td>
+<td>指定连接的数据库的主机名或IP地址</td>
+</tr>
+
+<tr>
+<td>-U</td>
+<td>指定连接的用户名</td>
+</tr>
+
+<tr>
+<td>-F</td>
+<td>指定了输出的格式，支持p（原样输出）或者t（tar格式输出）</td>
+</tr>
+
+<tr>
+<td>-X</td>
+<td>表示备份开始后，启动另一个流复制连接从主库接收WAL日志</td>
+</tr>
+
+<tr>
+<td>-P</td>
+<td>表示允许在备份过程中实时的打印备份的进度</td>
+</tr>
+
+<tr>
+<td>-R</td>
+<td>表示会在备份结束后自动生成recovery.conf文件</td>
+</tr>
+
+<tr>
+<td>-D</td>
+<td>指定备份写入的数据目录,需要与数据库配置的数据库目录一致,初次备份之前从库的数据目录需要手动清空</td>
+</tr>
+
+<tr>
+<td>-l</td>
+<td>表示指定一个备份的标识</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="配置从库recovery-conf">配置从库recovery.conf</h2>
+
+<p>修改recovery.conf 如下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">standby_mode</span> <span class="o">=</span> <span class="s1">&#39;on&#39;</span>
+<span class="nv">primary_conninfo</span> <span class="o">=</span> <span class="s1">&#39;user=repuser password=123456 host=db1 port=5432 sslmode=disable sslcompression=1 target_session_attrs=any&#39;</span>
+<span class="nv">restore_command</span> <span class="o">=</span> <span class="s1">&#39;/bin/rsync -a  %f /data/pgarchive/%p&#39;</span>
+<span class="c1"># recovery_target_timeline = &#39;latest&#39; #测试采用默认即可</span>
+<span class="nv">archive_cleanup_command</span> <span class="o">=</span> <span class="s1">&#39;pg_archivecleanup /data/pgarchive %r&#39;</span>
+<span class="nv">recovery_target_timeline</span> <span class="o">=</span> <span class="s1">&#39;latest&#39;</span> <span class="c1"># 一定要配置这个，要不然主从切换后不会同步成功</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="启动从库-查看同步状态">启动从库 查看同步状态</h2>
+
+<ol>
+<li>主库进程查看</li>
+</ol>
+
+<p><img src="https://i.loli.net/2019/04/02/5ca318c53df9f.png" alt="" /></p>
+
+<ol>
+<li>从库进程查看</li>
+</ol>
+
+<p><img src="https://i.loli.net/2019/04/02/5ca3190585ccd.png" alt="" /></p>
+
+<ol>
+<li>主库查询</li>
+</ol>
+
+<p><code>select pid,state,client_addr,sync_priority,sync_state from pg_stat_replication;</code></p>
+
+<p><img src="https://i.loli.net/2019/04/02/5ca319c2d5596.png" alt="" /></p>
+
+<p>state 状态： startup: 连接中、catchup: 同步中、streaming: 同步</p>
+
+<p>sent_location: Master传送的WAL位置 write_location:Slave接收WAL位置 flush_location:Slave同步到磁盘的WAL位置 replay_location:Slave同步到数据库的WAL位置</p>
+
+<ol>
+<li>查看备库状态</li>
+</ol>
+
+<p><code>select pg_is_in_recovery();  --主库为f，备库为t</code></p>
+
+<p><img src="https://i.loli.net/2019/04/02/5ca31a5f6d811.png" alt="" /></p>
+
+<ol>
+<li>查询备库落后多少字节</li>
+</ol>
+
+<p><code>select client_addr, pg_wal_lsn_diff(sent_lsn,replay_lsn)/1024/1024 as MB   from pg_stat_replication;</code></p>
+
+<p><img src="https://i.loli.net/2019/04/02/5ca31ddb73ce6.png" alt="" /></p>
+
+<h1 id="主从切换测试">主从切换测试</h1>
+
+<ol>
+<li>停掉master</li>
+</ol>
+
+<p><code>pg_ctl -D /usr/local/pgsql/data/ stop</code></p>
+
+<ol>
+<li>slave库切换</li>
+</ol>
+
+<p><code>pg_ctl promote -D /usr/local/pgsql/data/</code></p>
+
+<p><img src="https://i.loli.net/2019/04/02/5ca32220250ae.png" alt="" /></p>
+
+<p>查看slave状态，已经切换到production状态:</p>
+
+<p><img src="https://i.loli.net/2019/04/02/5ca3226e7f98f.png" alt="" /></p>
+
+<ol>
+<li>配置原master库recovery</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">standby_mode</span> <span class="o">=</span> <span class="s1">&#39;on&#39;</span>
+<span class="nv">primary_conninfo</span> <span class="o">=</span> <span class="s1">&#39;user=repuser password=123456 host=my2 port=5432 sslmode=disable sslcompression=1 target_session_attrs=any&#39;</span>
+<span class="nv">restore_command</span> <span class="o">=</span> <span class="s1">&#39;/bin/rsync -a  %f /data/pgarchive/%p&#39;</span>
+<span class="nv">archive_cleanup_command</span> <span class="o">=</span> <span class="s1">&#39;pg_archivecleanup /data/pgarchive %r&#39;</span>
+<span class="nv">recovery_target_timeline</span> <span class="o">=</span> <span class="s1">&#39;latest&#39;</span> <span class="c1"># 一定要配置这个，要不然主从切换后不会同步成功</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>启动master ，自动切换到standby模式。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">West</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-04-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/postgresql/">Postgresql</a>
+          <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+          </div>
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/appium-%E7%9A%84-android-%E5%B9%B3%E5%8F%B0%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%BD%AC%E8%BD%BD/">
+            <span class="next-text nav-default">Appium 的 Android 平台源码分析[转载]</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:whsfightup@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/wadeLouis" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.weihaosi.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">West</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

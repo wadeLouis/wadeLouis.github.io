@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>软件测试 on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/</link>
+    <description>Recent content in 软件测试 on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 20 Mar 2017 16:18:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>11.3.6 Spring MVC Test Framework</title>
+      <link>http://www.weihaosi.me/post/2017-03-26-11-3-6-spring-mvc-test-framework/</link>
+      <pubDate>Mon, 20 Mar 2017 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2017-03-26-11-3-6-spring-mvc-test-framework/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;独立的项目
+在包括 Spring Framework 3.2之前，Spring MVC Test framework都是作为一个独立的项目挂在GitHub上面，通过不同人的实际使用、反馈和非常多的贡献来不断的成长。
+这个独立的项目目前依然还是可以在Gihub上面找到，并且能在包括 Spring Framework 3.1.x之前的版本中去使用。使用3.2版本以上的应用必须替换依赖&lt;code&gt;spring-test-mvc&lt;/code&gt;为&lt;code&gt;spring-test&lt;/code&gt;
+&lt;code&gt;spring-test&lt;/code&gt;使用了不一样的包&lt;code&gt;org.springframework.test.web&lt;/code&gt;，但是除了两点不同外，其他都是一样的。一点是在3.2版本新增的特性(比如web的异步请求)。另外一点是创建&lt;code&gt;MockMvc&lt;/code&gt;实例的一些选项。在3.2以上的版本中，可以只需要通过&lt;code&gt;TestContext&lt;/code&gt;框架来做这样的工作，这能够更好的加载配置文件。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>12. Spring MVC Test Integration</title>
+      <link>http://www.weihaosi.me/post/2017-03-26-12-spring-mvc-test-integration/</link>
+      <pubDate>Mon, 20 Mar 2017 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2017-03-26-12-spring-mvc-test-integration/</guid>
+      <description>&lt;h1 id=&#34;spring-mvc-test-集成&#34;&gt;Spring MVC Test 集成&lt;/h1&gt;
+
+&lt;h2 id=&#34;设置mockmvc和spring安全认证机制&#34;&gt;设置MockMvc和Spring安全认证机制&lt;/h2&gt;
+
+&lt;p&gt;为了要在Spring MVC Test 中使用spring 的安全认证，必须添加spring 安全认证&lt;code&gt;FilterChainProxy&lt;/code&gt;作为一个&lt;code&gt;Filter&lt;/code&gt;。同时也必须要添加Spring 安全认证的&lt;code&gt;TestSecurityContextHolderPostProcessor&lt;/code&gt;，以便支持使用注解方式来执行Spring MVC Test。这可以通过使用spring安全认证的&lt;code&gt;SecurityMockMvcConfigurers.springSecurity()&lt;/code&gt;来实现。例子如下：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Fastdfs 并发测试和相关配置说明</title>
+      <link>http://www.weihaosi.me/post/fastdfs-%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Mon, 20 Mar 2017 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/fastdfs-%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;最近接触了一个新的平台，准备对平台的性能进行测试。开始收集性能需求和问题的时候，反馈最多的是平台的图片加载非常慢，甚至错乱。新平台的图片存储使用了Fastdfs服务进行管理，只有一个tracker和storage。那很明显，这个性能问题首先要从图片服务器Fastdfs开始测试。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>[转]移动端之Chrome远程调试</title>
+      <link>http://www.weihaosi.me/post/2017-03-10-%E8%BD%AC-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B9%8Bchrome%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</link>
+      <pubDate>Fri, 10 Mar 2017 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2017-03-10-%E8%BD%AC-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B9%8Bchrome%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文：&lt;a href=&#34;http://www.jianshu.com/p/ccd3a53ad075?utm_campaign=haruki&amp;amp;utm_content=note&amp;amp;utm_medium=reader_share&amp;amp;utm_source=qq&#34;&gt;移动端之Chrome远程调试&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&#34;原理&#34;&gt;原理&lt;/h1&gt;
+
+&lt;p&gt;安卓远程调试支持所有操作系统（Windows,Mac, Linux, and Chrome OS.）中调试，支持：&lt;/p&gt;
+
+&lt;p&gt;调试站点的页面&lt;/p&gt;
+
+&lt;p&gt;调试安卓原生App中的WebView&lt;/p&gt;
+
+&lt;p&gt;实时将安卓设备的屏幕图像同步显示到开发机器&lt;/p&gt;
+
+&lt;p&gt;通过端口转发（port forwarding）与虚拟主机映射（virtual host mapping）实现安卓移动设备与开发服务器进行交互调试&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Gatling 一步一步进阶 3 - 脚本结构</title>
+      <link>http://www.weihaosi.me/post/2016-12-09-gatling-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E8%BF%9B%E9%98%B6-3/</link>
+      <pubDate>Fri, 09 Dec 2016 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2016-12-09-gatling-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E8%BF%9B%E9%98%B6-3/</guid>
+      <description>&lt;h1 id=&#34;simulation-脚本结构&#34;&gt;Simulation 脚本结构&lt;/h1&gt;
+
+&lt;p&gt;脚本是基于Scala类，包含四个部分：
+* HTTP 协议配置
+* 请求头定义
+* 测试方案定义
+* 测试策略定义&lt;/p&gt;
+
+&lt;h2 id=&#34;http协议配置&#34;&gt;HTTP协议配置&lt;/h2&gt;
+
+&lt;p&gt;最基本的配置是baseURL属性，这个地址将会作为每个测试方案测试时的http地址的前缀。除了这个，还可以配置通用的请求头属性，这里的这个请求头在每个请求都有效。
+实例：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;val&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;httpConf&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;http&lt;/span&gt;
+  &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;baseURL&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;http://computer-database.gatling.io&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;//&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;主路径&lt;/span&gt;
+  &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;acceptHeader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;//&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;通用头&lt;/span&gt;
+  &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;doNotTrackHeader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;//&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;不跟踪&lt;/span&gt;
+  &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;acceptLanguageHeader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;en-US,en;q=0.5&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;//&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;头语言&lt;/span&gt;
+  &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;acceptEncodingHeader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;gzip, deflate&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;//&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;编码方式&lt;/span&gt;
+  &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;userAgentHeader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;//&lt;/span&gt; &lt;span class=&#34;err&#34;&gt;用户代理&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jmeter命令行执行测试，自动备份log，输出jtl和html报告</title>
+      <link>http://www.weihaosi.me/post/2017-03-08-jmeter%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%89%A7%E8%A1%8C%E6%B5%8B%E8%AF%95%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BDlog%E8%BE%93%E5%87%BAjtl%E5%92%8Chtml%E6%8A%A5%E5%91%8A/</link>
+      <pubDate>Fri, 09 Dec 2016 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2017-03-08-jmeter%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%89%A7%E8%A1%8C%E6%B5%8B%E8%AF%95%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BDlog%E8%BE%93%E5%87%BAjtl%E5%92%8Chtml%E6%8A%A5%E5%91%8A/</guid>
+      <description>脚本大部分上是基于Jmeter自己的启动脚本进行修改 环境条件 配置JMETER_HOME 配置JAVA_HOME 配置ANT_HOME 脚本说明 启动</description>
+    </item>
+    
+    <item>
+      <title>Gatling 一步一步进阶 2 - 配置</title>
+      <link>http://www.weihaosi.me/post/2016-12-08-gatling-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E8%BF%9B%E9%98%B6-2/</link>
+      <pubDate>Thu, 08 Dec 2016 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2016-12-08-gatling-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E8%BF%9B%E9%98%B6-2/</guid>
+      <description>&lt;h1 id=&#34;gatling-目录结构&#34;&gt;Gatling 目录结构&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;bin 保存Gatling执行脚本和录制工具的脚本&lt;/li&gt;
+&lt;li&gt;conf 保存Gatling, Akka and Logback的配置文件.&lt;/li&gt;
+&lt;li&gt;lib 保存Gatling的一些库文件&lt;/li&gt;
+&lt;li&gt;user-files:
+
+&lt;ul&gt;
+&lt;li&gt;simulations 保存测试脚本，以包名为文件夹方式保存&lt;/li&gt;
+&lt;li&gt;data 保存参数化需要用的测试数据.&lt;/li&gt;
+&lt;li&gt;bodies 测试请求的body内容的模板.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;results 保存测试日志和测试报告.&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>Gatling 一步一步进阶 0 - 入门实例</title>
+      <link>http://www.weihaosi.me/post/gatling-%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Thu, 08 Dec 2016 14:51:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/gatling-%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0/</guid>
+      <description>&lt;h1 id=&#34;下载与安装&#34;&gt;下载与安装&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;下载地址：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://gatling.io/#/resources/download&#34;&gt;http://gatling.io/#/resources/download&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;安装&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+&lt;li&gt;解压文件&lt;/li&gt;
+&lt;li&gt;确保已经安装或者配置好JDK，最新版本的Gatling需要JDK8&lt;/li&gt;
+&lt;li&gt;Gatling的启动脚本和maven插件需要配置JAVA_HOME环境变量。&lt;/li&gt;
+&lt;li&gt;Gatling解压后就可以使用了，启动脚本在bin目录下，gatling.sh是启动测试，recorder.sh是启动录制&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Gatling默认字符编码是UTF-8，你如果要修改，则需要改动下面几项：
+1、 录制的时候要选择编码方式
+2、 在gatling.conf配置中修改编码方式
+3、保证你修改的文件和脚本的编码方式是正确的&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Gatling 一步一步进阶 1 - 入门实例拓展</title>
+      <link>http://www.weihaosi.me/post/2016-12-08-gatling-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E8%BF%9B%E9%98%B6-1/</link>
+      <pubDate>Thu, 08 Dec 2016 14:51:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2016-12-08-gatling-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E8%BF%9B%E9%98%B6-1/</guid>
+      <description>&lt;h1 id=&#34;独立过程处理&#34;&gt;独立过程处理&lt;/h1&gt;
+
+&lt;p&gt;其实 &lt;a href=&#34;https://blog.idriverclub.com/2016/12/08/2016/12/gatling-%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0/#more&#34;&gt;上节&lt;/a&gt;就已经使用了。
+简单的方式就是如下（官方例子）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scala&#34; data-lang=&#34;scala&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-scala&#34; data-lang=&#34;scala&#34;&gt;&lt;span class=&#34;k&#34;&gt;object&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Search&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+
+  &lt;span class=&#34;k&#34;&gt;val&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;search&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Home&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// let&amp;#39;s give proper names, as they are displayed in the reports
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;))&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pause&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Search&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/computers?f=macbook&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;))&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pause&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;http&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Select&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/computers/6&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;))&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pause&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;object&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Browse&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+
+  &lt;span class=&#34;k&#34;&gt;val&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;browse&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;???&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;这里写动作&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;object&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Edit&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+
+  &lt;span class=&#34;k&#34;&gt;val&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;edit&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;???&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;这里写动作&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;//这里这样使用
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;val&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;scn&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;scenario&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Scenario Name&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;exec&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nc&#34;&gt;Search&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;search&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Browse&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;browse&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Edit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;edit&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>单元测试和自动化脚本简要教程</title>
+      <link>http://www.weihaosi.me/post/junit-4-%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Thu, 08 Dec 2016 14:51:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/junit-4-%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</guid>
+      <description>Junit 4 简明教程 规范与要求 Junit 需要使用的版本都是4.x以上的版本，不可以使用3.x以下的版本 Junit 测试脚本在Maven项目中统一放在在src/main</description>
+    </item>
+    
+  </channel>
+</rss>

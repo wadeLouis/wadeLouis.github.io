@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>装饰器 on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/</link>
+    <description>Recent content in 装饰器 on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 05 Dec 2016 10:50:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python 装饰器深入学习 - 基础</title>
+      <link>http://www.weihaosi.me/post/2016-12-05-python-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Mon, 05 Dec 2016 10:50:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2016-12-05-python-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;相关的官方wiki文档：&lt;a href=&#34;https://wiki.python.org/moin/PythonDecorators#About_this_page&#34;&gt;https://wiki.python.org/moin/PythonDecorators#About_this_page&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;
+
+&lt;p&gt;装饰器是软件设计模式的一种名词。装饰器可以动态改变函数，方法，类的功能，不需要写个子类或者修改原先函数中已经编写好的代码。
+常见的装饰器设计模式可以查看维基&lt;a href=&#34;http://en.wikipedia.org/wiki/Decorator&#34;&gt;http://en.wikipedia.org/wiki/Decorator&lt;/a&gt;
+在Python语言中有关的装饰器并不和上面说的这些完全一样。Python中的装饰器是具体的Python语法，以方便的改变函数或者方法。Python装饰器是从2.4版本开始支持，在&lt;a href=&#34;http://www.python.org/peps/pep-0318.html&#34;&gt;PEP 318&lt;/a&gt;中提出的。&lt;/p&gt;
+
+&lt;h1 id=&#34;官方实例&#34;&gt;官方实例&lt;/h1&gt;
+
+&lt;p&gt;地址在&lt;a href=&#34;https://wiki.python.org/moin/PythonDecoratorLibrary&#34;&gt;PythonDecoratorLibrary&lt;/a&gt;,另外可以查看&lt;a href=&#34;vhttps://wiki.python.org/moin/MixIns&#34;&gt;MixIns&lt;/a&gt;和&lt;a href=&#34;https://wiki.python.org/moin/MetaClasses&#34;&gt;MetaClasses&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;关于写法&#34;&gt;关于写法&lt;/h1&gt;
+
+&lt;p&gt;关于Python装饰器的写法有很多种，具体的可以去查看一下官方wik的&lt;a href=&#34;https://wiki.python.org/moin/PythonDecorators#Current_Python_Decorator_Proposals&#34;&gt;Current Python Decorator Proposals&lt;/a&gt;]章节&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

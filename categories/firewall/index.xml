@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Firewall on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/categories/firewall/</link>
+    <description>Recent content in Firewall on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 20 Mar 2017 16:18:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/categories/firewall/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Centos Firewall 说明</title>
+      <link>http://www.weihaosi.me/post/centos-firewall-%E8%AF%B4%E6%98%8E/</link>
+      <pubDate>Mon, 20 Mar 2017 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/centos-firewall-%E8%AF%B4%E6%98%8E/</guid>
+      <description>安装 # yum install firewalld 如果需要图形界面的话，则再安装 # yum install firewall-config #一、介绍 防火墙守护 firewalld 服务引入了一个信任级别的概念来管理与之相关联的连接与接口。它支持 ipv4 与</description>
+    </item>
+    
+  </channel>
+</rss>

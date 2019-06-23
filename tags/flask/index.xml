@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Flask on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/tags/flask/</link>
+    <description>Recent content in Flask on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 20 Mar 2017 16:18:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/tags/flask/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>《Flask Framework Cookbook》 学习笔记 - Flask 应用的配置</title>
+      <link>http://www.weihaosi.me/post/flaskcoolbook_1/</link>
+      <pubDate>Mon, 20 Mar 2017 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/flaskcoolbook_1/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;简单的Flask例子和安装就不讲了，大家去看官网的文档吧。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;1-基础的配置&#34;&gt;1. 基础的配置&lt;/h2&gt;
+
+&lt;p&gt;想让我们的程序运行在调试模式下，可以这样配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;    &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;vm&#34;&gt;__name__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;DEBUG&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这个布尔值也可以通过Flask对象来设置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;    &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;debug&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;一般情况下，我们都使用最开始那种方式去配置这个选项。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>《Flask Framework Cookbook》 学习笔记 - RESTful API</title>
+      <link>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-restful-api/</link>
+      <pubDate>Tue, 29 Nov 2016 11:03:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-restful-api/</guid>
+      <description>REST 全名：REpresentational State Transfer，意思是指表征状态转移，Roy Fielding博士在2000年他的博士论文中提出来</description>
+    </item>
+    
+    <item>
+      <title>《Flask Framework Cookbook》 学习笔记 - Facebook、Google、Twitter等认证</title>
+      <link>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-3/</link>
+      <pubDate>Wed, 23 Nov 2016 15:02:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-3/</guid>
+      <description>这些第三方的登录认证方式都是采用了Oauth2.0的授权机制，所以方法都是类似的。 在做这个之前，首先要到各个相关网站去注册相应的开发者账号，</description>
+    </item>
+    
+    <item>
+      <title>《Flask Framework Cookbook》 学习笔记 - Flask 用户认证 - OpenID认证</title>
+      <link>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-2/</link>
+      <pubDate>Tue, 22 Nov 2016 13:22:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-2/</guid>
+      <description>通过OpenID，我们可以使用第三方的帐号登录，而不需要再注册帐号 这些只是需要授权必要的用户信息，也可以通过OpenID设置哪些用户信息可以</description>
+    </item>
+    
+    <item>
+      <title>《Flask Framework Cookbook》 学习笔记 - Flask 用户认证 - 基本认证方式</title>
+      <link>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/</link>
+      <pubDate>Wed, 16 Nov 2016 13:25:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/</guid>
+      <description>基于session的简单用户认证 当第一时间登录后，用户的信息将会在应用服务端的session中和浏览器的cookie中进行保存 这种情况下，必</description>
+    </item>
+    
+  </channel>
+</rss>

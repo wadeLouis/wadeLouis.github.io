@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Python进阶学习 - 低于类级 列表推导、迭代器、生成器 - 韦昊斯的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Little Mice" /><meta name="description" content="Python进阶学习 - 低于类级 列表推导、迭代器、生成器" /><meta name="keywords" content="Python, 低于类级, 进阶学习, 列表推导, 迭代器, 生成器" />
+
+
+
+<meta name="google-site-verification" content="iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI" />
+
+
+<meta name="generator" content="Hugo 0.53 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://www.weihaosi.me/post/2016-12-01-python%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0-%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Python进阶学习 - 低于类级 列表推导、迭代器、生成器" />
+<meta property="og:description" content="Python进阶学习 - 低于类级 列表推导、迭代器、生成器" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.weihaosi.me/post/2016-12-01-python%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0-%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC/" /><meta property="article:published_time" content="2016-12-01T15:14:28&#43;08:00"/>
+<meta property="article:modified_time" content="2016-12-01T15:14:28&#43;08:00"/>
+
+<meta itemprop="name" content="Python进阶学习 - 低于类级 列表推导、迭代器、生成器">
+<meta itemprop="description" content="Python进阶学习 - 低于类级 列表推导、迭代器、生成器">
+
+
+<meta itemprop="datePublished" content="2016-12-01T15:14:28&#43;08:00" />
+<meta itemprop="dateModified" content="2016-12-01T15:14:28&#43;08:00" />
+<meta itemprop="wordCount" content="1500">
+
+
+
+<meta itemprop="keywords" content="Python,列表推导,迭代器,生成器," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python进阶学习 - 低于类级 列表推导、迭代器、生成器"/>
+<meta name="twitter:description" content="Python进阶学习 - 低于类级 列表推导、迭代器、生成器"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">韦昊斯的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/life/">
+        <li class="mobile-menu-item">记事</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">韦昊斯的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/life/">记事</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Python进阶学习 - 低于类级 列表推导、迭代器、生成器</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-12-01 </span>
+        <div class="post-category">
+            <a href="/categories/python/"> Python </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#列表推导">列表推导</a>
+<ul>
+<li><a href="#enumerate-方法构建python化代码">enumerate() 方法构建Python化代码</a></li>
+</ul></li>
+<li><a href="#迭代器和生成器">迭代器和生成器</a>
+<ul>
+<li><a href="#迭代器">迭代器</a></li>
+<li><a href="#生成器">生成器</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="列表推导">列表推导</h1>
+
+<blockquote>
+<p>列表推导式（list comprehension）是利用其他列表创建新列表（类似于数学术语中的集合推导式）的一种方法。它的工作方式类似于for循环,但在简单场景下比for循环效率更高。
+** 关键语：没当对序列进行循环处理时，应该考虑使用列表推导式 **</p>
+</blockquote>
+
+<p>下面做了个简单的测试：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="kn">import</span> <span class="nn">time</span>
+<span class="c1"># 没有用推导式</span>
+<span class="n">begin</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">num</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span>
+<span class="n">even</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">even</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">print</span> <span class="s2">&#34;没使用推导式耗时:</span><span class="si">%f</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">begin</span><span class="p">)</span>
+<span class="c1"># print even</span>
+<span class="c1"># 使用推导式</span>
+<span class="n">begin</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">even</span><span class="o">=</span><span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">print</span> <span class="s2">&#34;使用推导式耗时:</span><span class="si">%f</span><span class="s2">&#34;</span> <span class="o">%</span><span class="p">(</span><span class="n">end</span><span class="o">-</span><span class="n">begin</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>结果如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">没使用推导式耗时:0.020000
+使用推导式耗时:0.012000</code></pre></td></tr></table>
+</div>
+</div>
+<p>这种方法不仅仅写法简洁高效，同时涉及到的中间元素也少很多，方便阅读和理解。</p>
+
+<h2 id="enumerate-方法构建python化代码">enumerate() 方法构建Python化代码</h2>
+
+<p>先说下enumerate()方法：</p>
+
+<ul>
+<li>enumerate方法是内建函数</li>
+<li>对于可以迭代/可遍历的对象，enumerate将可以建立一个索引序列，可以获取该对象的下标和值</li>
+<li>返回的是enumerate对象</li>
+</ul>
+
+<p>下面是个简单的例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="c1">#未使用enumerate方法</span>
+<span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">,</span><span class="s1">&#39;f&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">num</span><span class="p">)):</span>
+    <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
+<span class="c1">#使用enumerate方法</span>
+<span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">,</span><span class="s1">&#39;f&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="p">,</span><span class="n">el</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">el</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>使用enumerate方法后，代码更为简洁和高效。
+结合列表推导式，进一步Python化代码</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="n">num</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">,</span><span class="s1">&#39;f&#39;</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">_mix</span><span class="p">(</span><span class="n">post</span><span class="p">,</span><span class="n">element</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">post</span><span class="p">,</span><span class="n">element</span><span class="p">)</span>
+<span class="n">num</span><span class="o">=</span><span class="p">[</span><span class="n">_mix</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="n">el</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">el</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">num</span><span class="p">)]</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>最后这个可以使完全的python化代码风格了。</p>
+
+<h1 id="迭代器和生成器">迭代器和生成器</h1>
+
+<h2 id="迭代器">迭代器</h2>
+
+<p>具备两个重要的方法：
+* next()方法，返回下一个元素，当没有下一个元素时，抛出StopIteration异常
+* <strong>iter</strong>() 方法，返回自身</p>
+
+<p>下面是自定义一个迭代器的例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">class</span> <span class="nc">customIteration</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">element</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">element</span>
+    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&#34;&#34;&#34;:return next elements &#34;&#34;&#34;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">element</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">element</span> <span class="o">-=</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">element</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>简单测试：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">customIteration</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="k">print</span> <span class="n">i</span><span class="p">,</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="mi">3</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">0</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="生成器">生成器</h2>
+
+<p>具备两个特点：
+* 基于yeild 语句
+* 可以暂停一个函数并返回中间结果，函数保存执行环境，并在必要时恢复
+* 可以进行交互
+* 可以协同执行（这个应该不能说是特点，应该是应用场景）</p>
+
+<p>** 关键语: 当要返回一个系列或者是在循环中执行函数时，就应该考虑使用生成器 **</p>
+
+<p>简单的例子:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">MyGenerator</span><span class="p">(</span><span class="n">size</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">size</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">size</span>
+        <span class="n">size</span> <span class="o">-=</span><span class="mi">1</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>当这个生成器在一个循环中被另外的函数进行后续处理，这种一次返回一个元素比一次性返回所有元素的方式效率更高，即对提升整体性能更好。
+当这种情况下，性能更平缓，基于这个原因一个元素消耗的资源就不再是重点了。常见的使用场景比如：流数据缓冲区，视频转换等。
+下面是简单的多个生成器链接计算的例子(找出一序列数中的偶数并求其平方)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">value</span> <span class="o">**</span><span class="mi">2</span>
+
+<span class="k">def</span> <span class="nf">evenNum</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">value</span>
+
+<span class="n">enum</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">square</span><span class="p">(</span><span class="n">evenNum</span><span class="p">(</span><span class="n">enum</span><span class="p">))</span>
+<span class="k">print</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">res</span><span class="p">]</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>** 关键语:拥有多个简单处理系列的的可迭代函数，比一个复杂，每次计算一个值的函数更好 **</p>
+
+<p>与next方法调用的代码进行交互是生成器的最后一个特性。这里yeild将变成一个表达式，值可以通过send方法传入。</p>
+
+<p>简单实例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Python" data-lang="Python"><span class="o">&gt;&gt;&gt;</span><span class="k">def</span> <span class="nf">modifiyAble</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s2">&#34;init generator ... &#34;</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="k">yield</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">):</span>
+                <span class="k">print</span> <span class="s2">&#34;I don&#39;t know the answer！You can ask &#39;hello|bye&#39;&#34;</span>
+            <span class="k">elif</span> <span class="s2">&#34;hello&#34;</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s2">&#34;Hello&#34;</span>
+            <span class="k">elif</span> <span class="s2">&#34;bye&#34;</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s2">&#34;Good bye!&#34;</span>
+<span class="o">&gt;&gt;&gt;</span><span class="n">feed</span> <span class="o">=</span> <span class="n">modifiyAble</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span><span class="n">feed</span><span class="o">.</span><span class="nb">next</span><span class="p">()</span>
+<span class="n">init</span> <span class="n">generator</span> <span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span><span class="n">feed</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">&#34;help?&#34;</span><span class="p">)</span>
+<span class="n">I</span> <span class="n">don</span><span class="s1">&#39;t know the answer！You can ask &#39;</span><span class="n">hello</span><span class="o">|</span><span class="n">bye</span><span class="s1">&#39;</span><span class="err">
+</span><span class="err"></span><span class="s1">&gt;&gt;&gt;feed.send(&#34;hello&#34;)</span><span class="err">
+</span><span class="err"></span><span class="s1">Hello</span><span class="err">
+</span><span class="err"></span><span class="s1">&gt;&gt;&gt;feed.send(&#34;bye&#34;)</span><span class="err">
+</span><span class="err"></span><span class="s1">Good bye!</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>send 和next工作方式一样，但是yield将变成能够返回传入的值，这个函数将可以根据客户端代码改变其行为。
+除了send方法以外，通过throw还可抛出指定异常，close抛出GneratorExit和StopIteration异常，并对函数环境进行清理。
+简单实例如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">thClGen</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="s2">&#34;do something...&#34;</span>
+    <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">ex</span><span class="o">.</span><span class="n">message</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s2">&#34;finally do clean&#34;</span>
+
+<span class="n">tc</span> <span class="o">=</span> <span class="n">thClGen</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">tc</span><span class="o">.</span><span class="nb">next</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">tc</span><span class="o">.</span><span class="n">throw</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;throw message&#34;</span><span class="p">))</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">tc</span> <span class="o">=</span> <span class="n">thClGen</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">tc</span><span class="o">.</span><span class="nb">next</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">tc</span><span class="o">.</span><span class="n">throw</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">(</span><span class="s2">&#34;throw message&#34;</span><span class="p">))</span>
+<span class="n">tc</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="c1">##执行结果</span>
+<span class="c1">#do something...</span>
+<span class="c1">#throw message</span>
+<span class="c1">#finally do clean</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Little Mice</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2016-12-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">Python</a>
+          <a href="/tags/%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC/">列表推导</a>
+          <a href="/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/">迭代器</a>
+          <a href="/tags/%E7%94%9F%E6%88%90%E5%99%A8/">生成器</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2016-12-02-python%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0-%E4%BD%8E%E4%BA%8E%E7%B1%BB%E7%BA%A7-2/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Python进阶学习 - 低于类级 协同程序</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-restful-api/">
+            <span class="next-text nav-default">《Flask Framework Cookbook》 学习笔记 - RESTful API</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:whsfightup@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/wadeLouis" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.weihaosi.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">West</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/tags/python/</link>
+    <description>Recent content in Python on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 16 Jan 2019 15:41:59 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python Nose测试框架命令行详解</title>
+      <link>http://www.weihaosi.me/post/python-nose%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Wed, 16 Jan 2019 15:41:59 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/python-nose%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%A6%E8%A7%A3/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;-V, &amp;ndash;version&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Output nose version and exit  打印nose的版本号&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;-p, &amp;ndash;plugins&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Output list of available plugins and exit. Combine with higher verbosity for greater detail&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;-v=DEFAULT, &amp;ndash;verbose=DEFAULT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Be more verbose. [NOSE_VERBOSE]  nose日志输出等级&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&amp;ndash;verbosity=VERBOSITY&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Set verbosity; –verbosity=2 is the same as -v 和上面-v是一样&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;-q=DEFAULT, &amp;ndash;quiet=DEFAULT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Be less verbose 精简的日志输出&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>《Flask Framework Cookbook》 学习笔记 - Flask 应用的配置</title>
+      <link>http://www.weihaosi.me/post/flaskcoolbook_1/</link>
+      <pubDate>Mon, 20 Mar 2017 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/flaskcoolbook_1/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;简单的Flask例子和安装就不讲了，大家去看官网的文档吧。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&#34;1-基础的配置&#34;&gt;1. 基础的配置&lt;/h2&gt;
+
+&lt;p&gt;想让我们的程序运行在调试模式下，可以这样配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;    &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Flask&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;vm&#34;&gt;__name__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;config&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;DEBUG&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;这个布尔值也可以通过Flask对象来设置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;    &lt;span class=&#34;n&#34;&gt;app&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;debug&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;一般情况下，我们都使用最开始那种方式去配置这个选项。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python 装饰器深入学习 - 基础</title>
+      <link>http://www.weihaosi.me/post/2016-12-05-python-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0/</link>
+      <pubDate>Mon, 05 Dec 2016 10:50:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2016-12-05-python-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;相关的官方wiki文档：&lt;a href=&#34;https://wiki.python.org/moin/PythonDecorators#About_this_page&#34;&gt;https://wiki.python.org/moin/PythonDecorators#About_this_page&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&#34;概述&#34;&gt;概述&lt;/h1&gt;
+
+&lt;p&gt;装饰器是软件设计模式的一种名词。装饰器可以动态改变函数，方法，类的功能，不需要写个子类或者修改原先函数中已经编写好的代码。
+常见的装饰器设计模式可以查看维基&lt;a href=&#34;http://en.wikipedia.org/wiki/Decorator&#34;&gt;http://en.wikipedia.org/wiki/Decorator&lt;/a&gt;
+在Python语言中有关的装饰器并不和上面说的这些完全一样。Python中的装饰器是具体的Python语法，以方便的改变函数或者方法。Python装饰器是从2.4版本开始支持，在&lt;a href=&#34;http://www.python.org/peps/pep-0318.html&#34;&gt;PEP 318&lt;/a&gt;中提出的。&lt;/p&gt;
+
+&lt;h1 id=&#34;官方实例&#34;&gt;官方实例&lt;/h1&gt;
+
+&lt;p&gt;地址在&lt;a href=&#34;https://wiki.python.org/moin/PythonDecoratorLibrary&#34;&gt;PythonDecoratorLibrary&lt;/a&gt;,另外可以查看&lt;a href=&#34;vhttps://wiki.python.org/moin/MixIns&#34;&gt;MixIns&lt;/a&gt;和&lt;a href=&#34;https://wiki.python.org/moin/MetaClasses&#34;&gt;MetaClasses&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&#34;关于写法&#34;&gt;关于写法&lt;/h1&gt;
+
+&lt;p&gt;关于Python装饰器的写法有很多种，具体的可以去查看一下官方wik的&lt;a href=&#34;https://wiki.python.org/moin/PythonDecorators#Current_Python_Decorator_Proposals&#34;&gt;Current Python Decorator Proposals&lt;/a&gt;]章节&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python with 上下文实例</title>
+      <link>http://www.weihaosi.me/post/2016-12-03-python-with-%E4%B8%8A%E4%B8%8B%E6%96%87%E5%AE%9E%E4%BE%8B/</link>
+      <pubDate>Sat, 03 Dec 2016 17:48:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2016-12-03-python-with-%E4%B8%8A%E4%B8%8B%E6%96%87%E5%AE%9E%E4%BE%8B/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;本节涉及的内容包括装饰器，生成器，迭代器的相关内容，如果不很清楚请先查看这方面的内容&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&#34;需求&#34;&gt;需求&lt;/h1&gt;
+
+&lt;p&gt;本次实例的需求是要记录么次调用过程中的API，调用完成后清理程序的运行环境&lt;/p&gt;
+
+&lt;h1 id=&#34;如何实现&#34;&gt;如何实现&lt;/h1&gt;
+
+&lt;h2 id=&#34;首先实现建立两个测试类&#34;&gt;首先实现建立两个测试类&lt;/h2&gt;
+
+&lt;p&gt;建立的类如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;One&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__init__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Log One class init for debug&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;_private&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;pass&lt;/span&gt;
+
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;one&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;other&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;two&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;other&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;thing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_private&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;two&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;pass&lt;/span&gt;
+
+
+&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Two&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__init__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Log Two class init for debug&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;thing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;other&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;other&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;two&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python进阶学习 - 低于类级 协同程序</title>
+      <link>http://www.weihaosi.me/post/2016-12-02-python%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0-%E4%BD%8E%E4%BA%8E%E7%B1%BB%E7%BA%A7-2/</link>
+      <pubDate>Fri, 02 Dec 2016 13:41:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2016-12-02-python%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0-%E4%BD%8E%E4%BA%8E%E7%B1%BB%E7%BA%A7-2/</guid>
+      <description>&lt;h1 id=&#34;协同程序&#34;&gt;协同程序&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;协同程序是可以挂起，恢复，并且有多个进入点的函数。比如Io，lua，可以实现协同多个任务和管道机制。
+在Python中，协同程序的替代者是线程
+线程要关注资源锁，协同程序不需要。
+生成器几乎就是协同程序，在&lt;a href=&#34;https://www.python.org/dev/peps/pep-0342&#34;&gt;PEP 342&lt;/a&gt;中实例化了生成器的新行为，提供了创建协同程序的调度程序的完整实例,Trampoline模式，通过队列把多个协同程序连接在一起&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;生成器本身是可以提供挂起，产生一个值的功能，但还算不是最好的协同程序。当别的函数在执行的时候生成器不能通过yield进行控制，除非这些函数本身也是生成器，并且外部生成器yield的值是通过内部生成器yield控制的。
+然而，如果要通过传一个值或者异常到生成器中（当生成器被挂起），一个简单的调度程序或者递归程序将会异步的进行调用。例如异步socket I/O可以这样做&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 伪代码&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nonblocking_read&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;my_socket&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;nbytes&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>Python进阶学习 - 低于类级 列表推导、迭代器、生成器</title>
+      <link>http://www.weihaosi.me/post/2016-12-01-python%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0-%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC/</link>
+      <pubDate>Thu, 01 Dec 2016 15:14:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2016-12-01-python%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0-%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC/</guid>
+      <description>&lt;h1 id=&#34;列表推导&#34;&gt;列表推导&lt;/h1&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;列表推导式（list comprehension）是利用其他列表创建新列表（类似于数学术语中的集合推导式）的一种方法。它的工作方式类似于for循环,但在简单场景下比for循环效率更高。
+** 关键语：没当对序列进行循环处理时，应该考虑使用列表推导式 **&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;下面做了个简单的测试：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Python&#34; data-lang=&#34;Python&#34;&gt;&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;time&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 没有用推导式&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;begin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;num&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;even&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;even&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;append&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;end&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;print&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;没使用推导式耗时:&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%f&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;end&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;begin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# print even&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# 使用推导式&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;begin&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;even&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;range&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;100000&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;end&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;time&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;print&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;使用推导式耗时:&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%f&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;end&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;begin&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;结果如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;没使用推导式耗时:0.020000
+使用推导式耗时:0.012000&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>《Flask Framework Cookbook》 学习笔记 - RESTful API</title>
+      <link>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-restful-api/</link>
+      <pubDate>Tue, 29 Nov 2016 11:03:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-restful-api/</guid>
+      <description>REST 全名：REpresentational State Transfer，意思是指表征状态转移，Roy Fielding博士在2000年他的博士论文中提出来</description>
+    </item>
+    
+    <item>
+      <title>《Flask Framework Cookbook》 学习笔记 - Facebook、Google、Twitter等认证</title>
+      <link>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-3/</link>
+      <pubDate>Wed, 23 Nov 2016 15:02:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-3/</guid>
+      <description>这些第三方的登录认证方式都是采用了Oauth2.0的授权机制，所以方法都是类似的。 在做这个之前，首先要到各个相关网站去注册相应的开发者账号，</description>
+    </item>
+    
+    <item>
+      <title>《Flask Framework Cookbook》 学习笔记 - Flask 用户认证 - OpenID认证</title>
+      <link>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-2/</link>
+      <pubDate>Tue, 22 Nov 2016 13:22:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-2/</guid>
+      <description>通过OpenID，我们可以使用第三方的帐号登录，而不需要再注册帐号 这些只是需要授权必要的用户信息，也可以通过OpenID设置哪些用户信息可以</description>
+    </item>
+    
+    <item>
+      <title>《Flask Framework Cookbook》 学习笔记 - Flask 用户认证 - 基本认证方式</title>
+      <link>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/</link>
+      <pubDate>Wed, 16 Nov 2016 13:25:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/</guid>
+      <description>基于session的简单用户认证 当第一时间登录后，用户的信息将会在应用服务端的session中和浏览器的cookie中进行保存 这种情况下，必</description>
+    </item>
+    
+  </channel>
+</rss>

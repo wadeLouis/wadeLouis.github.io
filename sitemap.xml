@@ -1,0 +1,872 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml-stylesheet type="text/xsl" href="http://www.weihaosi.me/sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/postgresql-10-%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2019-04-01T10:42:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/appium-%E7%9A%84-android-%E5%B9%B3%E5%8F%B0%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%BD%AC%E8%BD%BD/</loc>
+    <lastmod>2019-01-16T15:56:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/python-nose%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%A6%E8%A7%A3/</loc>
+    <lastmod>2019-01-16T15:41:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/%E9%98%BF%E9%87%8C%E4%BA%91ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2019-01-16T15:35:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%9C%BA%E4%BC%98%E5%8C%96%E5%8A%9E%E6%B3%95/</loc>
+    <lastmod>2019-01-16T15:31:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/life/2019-01-15-newlife/</loc>
+    <lastmod>2019-01-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/2017-03-26-11-3-6-spring-mvc-test-framework/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/2017-03-26-12-spring-mvc-test-integration/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/centos-%E6%9C%AC%E5%9C%B0iso-%E6%8C%82%E8%BD%BD%E5%B9%B6%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E8%BD%AF%E4%BB%B6%E6%BA%90/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/centos-7%E5%AE%89%E8%A3%85oracle-11g-r2/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/centos-firewall-%E8%AF%B4%E6%98%8E/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/centos-hbase%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/centos-systemctl-%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE%E4%BE%8B%E5%AD%90/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/fastdfs-%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/2017-03-20-linux-iptables-%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%85%8D%E7%BD%AE-%E5%9F%BA%E4%BA%8Eubuntu/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/flaskcoolbook_1/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/2017-03-10-%E8%BD%AC-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B9%8Bchrome%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/</loc>
+    <lastmod>2017-03-10T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/2016-12-09-gatling-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E8%BF%9B%E9%98%B6-3/</loc>
+    <lastmod>2016-12-09T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/2017-03-08-jmeter%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%89%A7%E8%A1%8C%E6%B5%8B%E8%AF%95%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BDlog%E8%BE%93%E5%87%BAjtl%E5%92%8Chtml%E6%8A%A5%E5%91%8A/</loc>
+    <lastmod>2016-12-09T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/2016-12-08-gatling-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E8%BF%9B%E9%98%B6-2/</loc>
+    <lastmod>2016-12-08T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/gatling-%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2016-12-08T14:51:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/2016-12-08-gatling-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E8%BF%9B%E9%98%B6-1/</loc>
+    <lastmod>2016-12-08T14:51:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/spring-%E6%A8%A1%E5%9D%97%E8%AF%B4%E6%98%8E/</loc>
+    <lastmod>2016-12-08T14:51:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/tomcat-%E5%90%AF%E5%8A%A8%E5%85%B3%E9%97%AD%E9%87%8D%E5%90%AF%E8%84%9A%E6%9C%AC/</loc>
+    <lastmod>2016-12-08T14:51:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/ubuntubootrecuse/</loc>
+    <lastmod>2016-12-08T14:51:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/junit-4-%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2016-12-08T14:51:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/2016-12-05-python-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2016-12-05T10:50:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/2016-12-03-python-with-%E4%B8%8A%E4%B8%8B%E6%96%87%E5%AE%9E%E4%BE%8B/</loc>
+    <lastmod>2016-12-03T17:48:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/2016-12-02-python%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0-%E4%BD%8E%E4%BA%8E%E7%B1%BB%E7%BA%A7-2/</loc>
+    <lastmod>2016-12-02T13:41:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/2016-12-01-python%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0-%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC/</loc>
+    <lastmod>2016-12-01T15:14:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-restful-api/</loc>
+    <lastmod>2016-11-16T11:03:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-3/</loc>
+    <lastmod>2016-11-23T15:02:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-2/</loc>
+    <lastmod>2016-11-22T13:22:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81/</loc>
+    <lastmod>2016-11-16T13:25:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/about/</loc>
+    <lastmod>2014-04-09T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/newnote_1551539053537/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/appium/</loc>
+    <lastmod>2019-01-16T15:56:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/appium/</loc>
+    <lastmod>2019-01-16T15:56:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/app%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2019-01-16T15:56:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/app%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2019-01-16T15:56:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/</loc>
+    <lastmod>2019-01-16T15:56:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/centos/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/centos/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/fastdfs/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/fastdfs/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/firewall/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/firewall/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/flask/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/flask/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/gatling/</loc>
+    <lastmod>2016-12-09T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/gatling/</loc>
+    <lastmod>2016-12-09T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/http%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2016-12-09T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/hbase/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/hbase/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/jmeter/</loc>
+    <lastmod>2016-12-09T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/jmeter/</loc>
+    <lastmod>2016-12-09T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/junit/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/junit/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/linux/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/linux/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/oracle/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/oracle/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/postgresql/</loc>
+    <lastmod>2019-04-01T10:42:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/postgresql/</loc>
+    <lastmod>2019-04-01T10:42:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/post/</loc>
+    <lastmod>2019-04-01T10:42:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/python/</loc>
+    <lastmod>2019-01-16T15:41:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/python/</loc>
+    <lastmod>2019-01-16T15:41:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/restful/</loc>
+    <lastmod>2016-11-16T11:03:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/restful/</loc>
+    <lastmod>2016-11-16T11:03:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/releases/</loc>
+    <lastmod>2019-01-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/spring/</loc>
+    <lastmod>2016-12-08T14:51:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/spring/</loc>
+    <lastmod>2016-12-08T14:51:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/spring-mvc-test/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/spring-mvc-test/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/systemctl/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/systemctl/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/</loc>
+    <lastmod>2019-01-16T15:56:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/tomcat/</loc>
+    <lastmod>2016-12-08T14:51:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/tomcat/</loc>
+    <lastmod>2016-12-08T14:51:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/ubuntu/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/ubuntu/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/contextmanager/</loc>
+    <lastmod>2016-12-03T17:48:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/ios/</loc>
+    <lastmod>2017-03-10T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/ios/</loc>
+    <lastmod>2017-03-10T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/iptables/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/iptables/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/nose/</loc>
+    <lastmod>2019-01-16T15:41:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/nose/</loc>
+    <lastmod>2019-01-16T15:41:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/ntp/</loc>
+    <lastmod>2019-01-16T15:35:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/ntp/</loc>
+    <lastmod>2019-01-16T15:35:25+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/ubuntu/</loc>
+    <lastmod>2016-12-08T14:51:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/ubuntu/</loc>
+    <lastmod>2016-12-08T14:51:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/with/</loc>
+    <lastmod>2016-12-03T17:48:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/with/</loc>
+    <lastmod>2016-12-03T17:48:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/yum/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/yum/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/life/</loc>
+    <lastmod>2019-01-15T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC/</loc>
+    <lastmod>2016-12-01T15:14:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%9C%BA/</loc>
+    <lastmod>2019-01-16T15:31:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%9C%BA/</loc>
+    <lastmod>2019-01-16T15:31:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/%E5%8D%8F%E5%90%8C%E7%A8%8B%E5%BA%8F/</loc>
+    <lastmod>2016-12-02T13:41:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/%E5%8D%8F%E5%90%8C%E7%A8%8B%E5%BA%8F/</loc>
+    <lastmod>2016-12-02T13:41:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2019-01-16T15:41:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2019-01-16T15:41:59+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/%E6%89%8B%E6%9C%BA/</loc>
+    <lastmod>2019-01-16T15:31:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/%E6%89%8B%E6%9C%BA/</loc>
+    <lastmod>2019-01-16T15:31:43+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2019-04-01T10:42:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2019-04-01T10:42:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/%E7%94%9F%E6%88%90%E5%99%A8/</loc>
+    <lastmod>2016-12-02T13:41:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/%E7%94%9F%E6%88%90%E5%99%A8/</loc>
+    <lastmod>2016-12-02T13:41:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/%E7%A7%BB%E5%8A%A8%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2017-03-10T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/%E7%A7%BB%E5%8A%A8%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2017-03-10T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2019-01-16T15:56:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2019-01-16T15:56:06+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/%E8%A3%85%E9%A5%B0%E5%99%A8/</loc>
+    <lastmod>2016-12-05T10:50:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/%E8%A3%85%E9%A5%B0%E5%99%A8/</loc>
+    <lastmod>2016-12-05T10:50:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2017-03-20T16:18:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/</loc>
+    <lastmod>2016-12-01T15:14:28+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.weihaosi.me/</loc>
+    <lastmod>2019-04-01T10:42:16+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

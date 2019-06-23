@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring MVC test on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/tags/spring-mvc-test/</link>
+    <description>Recent content in Spring MVC test on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 20 Mar 2017 16:18:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/tags/spring-mvc-test/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>11.3.6 Spring MVC Test Framework</title>
+      <link>http://www.weihaosi.me/post/2017-03-26-11-3-6-spring-mvc-test-framework/</link>
+      <pubDate>Mon, 20 Mar 2017 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2017-03-26-11-3-6-spring-mvc-test-framework/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;独立的项目
+在包括 Spring Framework 3.2之前，Spring MVC Test framework都是作为一个独立的项目挂在GitHub上面，通过不同人的实际使用、反馈和非常多的贡献来不断的成长。
+这个独立的项目目前依然还是可以在Gihub上面找到，并且能在包括 Spring Framework 3.1.x之前的版本中去使用。使用3.2版本以上的应用必须替换依赖&lt;code&gt;spring-test-mvc&lt;/code&gt;为&lt;code&gt;spring-test&lt;/code&gt;
+&lt;code&gt;spring-test&lt;/code&gt;使用了不一样的包&lt;code&gt;org.springframework.test.web&lt;/code&gt;，但是除了两点不同外，其他都是一样的。一点是在3.2版本新增的特性(比如web的异步请求)。另外一点是创建&lt;code&gt;MockMvc&lt;/code&gt;实例的一些选项。在3.2以上的版本中，可以只需要通过&lt;code&gt;TestContext&lt;/code&gt;框架来做这样的工作，这能够更好的加载配置文件。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>12. Spring MVC Test Integration</title>
+      <link>http://www.weihaosi.me/post/2017-03-26-12-spring-mvc-test-integration/</link>
+      <pubDate>Mon, 20 Mar 2017 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2017-03-26-12-spring-mvc-test-integration/</guid>
+      <description>&lt;h1 id=&#34;spring-mvc-test-集成&#34;&gt;Spring MVC Test 集成&lt;/h1&gt;
+
+&lt;h2 id=&#34;设置mockmvc和spring安全认证机制&#34;&gt;设置MockMvc和Spring安全认证机制&lt;/h2&gt;
+
+&lt;p&gt;为了要在Spring MVC Test 中使用spring 的安全认证，必须添加spring 安全认证&lt;code&gt;FilterChainProxy&lt;/code&gt;作为一个&lt;code&gt;Filter&lt;/code&gt;。同时也必须要添加Spring 安全认证的&lt;code&gt;TestSecurityContextHolderPostProcessor&lt;/code&gt;，以便支持使用注解方式来执行Spring MVC Test。这可以通过使用spring安全认证的&lt;code&gt;SecurityMockMvcConfigurers.springSecurity()&lt;/code&gt;来实现。例子如下：&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Centos 7 安装Oracle 11G R2 - 韦昊斯的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Little Mice" /><meta name="description" content="Centos 7 安装Oracle 11G R2" /><meta name="keywords" content="Linux, Centos, Oracle" />
+
+
+
+<meta name="google-site-verification" content="iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI" />
+
+
+<meta name="generator" content="Hugo 0.53 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://www.weihaosi.me/post/centos-7%E5%AE%89%E8%A3%85oracle-11g-r2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Centos 7 安装Oracle 11G R2" />
+<meta property="og:description" content="Centos 7 安装Oracle 11G R2" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.weihaosi.me/post/centos-7%E5%AE%89%E8%A3%85oracle-11g-r2/" /><meta property="article:published_time" content="2017-03-20T16:18:28&#43;08:00"/>
+<meta property="article:modified_time" content="2017-03-20T16:18:28&#43;08:00"/>
+
+<meta itemprop="name" content="Centos 7 安装Oracle 11G R2">
+<meta itemprop="description" content="Centos 7 安装Oracle 11G R2">
+
+
+<meta itemprop="datePublished" content="2017-03-20T16:18:28&#43;08:00" />
+<meta itemprop="dateModified" content="2017-03-20T16:18:28&#43;08:00" />
+<meta itemprop="wordCount" content="1536">
+
+
+
+<meta itemprop="keywords" content="Linux,Centos,Oracle," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Centos 7 安装Oracle 11G R2"/>
+<meta name="twitter:description" content="Centos 7 安装Oracle 11G R2"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">韦昊斯的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/life/">
+        <li class="mobile-menu-item">记事</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">韦昊斯的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/life/">记事</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Centos 7 安装Oracle 11G R2</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-03-20 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            <a href="/categories/centos/"> Centos </a>
+            <a href="/categories/oracle/"> Oracle </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-oracle-软硬件配置要求">1.Oracle 软硬件配置要求</a>
+<ul>
+<li><a href="#1-1-内存">1.1. 内存：</a></li>
+<li><a href="#1-2-swap">1.2. swap</a></li>
+<li><a href="#1-3-验证需要的包">1.3. 验证需要的包</a></li>
+<li><a href="#1-4-配置内核">1.4. 配置内核</a></li>
+</ul></li>
+<li><a href="#2-系统配置说明">2. 系统配置说明</a></li>
+<li><a href="#3-oracle安装">3. Oracle安装</a>
+<ul>
+<li><a href="#3-1-前提">3.1. 前提</a></li>
+<li><a href="#3-2-配置内核">3.2. 配置内核</a></li>
+<li><a href="#3-3-配置-etc-pam-d-login">3.3. 配置/etc/pam.d/login</a></li>
+<li><a href="#3-4-配置-etc-profile">3.4. 配置/etc/profile</a></li>
+<li><a href="#3-5-创建用户和用户组">3.5. 创建用户和用户组</a></li>
+<li><a href="#3-6-创建安装目录">3.6. 创建安装目录</a></li>
+<li><a href="#3-7-解压安装包">3.7. 解压安装包</a></li>
+<li><a href="#3-8-配置安装文件">3.8. 配置安装文件</a></li>
+<li><a href="#3-9-静默安装数据库">3.9. 静默安装数据库</a></li>
+<li><a href="#3-10-配置数据库实例">3.10. 配置数据库实例</a></li>
+<li><a href="#3-11-配置监听">3.11. 配置监听</a></li>
+<li><a href="#3-12-配置数据库启动关闭脚本">3.12. 配置数据库启动关闭脚本</a></li>
+<li><a href="#3-13-配置防火墙">3.13. 配置防火墙</a></li>
+<li><a href="#3-14-验证数据库连接">3.14. 验证数据库连接</a></li>
+<li><a href="#3-15-导入数据库结构和基础数据">3.15. 导入数据库结构和基础数据</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="1-oracle-软硬件配置要求">1.Oracle 软硬件配置要求</h1>
+
+<h2 id="1-1-内存">1.1. 内存：</h2>
+
+<p>最小1G，推荐2G或者更高
+查看命令：<code>grep MemTotal /proc/meminfo</code></p>
+
+<h2 id="1-2-swap">1.2. swap</h2>
+
+<table>
+<thead>
+<tr>
+<th>RAW</th>
+<th>Swap</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>1G至2G</td>
+<td>1.5倍</td>
+</tr>
+
+<tr>
+<td>2G至16G</td>
+<td>同RAW相等</td>
+</tr>
+
+<tr>
+<td>16G以上</td>
+<td>16G</td>
+</tr>
+</tbody>
+</table>
+
+<p>查看命令：<code>grep SwapTotal /proc/meminfo</code>
+         <code>free</code></p>
+
+<h2 id="1-3-验证需要的包">1.3. 验证需要的包</h2>
+
+<p><code>rpm -qa binutils compat-libstdc++-33 elfutils-libelf elfutils-libelf-devel elfutils-libelf-devel-static gcc gcc-c++ glibc glibc-common glibc-devel glibc-headers glibc-static kernel-headers pdksh libaio libaio-devel libgcc libgomp libstdc++ libstdc++-devel libstdc++-static make numactl-devel sysstat unixODBC unixODBC-devel // 验证命令26个包</code></p>
+
+<h2 id="1-4-配置内核">1.4. 配置内核</h2>
+
+<p>表1-1 内核参数配置表</p>
+
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>最小值</th>
+<th>文件</th>
+<th>命令</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>semmsl</td>
+<td>50</td>
+<td>/proc/sys/kernel/sem</td>
+<td># /sbin/sysctl -a | grep sem</td>
+</tr>
+
+<tr>
+<td>semmns</td>
+<td>32000</td>
+<td>/proc/sys/kernel/sem</td>
+<td># /sbin/sysctl -a | grep sem</td>
+</tr>
+
+<tr>
+<td>semopm</td>
+<td>100</td>
+<td>/proc/sys/kernel/sem</td>
+<td># /sbin/sysctl -a | grep sem</td>
+</tr>
+
+<tr>
+<td>semmni</td>
+<td>128</td>
+<td>/proc/sys/kernel/sem</td>
+<td># /sbin/sysctl -a | grep sem</td>
+</tr>
+
+<tr>
+<td>shmall</td>
+<td>2097152</td>
+<td>/proc/sys/kernel/shmall</td>
+<td># /sbin/sysctl -a | grep shm</td>
+</tr>
+
+<tr>
+<td>shmmax</td>
+<td>4294967296</td>
+<td>/proc/sys/kernel/shmmax</td>
+<td># /sbin/sysctl -a | grep shm</td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>// 最大共享内存，官方文档建议是内存的1/2</td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>// 我的服务器是8G内存，所以为4*1024*1024*1024</td>
+<td></td>
+</tr>
+
+<tr>
+<td></td>
+<td></td>
+<td>// 最小值为536870912（1G内存/2）</td>
+<td></td>
+</tr>
+
+<tr>
+<td>shmmni</td>
+<td>4096</td>
+<td>/proc/sys/kernel/shmmax</td>
+<td># /sbin/sysctl -a | grep shm</td>
+</tr>
+
+<tr>
+<td>file-max</td>
+<td>6815744</td>
+<td>/proc/sys/fs/file-max</td>
+<td># /sbin/sysctl -a | grep file-max</td>
+</tr>
+
+<tr>
+<td>ip_local_port_range</td>
+<td>9000 65500</td>
+<td>/proc/sys/net/ipv4/ip_local_port_range</td>
+<td># /sbin/sysctl -a | grep ip_local_port_range</td>
+</tr>
+
+<tr>
+<td>rmem_default</td>
+<td>262144</td>
+<td>/proc/sys/net/core/rmem_default</td>
+<td># /sbin/sysctl -a | grep rmem_default</td>
+</tr>
+
+<tr>
+<td>rmem_max</td>
+<td>4194304</td>
+<td>/proc/sys/net/core/rmem_max</td>
+<td># /sbin/sysctl -a | grep rmem_max</td>
+</tr>
+
+<tr>
+<td>wmem_default</td>
+<td>262144</td>
+<td>/proc/sys/net/core/wmem_default</td>
+<td># /sbin/sysctl -a | grep wmem_default</td>
+</tr>
+
+<tr>
+<td>wmem_max</td>
+<td>1048576</td>
+<td>/proc/sys/net/core/wmem_max</td>
+<td># /sbin/sysctl -a | grep wmem_max</td>
+</tr>
+
+<tr>
+<td>aio-max-nr</td>
+<td>1048576</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="2-系统配置说明">2. 系统配置说明</h1>
+
+<ul>
+<li>内存： 8G</li>
+<li>Swap： 8G</li>
+<li>硬盘： 6G</li>
+<li>CPU： 4核心</li>
+</ul>
+
+<h1 id="3-oracle安装">3. Oracle安装</h1>
+
+<h2 id="3-1-前提">3.1. 前提</h2>
+
+<p>安装之前请按照前文<a href="#oracle_pre">Oracle 软硬件配置要求</a>进行检查和配置</p>
+
+<h2 id="3-2-配置内核">3.2. 配置内核</h2>
+
+<p><code># vi /etc/sysctl.conf</code>
+按照系统值对比<a href="#kernal_table">表1-1 内核参数配置表表</a>添加：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">fs.aio-max-nr <span class="o">=</span> <span class="m">1048576</span>
+fs.file-max <span class="o">=</span> <span class="m">6815744</span>
+kernel.shmall <span class="o">=</span> <span class="m">2097152</span>
+kernel.shmmax <span class="o">=</span> <span class="m">536870912</span>
+kernel.shmmni <span class="o">=</span> <span class="m">4096</span>
+kernel.sem <span class="o">=</span> <span class="m">250</span> <span class="m">32000</span> <span class="m">100</span> <span class="m">128</span>
+net.ipv4.ip_local_port_range <span class="o">=</span> <span class="m">9000</span> <span class="m">65500</span>
+net.core.rmem_default <span class="o">=</span> <span class="m">262144</span>
+net.core.rmem_max <span class="o">=</span> <span class="m">4194304</span>
+net.core.wmem_default <span class="o">=</span> <span class="m">262144</span>
+net.core.wmem_max <span class="o">=</span> <span class="m">1048576</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>保存后生效命令：<code># /sbin/sysctl -p</code></p>
+
+<h2 id="3-3-配置-etc-pam-d-login">3.3. 配置/etc/pam.d/login</h2>
+
+<p>在文件最后一行之前添加以下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">session    required     /usr/lib64/security/pam_limits.so
+session    required     pam_limits.so</code></pre></td></tr></table>
+</div>
+</div>
+<p>注意：<code>/usr/lib64/security/pam_limits.so</code>文件路径以实际为准。</p>
+
+<h2 id="3-4-配置-etc-profile">3.4. 配置/etc/profile</h2>
+
+<p>在文件中添加如下内容：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[</span> <span class="nv">$USER</span> <span class="o">=</span> <span class="s2">&#34;oracle&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+   <span class="k">if</span> <span class="o">[</span> <span class="nv">$SHELL</span> <span class="o">=</span> <span class="s2">&#34;/bin/ksh&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+       <span class="nb">ulimit</span> -p <span class="m">16384</span>
+       <span class="nb">ulimit</span> -n <span class="m">65536</span>
+    <span class="k">else</span>
+       <span class="nb">ulimit</span> -u <span class="m">16384</span> -n <span class="m">65536</span>
+   <span class="k">fi</span>
+<span class="k">fi</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>执行<code>source /etc/profile</code>让配置生效</p>
+
+<h2 id="3-5-创建用户和用户组">3.5. 创建用户和用户组</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">groupadd oinstall
+groupadd dba
+useradd -g oinstall -G dba oracle</code></pre></td></tr></table>
+</div>
+</div>
+<p>执行：<code>passwd oracle</code>修改oracle密码为oracle</p>
+
+<h2 id="3-6-创建安装目录">3.6. 创建安装目录</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">mkdir /data/orcle
+mkdir -p /data/oracle/product/11
+chown -R oracle:oinstall /data/oracle/
+mkdir /data/res
+chown oracle:oinstall  /data/res/
+mkdir /data/oraInventory
+chown oracle:oinstall   /data/oraInventory</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="3-7-解压安装包">3.7. 解压安装包</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /data/package
+unzip linux.x64_11gR2_database_1of2.zip
+unzip linux.x64_11gR2_database_2of2.zip
+chown oracle:oinstall database</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="3-8-配置安装文件">3.8. 配置安装文件</h2>
+
+<p><code>cp /data/package/database/response/* /data/res</code>
+根据实际情况修改db_install.rsp文件，主要修改内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 仅安装数据库软件</span>
+oracle.install.option<span class="o">=</span>INSTALL_DB_SWONLY
+<span class="nv">ORACLE_HOSTNAME</span><span class="o">=</span>jiangxi-highway-db1
+<span class="nv">UNIX_GROUP_NAME</span><span class="o">=</span>oinstall
+<span class="nv">INVENTORY_LOCATION</span><span class="o">=</span>/data/oraInventory
+
+<span class="nv">SELECTED_LANGUAGES</span><span class="o">=</span>en,zh_CN
+<span class="nv">ORACLE_HOME</span><span class="o">=</span>/data/oracle/product/11/db_1
+<span class="nv">ORACLE_BASE</span><span class="o">=</span>/data/oracle
+
+<span class="c1"># 安装企业版</span>
+oracle.install.db.InstallEdition<span class="o">=</span>EE
+
+<span class="c1"># 默认安装组件</span>
+oracle.install.db.isCustomInstall<span class="o">=</span><span class="nb">false</span>
+oracle.install.db.DBA_GROUP<span class="o">=</span>dba
+oracle.install.db.OPER_GROUP<span class="o">=</span>oinstall
+
+<span class="c1"># 这个必须设置为true</span>
+<span class="nv">DECLINE_SECURITY_UPDATES</span><span class="o">=</span>true</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="3-9-静默安装数据库">3.9. 静默安装数据库</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">/data/package/database/runInstaller -silent -force -ignorePrereq  -responseFile /data/res/db_install.rsp </pre></td></tr></table>
+</div>
+</div>
+<p>最后步骤是用root身份执行下面两个文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">/data/oracle/oraInventory/orainstRoot.sh
+/data/oracle/product/11/db_1/root.sh</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="3-10-配置数据库实例">3.10. 配置数据库实例</h2>
+
+<p>修改/data/res/dbca_createdb.rsp文件如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"># 
+<span class="nv">GDBNAME</span> <span class="o">=</span> <span class="s2">&#34;orcl&#34;</span>
+<span class="nv">SID</span> <span class="o">=</span> <span class="s2">&#34;highway&#34;</span>
+<span class="c1"># 初始化密码</span>
+<span class="nv">SYSPASSWORD</span> <span class="o">=</span> <span class="s2">&#34;X1234zxcv&#34;</span>
+<span class="nv">SYSTEMPASSWORD</span> <span class="o">=</span> <span class="s2">&#34;X1234zxcv&#34;</span>
+<span class="c1"># 数据库使用的中文字符集</span> 
+<span class="nv">CHARACTERSET</span> <span class="o">=</span> <span class="s2">&#34;ZHS16GBK&#34;</span>
+<span class="c1"># 默认就是AL16UTF16</span>
+<span class="nv">NATIONALCHARACTERSET</span><span class="o">=</span> <span class="s2">&#34;UTF8&#34;</span>
+<span class="c1"># Oracle实例将使用物理内存的PCT</span>
+<span class="nv">MEMORYPERCENTAGE</span> <span class="o">=</span> <span class="s2">&#34;50&#34;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>执行命令：<code>$ORACLE_HOME/bin/dbca -silent -responseFile /data/res/dbca_createdb.rsp</code></p>
+
+<h2 id="3-11-配置监听">3.11. 配置监听</h2>
+
+<p>执行命令：<code>$ORACLE_HOME/bin/netca -silent -responsefile /data/res/netca.rsp</code></p>
+
+<p>修改监听配置如下：</p>
+
+<ul>
+<li>$ORACLE_HOME/network/admin/listener.ora</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">SID_LIST_LISTENER</span> <span class="o">=</span>
+<span class="o">(</span><span class="nv">SID_LIST</span> <span class="o">=</span>
+    <span class="o">(</span><span class="nv">SID_DESC</span> <span class="o">=</span>
+      <span class="o">(</span><span class="nv">GLOBAL_DBNAME</span> <span class="o">=</span> orcl<span class="o">)</span>
+      <span class="o">(</span><span class="nv">ORACLE_HOME</span> <span class="o">=</span> /data/oracle/product/11/db_1<span class="o">)</span>
+      <span class="o">(</span><span class="nv">SID_NAME</span> <span class="o">=</span> highway<span class="o">)</span>
+    <span class="o">)</span>
+<span class="o">)</span>
+<span class="nv">LISTENER</span> <span class="o">=</span>
+  <span class="o">(</span><span class="nv">DESCRIPTION_LIST</span> <span class="o">=</span>
+    <span class="o">(</span><span class="nv">DESCRIPTION</span> <span class="o">=</span>
+      <span class="o">(</span><span class="nv">ADDRESS</span> <span class="o">=</span> <span class="o">(</span><span class="nv">PROTOCOL</span> <span class="o">=</span> IPC<span class="o">)(</span><span class="nv">KEY</span> <span class="o">=</span> EXTPROC1521<span class="o">))</span>
+      <span class="o">(</span><span class="nv">ADDRESS</span> <span class="o">=</span> <span class="o">(</span><span class="nv">PROTOCOL</span> <span class="o">=</span> TCP<span class="o">)(</span><span class="nv">HOST</span> <span class="o">=</span> <span class="m">172</span>.18.121.63<span class="o">)(</span><span class="nv">PORT</span> <span class="o">=</span> <span class="m">1521</span><span class="o">))</span>
+    <span class="o">)</span>
+  <span class="o">)</span>
+
+<span class="nv">ADR_BASE_LISTENER</span> <span class="o">=</span> /data/oracle</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>$ORACLE_HOME/network/admin/sqlnet.ora</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># sqlnet.ora Network Configuration File: /data/oracle/product/11/db_1/network/admin/sqlnet.ora</span>
+<span class="c1"># Generated by Oracle configuration tools.</span>
+
+NAMES.DIRECTORY_PATH<span class="o">=</span> <span class="o">(</span>TNSNAMES, EZCONNECT<span class="o">)</span>
+
+<span class="nv">ADR_BASE</span> <span class="o">=</span> /data/oracle
+
+SQLNET.AUTHENTICATION_SERVICES<span class="o">=(</span>ALL<span class="o">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>$ORACLE_HOME/network/admin/tnsnames.ora(文件不存在就自己建)</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># tnsnames.ora Network Configuration File: /data/oracle/product/11/db_1/network/admin/tnsnames.ora</span>
+<span class="c1"># Generated by Oracle configuration tools.</span>
+
+<span class="nv">HIGHWAY</span> <span class="o">=</span>
+  <span class="o">(</span><span class="nv">DESCRIPTION</span> <span class="o">=</span>
+    <span class="o">(</span><span class="nv">ADDRESS</span> <span class="o">=</span> <span class="o">(</span><span class="nv">PROTOCOL</span> <span class="o">=</span> TCP<span class="o">)(</span><span class="nv">HOST</span> <span class="o">=</span> <span class="m">172</span>.18.121.63<span class="o">)(</span><span class="nv">PORT</span> <span class="o">=</span> <span class="m">1521</span><span class="o">))</span>
+    <span class="o">(</span><span class="nv">CONNECT_DATA</span> <span class="o">=</span>
+      <span class="o">(</span><span class="nv">SERVER</span> <span class="o">=</span> DEDICATED<span class="o">)</span>
+      <span class="o">(</span><span class="nv">SERVICE_NAME</span> <span class="o">=</span> highway<span class="o">)</span>
+    <span class="o">)</span>
+  <span class="o">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="3-12-配置数据库启动关闭脚本">3.12. 配置数据库启动关闭脚本</h2>
+
+<p>具体步骤如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cp /data/package/oradb /usr/bin
+chmod +x /usr/bin/oradb</code></pre></td></tr></table>
+</div>
+</div>
+<p>修改oradb脚本的配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">ORA_HOME</span><span class="o">=</span>/data/oracle/product/11/db_1
+<span class="nv">ORA_OWNER</span><span class="o">=</span>oracle
+<span class="nv">ORA_DBA_USER</span><span class="o">=</span>sys
+<span class="nv">ORA_DBA_PASSWORD</span><span class="o">=</span>X1234zxcv
+<span class="nv">ORACLE_SID</span><span class="o">=</span>highway</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="3-13-配置防火墙">3.13. 配置防火墙</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">firewall-cmd --zone<span class="o">=</span>public --add-port<span class="o">=</span><span class="m">1521</span>/tcp --permanent
+firewall-cmd --reload</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="3-14-验证数据库连接">3.14. 验证数据库连接</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">[</span>oracle@jiangxi-highway-db1 ~<span class="o">]</span>$ tnsping highway
+
+TNS Ping Utility <span class="k">for</span> Linux: Version <span class="m">11</span>.2.0.1.0 - Production on <span class="m">02</span>-JUN-2017 <span class="m">20</span>:11:52
+
+Copyright <span class="o">(</span>c<span class="o">)</span> <span class="m">1997</span>, <span class="m">2009</span>, Oracle.  All rights reserved.
+
+Used parameter files:
+/data/oracle/product/11/db_1/network/admin/sqlnet.ora
+
+
+Used TNSNAMES adapter to resolve the <span class="nb">alias</span>
+Attempting to contact <span class="o">(</span><span class="nv">DESCRIPTION</span> <span class="o">=</span> <span class="o">(</span><span class="nv">ADDRESS</span> <span class="o">=</span> <span class="o">(</span><span class="nv">PROTOCOL</span> <span class="o">=</span> TCP<span class="o">)(</span><span class="nv">HOST</span> <span class="o">=</span> <span class="m">172</span>.18.121.63<span class="o">)(</span><span class="nv">PORT</span> <span class="o">=</span> <span class="m">1521</span><span class="o">))</span> <span class="o">(</span><span class="nv">CONNECT_DATA</span> <span class="o">=</span> <span class="o">(</span><span class="nv">SERVER</span> <span class="o">=</span> DEDICATED<span class="o">)</span> <span class="o">(</span><span class="nv">SERVICE_NAME</span> <span class="o">=</span> highway<span class="o">)))</span>
+OK <span class="o">(</span><span class="m">0</span> msec<span class="o">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>然后通过navicat或者PL/SQL连接数据库，测试是否连接成功。</p>
+
+<h2 id="3-15-导入数据库结构和基础数据">3.15. 导入数据库结构和基础数据</h2>
+
+<p>通过navicat或者PL/SQL执行SQL文件导入</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Little Mice</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2017-03-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          <a href="/tags/centos/">Centos</a>
+          <a href="/tags/oracle/">Oracle</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/centos-%E6%9C%AC%E5%9C%B0iso-%E6%8C%82%E8%BD%BD%E5%B9%B6%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E8%BD%AF%E4%BB%B6%E6%BA%90/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">CentOS 挂载ISO镜像文件为本地源</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/centos-firewall-%E8%AF%B4%E6%98%8E/">
+            <span class="next-text nav-default">Centos Firewall 说明</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:whsfightup@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/wadeLouis" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.weihaosi.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">West</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Centos Firewall 说明 - 韦昊斯的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Little Mice" /><meta name="description" content="Centos Firewall 说明" /><meta name="keywords" content="Linux, Centos, Firewall" />
+
+
+
+<meta name="google-site-verification" content="iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI" />
+
+
+<meta name="generator" content="Hugo 0.53 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://www.weihaosi.me/post/centos-firewall-%E8%AF%B4%E6%98%8E/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Centos Firewall 说明" />
+<meta property="og:description" content="Centos Firewall 说明" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.weihaosi.me/post/centos-firewall-%E8%AF%B4%E6%98%8E/" /><meta property="article:published_time" content="2017-03-20T16:18:28&#43;08:00"/>
+<meta property="article:modified_time" content="2017-03-20T16:18:28&#43;08:00"/>
+
+<meta itemprop="name" content="Centos Firewall 说明">
+<meta itemprop="description" content="Centos Firewall 说明">
+
+
+<meta itemprop="datePublished" content="2017-03-20T16:18:28&#43;08:00" />
+<meta itemprop="dateModified" content="2017-03-20T16:18:28&#43;08:00" />
+<meta itemprop="wordCount" content="847">
+
+
+
+<meta itemprop="keywords" content="Linux,Centos,Firewall," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Centos Firewall 说明"/>
+<meta name="twitter:description" content="Centos Firewall 说明"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">韦昊斯的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/life/">
+        <li class="mobile-menu-item">记事</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">韦昊斯的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/life/">记事</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Centos Firewall 说明</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-03-20 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            <a href="/categories/centos/"> Centos </a>
+            <a href="/categories/firewall/"> Firewall </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#二-使用方法">二、使用方法</a>
+<ul>
+<li><a href="#1-查看规则">1. 查看规则</a></li>
+<li><a href="#2-管理规则">2. 管理规则</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<blockquote>
+<p>安装
+<code># yum install firewalld</code>
+如果需要图形界面的话，则再安装
+<code># yum install firewall-config</code></p>
+</blockquote>
+
+<p>#一、介绍</p>
+
+<p>防火墙守护 firewalld 服务引入了一个信任级别的概念来管理与之相关联的连接与接口。它支持 ipv4 与 ipv6，并支持网桥，采用 firewall-cmd (command) 或 firewall-config (gui) 来动态的管理 kernel netfilter 的临时或永久的接口规则，并实时生效而无需重启服务。</p>
+
+<p>Firewall 能将不同的网络连接归类到不同的信任级别，Zone 提供了以下几个级别
+* drop: 丢弃所有进入的包，而不给出任何响应
+* block: 拒绝所有外部发起的连接，允许内部发起的连接
+* public: 允许指定的进入连接
+* external: 同上，对伪装的进入连接，一般用于路由转发
+* dmz: 允许受限制的进入连接
+* work: 允许受信任的计算机被限制的进入连接，类似 workgroup
+* home: 同上，类似 homegroup
+* internal: 同上，范围针对所有互联网用户
+* trusted: 信任所有连接</p>
+
+<h1 id="二-使用方法">二、使用方法</h1>
+
+<p><code># systemctl start firewalld         # 启动,</code></p>
+
+<p><code># systemctl enable firewalld        # 开机启动</code></p>
+
+<p><code># systemctl stop firewalld          # 关闭</code></p>
+
+<p><code># systemctl disable firewalld       # 取消开机启动</code></p>
+
+<p>具体的规则管理，可以使用 firewall-cmd，具体的使用方法可以</p>
+
+<p><code>$ firewall-cmd --help</code></p>
+
+<h2 id="1-查看规则">1. 查看规则</h2>
+
+<p>查看运行状态</p>
+
+<p><code>$ firewall-cmd --state</code></p>
+
+<p>查看已被激活的 Zone 信息</p>
+
+<p><code>$ firewall-cmd --get-active-zones</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">public
+  interfaces: eth0 eth1</pre></td></tr></table>
+</div>
+</div>
+<p>查看指定接口的 Zone 信息</p>
+
+<p><code>$ firewall-cmd --get-zone-of-interface=eth0</code></p>
+
+<p>查看指定级别的接口</p>
+
+<p><code>$ firewall-cmd --zone=public --list-interfaces</code></p>
+
+<p>查看指定级别的所有信息，譬如 public</p>
+
+<p><code>$ firewall-cmd --zone=public --list-all</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">public (default, active)
+  interfaces: eth0
+  sources:
+  services: dhcpv6-client http ssh
+  ports:
+  masquerade: no
+  forward-ports:
+  icmp-blocks:
+  rich rules:</pre></td></tr></table>
+</div>
+</div>
+<p>查看所有级别被允许的信息</p>
+
+<p><code>$ firewall-cmd --get-service</code></p>
+
+<p>查看重启后所有 Zones 级别中被允许的服务，即永久放行的服务</p>
+
+<p><code>$ firewall-cmd --get-service --permanent</code></p>
+
+<h2 id="2-管理规则">2. 管理规则</h2>
+
+<p><code># firewall-cmd --panic-on           # 丢弃</code></p>
+
+<p><code># firewall-cmd --panic-off          # 取消丢弃</code></p>
+
+<p><code>$ firewall-cmd --query-panic        # 查看丢弃状态</code></p>
+
+<p><code># firewall-cmd --reload             # 更新规则，不重启服务</code></p>
+
+<p><code># firewall-cmd --complete-reload    # 更新规则，重启服务</code></p>
+
+<p>添加某接口至某信任等级，譬如添加 eth0 至 public，再永久生效</p>
+
+<p><code># firewall-cmd --zone=public --add-interface=eth0 --permanent</code></p>
+
+<p>设置 public 为默认的信任级别</p>
+
+<p><code># firewall-cmd --set-default-zone=public</code></p>
+
+<ul>
+<li>管理端口</li>
+</ul>
+
+<p>列出 dmz 级别的被允许的进入端口</p>
+
+<p><code># firewall-cmd --zome=dmz --list-ports</code></p>
+
+<p>允许 tcp 端口 8080 至 dmz 级别</p>
+
+<p><code># firewall-cmd --zone=dmz --add-kport=8080/tcp</code></p>
+
+<p>允许某范围的 udp 端口至 public 级别，并永久生效</p>
+
+<p><code># firewall-cmd --zome=public --add-port=5060-5059/udp --permanent</code></p>
+
+<ul>
+<li>管理服务</li>
+</ul>
+
+<p>添加 smtp 服务至 work zone</p>
+
+<p><code># firewall-cmd --zone=work --add-service=smtp</code></p>
+
+<p>移除 work zone 中的 smtp 服务</p>
+
+<p><code># firewall-cmd --zone=work --remove-service=smtp</code></p>
+
+<ul>
+<li>配置 ip 地址伪装</li>
+</ul>
+
+<p>查看</p>
+
+<p><code># firewall-cmd --zone=external --query-masquerade</code></p>
+
+<p>打开伪装</p>
+
+<p><code># firewall-cmd --zone=external --add-masquerade</code></p>
+
+<p>关闭伪装</p>
+
+<p><code># firewall-cmd --zone=external --remove-masquerade</code></p>
+
+<ul>
+<li>端口转发</li>
+</ul>
+
+<p>要打开端口转发，则需要先</p>
+
+<p><code># firewall-cmd --zone=external --add-masquerade</code></p>
+
+<p>然后转发 tcp 22 端口至 3753</p>
+
+<p><code># firewall-cmd --zone=external --add-forward-port=port=22:proto=tcp:toport=3753</code></p>
+
+<p>转发 22 端口数据至另一个 ip 的相同端口上</p>
+
+<p><code># firewall-cmd --zone=external --add-forward-port=port=22:proto=tcp:toaddr=192.168.1.100</code></p>
+
+<p>转发 22 端口数据至另一 ip 的 2055 端口上</p>
+
+<p><code># firewall-cmd --zone=external --add-forward-port=port=22:proto=tcp:toport=2055:toaddr=192.168.1.100</code></p>
+
+<p>以上都是一些常用方法，更多高级方法，请参考：</p>
+
+<p><a href="https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Using_Firewalls.html">https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Security_Guide/sec-Using_Firewalls.html</a></p>
+
+<p><a href="https://fedoraproject.org/wiki/FirewallD">https://fedoraproject.org/wiki/FirewallD</a></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Little Mice</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2017-03-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          <a href="/tags/centos/">Centos</a>
+          <a href="/tags/firewall/">Firewall</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/centos-7%E5%AE%89%E8%A3%85oracle-11g-r2/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Centos 7 安装Oracle 11G R2</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/centos-hbase%E5%AE%89%E8%A3%85/">
+            <span class="next-text nav-default">Centos Hbase安装</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:whsfightup@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/wadeLouis" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.weihaosi.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">West</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Gatling 一步一步进阶 1 - 入门实例拓展 - 韦昊斯的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Little Mice" /><meta name="description" content="Gatling 一步一步进阶 1 - 入门实例拓展" /><meta name="keywords" content="Gatling, 一步一步进阶, 入门实例拓展" />
+
+
+
+<meta name="google-site-verification" content="iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI" />
+
+
+<meta name="generator" content="Hugo 0.53 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://www.weihaosi.me/post/2016-12-08-gatling-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E8%BF%9B%E9%98%B6-1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Gatling 一步一步进阶 1 - 入门实例拓展" />
+<meta property="og:description" content="Gatling 一步一步进阶 1 - 入门实例拓展" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.weihaosi.me/post/2016-12-08-gatling-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E8%BF%9B%E9%98%B6-1/" /><meta property="article:published_time" content="2016-12-08T14:51:28&#43;08:00"/>
+<meta property="article:modified_time" content="2016-12-08T14:51:28&#43;08:00"/>
+
+<meta itemprop="name" content="Gatling 一步一步进阶 1 - 入门实例拓展">
+<meta itemprop="description" content="Gatling 一步一步进阶 1 - 入门实例拓展">
+
+
+<meta itemprop="datePublished" content="2016-12-08T14:51:28&#43;08:00" />
+<meta itemprop="dateModified" content="2016-12-08T14:51:28&#43;08:00" />
+<meta itemprop="wordCount" content="669">
+
+
+
+<meta itemprop="keywords" content="软件测试,性能测试,Gatling,HTTP接口测试,自动化测试," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Gatling 一步一步进阶 1 - 入门实例拓展"/>
+<meta name="twitter:description" content="Gatling 一步一步进阶 1 - 入门实例拓展"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">韦昊斯的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/life/">
+        <li class="mobile-menu-item">记事</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">韦昊斯的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/life/">记事</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Gatling 一步一步进阶 1 - 入门实例拓展</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-12-08 </span>
+        <div class="post-category">
+            <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/"> 软件测试 </a>
+            <a href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"> 性能测试 </a>
+            <a href="/categories/gatling/"> Gatling </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#独立过程处理">独立过程处理</a></li>
+<li><a href="#配置虚拟用户">配置虚拟用户</a></li>
+<li><a href="#动态数据参数化">动态数据参数化</a></li>
+<li><a href="#循环测试">循环测试</a></li>
+<li><a href="#响应检查和失败管理">响应检查和失败管理</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="独立过程处理">独立过程处理</h1>
+
+<p>其实 <a href="https://blog.idriverclub.com/2016/12/08/2016/12/gatling-%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0/#more">上节</a>就已经使用了。
+简单的方式就是如下（官方例子）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">object</span> <span class="nc">Search</span> <span class="o">{</span>
+
+  <span class="k">val</span> <span class="n">search</span> <span class="k">=</span> <span class="n">exec</span><span class="o">(</span><span class="n">http</span><span class="o">(</span><span class="s">&#34;Home&#34;</span><span class="o">)</span> <span class="c1">// let&#39;s give proper names, as they are displayed in the reports
+</span><span class="c1"></span>    <span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">))</span>
+    <span class="o">.</span><span class="n">pause</span><span class="o">(</span><span class="mi">7</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">exec</span><span class="o">(</span><span class="n">http</span><span class="o">(</span><span class="s">&#34;Search&#34;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="s">&#34;/computers?f=macbook&#34;</span><span class="o">))</span>
+    <span class="o">.</span><span class="n">pause</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">exec</span><span class="o">(</span><span class="n">http</span><span class="o">(</span><span class="s">&#34;Select&#34;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="s">&#34;/computers/6&#34;</span><span class="o">))</span>
+    <span class="o">.</span><span class="n">pause</span><span class="o">(</span><span class="mi">3</span><span class="o">)</span>
+<span class="o">}</span>
+
+<span class="k">object</span> <span class="nc">Browse</span> <span class="o">{</span>
+
+  <span class="k">val</span> <span class="n">browse</span> <span class="k">=</span> <span class="o">???</span><span class="n">这里写动作</span>
+<span class="o">}</span>
+
+<span class="k">object</span> <span class="nc">Edit</span> <span class="o">{</span>
+
+  <span class="k">val</span> <span class="n">edit</span> <span class="k">=</span> <span class="o">???</span><span class="n">这里写动作</span>
+<span class="o">}</span>
+
+<span class="c1">//这里这样使用
+</span><span class="c1"></span>
+<span class="k">val</span> <span class="n">scn</span> <span class="k">=</span> <span class="n">scenario</span><span class="o">(</span><span class="s">&#34;Scenario Name&#34;</span><span class="o">).</span><span class="n">exec</span><span class="o">(</span><span class="nc">Search</span><span class="o">.</span><span class="n">search</span><span class="o">,</span> <span class="nc">Browse</span><span class="o">.</span><span class="n">browse</span><span class="o">,</span> <span class="nc">Edit</span><span class="o">.</span><span class="n">edit</span><span class="o">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="配置虚拟用户">配置虚拟用户</h1>
+
+<p>意思就是分那部分测试用例是哪个scenario的，通过scenario的名称来区分而已，上节也说到了。</p>
+
+<h1 id="动态数据参数化">动态数据参数化</h1>
+
+<p>上节也有提到，具体可以去看一下。</p>
+
+<h1 id="循环测试">循环测试</h1>
+
+<p>什么意思呢？就是某一测试项重复几次的意思，主要通过repeat这个方法实现。
+<strong>如何做？</strong>
+repeat函数的声明格式如下:
+* repeat(times){chain} times 是次数，chain是每一次的动作
+* repeat(times, counterName){chain} times是次数，counterName是保存当前次数的变量名，chain是每一次的动作</p>
+
+<p>具体代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Scala" data-lang="Scala"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Scala" data-lang="Scala"><span class="k">object</span> <span class="nc">Browse</span> <span class="o">{</span>
+<span class="c1">// 这里是重复做5次
+</span><span class="c1"></span>  <span class="k">val</span> <span class="n">browse</span> <span class="k">=</span> <span class="n">repeat</span><span class="o">(</span><span class="mi">5</span><span class="o">,</span> <span class="s">&#34;n&#34;</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 1   
+</span><span class="c1"></span>    <span class="n">exec</span><span class="o">(</span><span class="n">http</span><span class="o">(</span><span class="s">&#34;Page ${n}&#34;</span><span class="o">)</span>
+      <span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="s">&#34;/computers?p=${n}&#34;</span><span class="o">))</span> <span class="c1">// 2
+</span><span class="c1"></span>      <span class="o">.</span><span class="n">pause</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+  <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>repeate的chain部分这个块中的代码也可以直接用exec()运行一个函数，当然如果要传参过去，只能传String了，这里的http(&ldquo;Page ${n}&rdquo;)就是个方法是不是💪&hellip;</p>
+
+<h1 id="响应检查和失败管理">响应检查和失败管理</h1>
+
+<p>检查响应内容在上节已经提到，具体可以去看上节内容。
+失败管理有三种：
+* tryMax(times){chain} 重试直到成功，如果一直不成功就重复到设定的最大数
+* exitBlockOnFail{chain}  如果失败就退出当前执行块，scenario继续执行下面的动作
+* exitHereIfFailed scenario直接退出</p>
+
+<p>例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-scala" data-lang="scala"><span class="k">val</span> <span class="n">tryMaxEdit</span> <span class="k">=</span> <span class="n">tryMax</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 1 重试2次
+</span><span class="c1"></span>  <span class="n">exec</span><span class="o">(</span><span class="n">edit</span><span class="o">)</span>
+<span class="o">}.</span><span class="n">exitHereIfFailed</span> <span class="c1">// 2次都不成功就退出整个scenario
+</span><span class="c1"></span><span class="k">val</span> <span class="n">tryExitBlock</span> <span class="k">=</span> <span class="o">{</span>
+    <span class="n">exec</span><span class="o">(...)</span>
+    <span class="n">exitBlockOnFail</span><span class="o">{</span>
+      <span class="n">exec</span><span class="o">(...)</span>
+    <span class="o">}</span>
+    <span class="n">exec</span><span class="o">(...)</span> <span class="c1">// 这里继续会执行
+</span><span class="c1"></span><span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Little Mice</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2016-12-08
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+          <a href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">性能测试</a>
+          <a href="/tags/gatling/">Gatling</a>
+          <a href="/tags/http%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/">HTTP接口测试</a>
+          <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/gatling-%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Gatling 一步一步进阶 0 - 入门实例</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/spring-%E6%A8%A1%E5%9D%97%E8%AF%B4%E6%98%8E/">
+            <span class="next-text nav-default">Spring 模块说明</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:whsfightup@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/wadeLouis" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.weihaosi.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">West</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

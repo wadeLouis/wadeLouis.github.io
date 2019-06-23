@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jmeter on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/tags/jmeter/</link>
+    <description>Recent content in Jmeter on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 09 Dec 2016 16:18:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/tags/jmeter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Jmeter命令行执行测试，自动备份log，输出jtl和html报告</title>
+      <link>http://www.weihaosi.me/post/2017-03-08-jmeter%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%89%A7%E8%A1%8C%E6%B5%8B%E8%AF%95%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BDlog%E8%BE%93%E5%87%BAjtl%E5%92%8Chtml%E6%8A%A5%E5%91%8A/</link>
+      <pubDate>Fri, 09 Dec 2016 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/2017-03-08-jmeter%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%89%A7%E8%A1%8C%E6%B5%8B%E8%AF%95%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BDlog%E8%BE%93%E5%87%BAjtl%E5%92%8Chtml%E6%8A%A5%E5%91%8A/</guid>
+      <description>脚本大部分上是基于Jmeter自己的启动脚本进行修改 环境条件 配置JMETER_HOME 配置JAVA_HOME 配置ANT_HOME 脚本说明 启动</description>
+    </item>
+    
+  </channel>
+</rss>

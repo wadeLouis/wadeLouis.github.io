@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ubuntu on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/tags/ubuntu/</link>
+    <description>Recent content in ubuntu on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 08 Dec 2016 14:51:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ubuntu引导修复和emergenc mode修复</title>
+      <link>http://www.weihaosi.me/post/ubuntubootrecuse/</link>
+      <pubDate>Thu, 08 Dec 2016 14:51:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/ubuntubootrecuse/</guid>
+      <description>修复引导 系统直接进入grub rescuse模式 * 输入命令ls 显示所有的盘符，通过ls对应的盘符显示盘符的文件系统来确认目标分区， 1 ls (hd0,msdos5) 应该正</description>
+    </item>
+    
+  </channel>
+</rss>

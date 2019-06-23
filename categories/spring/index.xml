@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spring on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/categories/spring/</link>
+    <description>Recent content in Spring on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 08 Dec 2016 14:51:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/categories/spring/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Spring 模块说明</title>
+      <link>http://www.weihaosi.me/post/spring-%E6%A8%A1%E5%9D%97%E8%AF%B4%E6%98%8E/</link>
+      <pubDate>Thu, 08 Dec 2016 14:51:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/spring-%E6%A8%A1%E5%9D%97%E8%AF%B4%E6%98%8E/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Spring 是模块化的，这意味着可以只使用自己需要的模块&lt;/p&gt;
+
+&lt;h1 id=&#34;模块框架&#34;&gt;模块框架&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://onj0ixn0u.bkt.clouddn.com/20170405201337655.png&#34; alt=&#34;20170405201337655&#34; /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&#34;核心容器-core-container&#34;&gt;核心容器（Core container）&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Spring-Core: 核心工具类，Spring 其他模块大量使用Spring-Core&lt;/li&gt;
+&lt;li&gt;Spring-Bean: Spring定义Bean的支持&lt;/li&gt;
+&lt;li&gt;Spring-Context: 运行时Spring容器&lt;/li&gt;
+&lt;li&gt;Spring-Context-Support： Spring容器对第三方包的集成支持&lt;/li&gt;
+&lt;li&gt;Spring-Expression: 使用表达式语言在运行时查询和操作对象。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

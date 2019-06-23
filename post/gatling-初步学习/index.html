@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Gatling 一步一步进阶 0 - 入门实例 - 韦昊斯的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Little Mice" /><meta name="description" content="Gatling 一步一步进阶 0 - 入门实例" /><meta name="keywords" content="Gatling, 一步一步进阶, 入门实例" />
+
+
+
+<meta name="google-site-verification" content="iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI" />
+
+
+<meta name="generator" content="Hugo 0.53 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://www.weihaosi.me/post/gatling-%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Gatling 一步一步进阶 0 - 入门实例" />
+<meta property="og:description" content="Gatling 一步一步进阶 0 - 入门实例" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.weihaosi.me/post/gatling-%E5%88%9D%E6%AD%A5%E5%AD%A6%E4%B9%A0/" /><meta property="article:published_time" content="2016-12-08T14:51:28&#43;08:00"/>
+<meta property="article:modified_time" content="2016-12-08T14:51:28&#43;08:00"/>
+
+<meta itemprop="name" content="Gatling 一步一步进阶 0 - 入门实例">
+<meta itemprop="description" content="Gatling 一步一步进阶 0 - 入门实例">
+
+
+<meta itemprop="datePublished" content="2016-12-08T14:51:28&#43;08:00" />
+<meta itemprop="dateModified" content="2016-12-08T14:51:28&#43;08:00" />
+<meta itemprop="wordCount" content="1574">
+
+
+
+<meta itemprop="keywords" content="软件测试,性能测试,Gatling,HTTP接口测试,自动化测试," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Gatling 一步一步进阶 0 - 入门实例"/>
+<meta name="twitter:description" content="Gatling 一步一步进阶 0 - 入门实例"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">韦昊斯的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/life/">
+        <li class="mobile-menu-item">记事</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">韦昊斯的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/life/">记事</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Gatling 一步一步进阶 0 - 入门实例</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-12-08 </span>
+        <div class="post-category">
+            <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/"> 软件测试 </a>
+            <a href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/"> 性能测试 </a>
+            <a href="/categories/gatling/"> Gatling </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#下载与安装">下载与安装</a></li>
+<li><a href="#关于录制工具的使用">关于录制工具的使用</a></li>
+<li><a href="#关于测试脚本的编写">关于测试脚本的编写</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="下载与安装">下载与安装</h1>
+
+<ul>
+<li>下载地址：</li>
+</ul>
+
+<p><a href="http://gatling.io/#/resources/download">http://gatling.io/#/resources/download</a></p>
+
+<ul>
+<li>安装</li>
+</ul>
+
+<ol>
+<li>解压文件</li>
+<li>确保已经安装或者配置好JDK，最新版本的Gatling需要JDK8</li>
+<li>Gatling的启动脚本和maven插件需要配置JAVA_HOME环境变量。</li>
+<li>Gatling解压后就可以使用了，启动脚本在bin目录下，gatling.sh是启动测试，recorder.sh是启动录制</li>
+</ol>
+
+<blockquote>
+<p>Gatling默认字符编码是UTF-8，你如果要修改，则需要改动下面几项：
+1、 录制的时候要选择编码方式
+2、 在gatling.conf配置中修改编码方式
+3、保证你修改的文件和脚本的编码方式是正确的</p>
+</blockquote>
+
+<h1 id="关于录制工具的使用">关于录制工具的使用</h1>
+
+<ul>
+<li>运行bin目录下的recorder.sh</li>
+<li>修改好你想要的端口，在package字段写个包名，class Name字段写类名</li>
+<li>勾选你想要的选项</li>
+<li>在Filters中添加你不想录制下来的选项，即定义你的过滤条件，比如<code>*\.css, .*\.js and .*\.ico</code>等，有白名单whitelist和黑名单blacklist。</li>
+<li>点击start开始录制</li>
+<li>打开浏览器，修改浏览器的代理，开始访问你的网站进行相关的操作</li>
+<li>操作完成后点击stop</li>
+<li>脚本会在user-file目录下的simulations中，文件夹是包</li>
+<li>执行bin目录下的gatling.sh -s 包名.类名 既开始执行测试</li>
+<li>结果保存在result目录下</li>
+</ul>
+
+<h1 id="关于测试脚本的编写">关于测试脚本的编写</h1>
+
+<blockquote>
+<p>脚本语言是基于Scala</p>
+</blockquote>
+
+<p>直接看个例子，解释看注释：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-Scala" data-lang="Scala"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-Scala" data-lang="Scala"><span class="k">package</span> <span class="nn">oms_Interface</span>  <span class="c1">// 定义包，和java语言一样
+</span><span class="c1"></span>
+<span class="c1">// 下面是导入部分，1-4 是必须要的
+</span><span class="c1"></span><span class="k">import</span> <span class="nn">scala.concurrent.duration._</span>  <span class="c1">// 1
+</span><span class="c1"></span>
+<span class="k">import</span> <span class="nn">io.gatling.core.Predef._</span> <span class="c1">// 2
+</span><span class="c1"></span><span class="k">import</span> <span class="nn">io.gatling.http.Predef._</span> <span class="c1">// 3
+</span><span class="c1"></span><span class="k">import</span> <span class="nn">io.gatling.jdbc.Predef._</span>  <span class="c1">// 4
+</span><span class="c1"></span><span class="k">import</span> <span class="nn">java.util.concurrent.ThreadLocalRandom</span>  <span class="c1">// 这是直接导入了一个java的包 ，Scala语言可以直接这样吗？ 好神奇
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">uploadImg</span> <span class="k">extends</span> <span class="nc">Simulation</span> <span class="o">{</span>  <span class="c1">//定义一个类 必须继承Simulation  好吧，和java写法一样
+</span><span class="c1"></span>    <span class="c1">// id,username,password
+</span><span class="c1"></span>    <span class="k">val</span> <span class="n">feeder</span> <span class="k">=</span> <span class="n">csv</span><span class="o">(</span><span class="s">&#34;userID.csv&#34;</span><span class="o">).</span><span class="n">random</span>  
+    <span class="c1">// 定义了一个读取csv数据的对象，读取方式是随机。Gatling支持读取json，Sitemap，Redis，csv，数据库的数据用来做参数化。也可以把一系列的值变成feeder对象。userID.csv要放在user-file目录下的data目录中
+</span><span class="c1"></span>    <span class="c1">// 实际最后的对象是一个Iterator[Map[String, T]]。
+</span><span class="c1"></span>    <span class="c1">// 读取方式：.
+</span><span class="c1"></span>    <span class="c1">// .queue    默认方式 顺序取值，取值超出后会报异常
+</span><span class="c1"></span>    <span class="c1">// .random   随机去取值
+</span><span class="c1"></span>    <span class="c1">// .circular 循环取值   
+</span><span class="c1"></span>
+<span class="c1">//定义一个OMS对象，这里把测试过程和scenario的初始化分离开
+</span><span class="c1"></span>    <span class="k">object</span> <span class="nc">OMS</span> <span class="o">{</span>
+        <span class="c1">// 定义对象，包含一系列的动作，即这就是一个测试用例
+</span><span class="c1"></span>        <span class="k">val</span> <span class="n">upload</span>  <span class="k">=</span> <span class="n">exec</span><span class="o">(</span><span class="n">http</span><span class="o">(</span><span class="s">&#34;Upload&#34;</span><span class="o">)</span>
+				<span class="o">.</span><span class="n">post</span><span class="o">(</span><span class="s">&#34;/modify-icon.post&#34;</span><span class="o">)</span> <span class="c1">// 使用post方法，这里的参数会和baseURL拼接起来
+</span><span class="c1"></span>				<span class="o">.</span><span class="n">headers</span><span class="o">(</span><span class="n">headers_0</span><span class="o">)</span> <span class="c1">// 请求头
+</span><span class="c1"></span>				<span class="o">.</span><span class="n">formParam</span><span class="o">(</span><span class="s">&#34;uid&#34;</span><span class="o">,</span> <span class="s">&#34;6153&#34;</span><span class="o">)</span> <span class="c1">// 这里我们使用了post 表单方式，所以用formParam
+</span><span class="c1"></span>				<span class="o">.</span><span class="n">formParam</span><span class="o">(</span><span class="s">&#34;type&#34;</span><span class="o">,</span> <span class="s">&#34;6&#34;</span><span class="o">)</span>  <span class="c1">// 具体的可以去[cheat-sheet](http://gatling.io/#/cheat-sheet/2.2.3)查看
+</span><span class="c1"></span>	    		<span class="o">.</span><span class="n">formParam</span><span class="o">(</span><span class="s">&#34;imgType&#34;</span><span class="o">,</span> <span class="nc">ThreadLocalRandom</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">nextInt</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span><span class="mi">2</span><span class="o">))</span>
+	    		<span class="o">.</span><span class="n">formParam</span><span class="o">(</span><span class="s">&#34;imgName&#34;</span><span class="o">,</span> <span class="s">&#34;aaaaaasdasdada6&#34;</span><span class="o">)</span>
+				<span class="o">.</span><span class="n">formUpload</span><span class="o">(</span><span class="s">&#34;image_file&#34;</span><span class="o">,</span><span class="s">&#34;/home/xxxx/a.png&#34;</span><span class="o">)</span>  <span class="c1">//这里是文件上传
+</span><span class="c1"></span>				<span class="o">.</span><span class="n">check</span><span class="o">(</span><span class="n">status</span><span class="o">.</span><span class="n">is</span><span class="o">(</span><span class="mi">200</span><span class="o">))</span>
+                <span class="c1">// check 检查返回内容，详细的内容可以看官方的[cheat-sheet](http://gatling.io/#/cheat-sheet/2.2.3)
+</span><span class="c1"></span>				<span class="o">.</span><span class="n">check</span><span class="o">(</span><span class="n">jsonPath</span><span class="o">(</span><span class="s">&#34;$.message.imgName&#34;</span><span class="o">).</span><span class="n">saveAs</span><span class="o">(</span><span class="s">&#34;imgName&#34;</span><span class="o">))</span>
+				<span class="o">.</span><span class="n">check</span><span class="o">(</span><span class="n">jsonPath</span><span class="o">(</span><span class="s">&#34;$.status&#34;</span><span class="o">)</span>
+                                        <span class="o">.</span><span class="n">is</span><span class="o">(</span><span class="s">&#34;success&#34;</span><span class="o">))</span>
+			<span class="o">).</span><span class="n">pause</span><span class="o">(</span><span class="mi">5</span><span class="o">)</span> <span class="c1">//pause 是用来设定思考时间的
+</span><span class="c1"></span>	<span class="k">val</span> <span class="n">download</span> <span class="k">=</span> <span class="n">exec</span><span class="o">(</span><span class="n">http</span><span class="o">(</span><span class="s">&#34;Download&#34;</span><span class="o">)</span>
+				<span class="o">.</span><span class="n">get</span><span class="o">(</span><span class="s">&#34;/img.get&#34;</span><span class="o">)</span> <span class="c1">// get方法
+</span><span class="c1"></span>				<span class="o">.</span><span class="n">queryParam</span><span class="o">(</span><span class="s">&#34;fn&#34;</span><span class="o">,</span><span class="s">&#34;${imgName}&#34;</span><span class="o">)</span>
+				<span class="o">.</span><span class="n">check</span><span class="o">(</span><span class="n">status</span><span class="o">.</span><span class="n">is</span><span class="o">(</span><span class="mi">200</span><span class="o">))</span>
+				<span class="o">.</span><span class="n">check</span><span class="o">(</span><span class="n">header</span><span class="o">(</span><span class="s">&#34;Content-Type&#34;</span><span class="o">).</span><span class="n">is</span><span class="o">(</span><span class="s">&#34;application/x-download&#34;</span><span class="o">))</span>
+				<span class="o">.</span><span class="n">check</span><span class="o">(</span><span class="n">header</span><span class="o">(</span><span class="s">&#34;Content-Disposition&#34;</span><span class="o">).</span><span class="n">is</span><span class="o">(</span><span class="s">&#34;attachment;filename=${imgName}&#34;</span><span class="o">))</span>
+			<span class="o">).</span><span class="n">pause</span><span class="o">(</span><span class="mi">1</span><span class="o">)</span>
+    <span class="o">}</span>
+
+
+
+    <span class="c1">// 设置浏览器信息
+</span><span class="c1"></span>    <span class="k">val</span> <span class="n">httpConf</span> <span class="k">=</span> <span class="n">http</span>
+        <span class="o">.</span><span class="n">baseURL</span><span class="o">(</span><span class="s">&#34;http://192.168.1.114:8099/file/api-git&#34;</span><span class="o">)</span>
+    	<span class="o">.</span><span class="n">acceptHeader</span><span class="o">(</span><span class="s">&#34;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#34;</span><span class="o">)</span>
+    	<span class="o">.</span><span class="n">doNotTrackHeader</span><span class="o">(</span><span class="s">&#34;1&#34;</span><span class="o">)</span>
+   	    <span class="o">.</span><span class="n">acceptLanguageHeader</span><span class="o">(</span><span class="s">&#34;zh-CN,zh;q=0.8,en;q=0.6&#34;</span><span class="o">)</span>
+    	<span class="o">.</span><span class="n">acceptEncodingHeader</span><span class="o">(</span><span class="s">&#34;gzip, deflate&#34;</span><span class="o">)</span>
+    	<span class="o">.</span><span class="n">userAgentHeader</span><span class="o">(</span><span class="s">&#34;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0&#34;</span><span class="o">)</span>
+
+    <span class="c1">// 自定义header的一些参数
+</span><span class="c1"></span>    <span class="k">val</span> <span class="n">headers_0</span> <span class="k">=</span> <span class="nc">Map</span><span class="o">(</span><span class="s">&#34;Accept&#34;</span> <span class="o">-&gt;</span> <span class="s">&#34;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#34;</span><span class="o">)</span>
+    <span class="c1">// 初始化一个scenario 对象，格式是scenario(名称)[一些动作，比如.exec(动作).feed(xxx)]
+</span><span class="c1"></span>    <span class="k">val</span> <span class="n">up</span> <span class="k">=</span> <span class="n">scenario</span><span class="o">(</span><span class="s">&#34;Upload&#34;</span><span class="o">).</span><span class="n">exec</span><span class="o">(</span><span class="nc">OMS</span><span class="o">.</span><span class="n">upload</span><span class="o">)</span>
+                <span class="c1">//.feed(feeder)  因为测试用例和scenario对象分离开，所以feed写到测试用来里面好像找不到feeder这个对象了。
+</span><span class="c1"></span>
+    <span class="k">val</span> <span class="n">down</span> <span class="k">=</span> <span class="n">scenario</span><span class="o">(</span><span class="s">&#34;Down&#34;</span><span class="o">).</span><span class="n">exec</span><span class="o">(</span><span class="nc">OMS</span><span class="o">.</span><span class="n">download</span><span class="o">)</span>
+    <span class="k">val</span> <span class="n">up_down</span> <span class="k">=</span> <span class="n">scenario</span><span class="o">(</span><span class="s">&#34;up_down&#34;</span><span class="o">).</span><span class="n">exec</span><span class="o">(</span><span class="nc">OMS</span><span class="o">.</span><span class="n">upload</span><span class="o">,</span><span class="nc">OMS</span><span class="o">.</span><span class="n">download</span><span class="o">)</span>
+     <span class="c1">// 设置请求次数 如下为在立即启动500个请求
+</span><span class="c1"></span>    <span class="n">setUp</span><span class="o">(</span>
+             <span class="n">up_down</span><span class="o">.</span><span class="n">inject</span><span class="o">(</span><span class="n">atOnceUsers</span><span class="o">(</span><span class="mi">500</span><span class="o">))</span>
+	    <span class="c1">//down.inject(atOnceUsers(1)),
+</span><span class="c1"></span>           <span class="c1">// up.inject(atOnceUsers(1))
+</span><span class="c1"></span>  	<span class="o">).</span><span class="n">protocols</span><span class="o">(</span><span class="n">httpConf</span><span class="o">)</span>
+
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>上面就是基本的入门测试脚本，要写出这个脚本，只需要看看官方文档和Gatling安装目录user-file下自带的脚本就可以了。</p>
+
+<p>初步学习就到这，下节在根据官方文档一项一项的学习。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Little Mice</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2016-12-08
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+          <a href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">性能测试</a>
+          <a href="/tags/gatling/">Gatling</a>
+          <a href="/tags/http%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95/">HTTP接口测试</a>
+          <a href="/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95/">自动化测试</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2016-12-08-gatling-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E8%BF%9B%E9%98%B6-2/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Gatling 一步一步进阶 2 - 配置</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2016-12-08-gatling-%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E8%BF%9B%E9%98%B6-1/">
+            <span class="next-text nav-default">Gatling 一步一步进阶 1 - 入门实例拓展</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:whsfightup@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/wadeLouis" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.weihaosi.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">West</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

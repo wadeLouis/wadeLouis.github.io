@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Oracle on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/categories/oracle/</link>
+    <description>Recent content in Oracle on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 20 Mar 2017 16:18:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/categories/oracle/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Centos 7 安装Oracle 11G R2</title>
+      <link>http://www.weihaosi.me/post/centos-7%E5%AE%89%E8%A3%85oracle-11g-r2/</link>
+      <pubDate>Mon, 20 Mar 2017 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/centos-7%E5%AE%89%E8%A3%85oracle-11g-r2/</guid>
+      <description>1.Oracle 软硬件配置要求 1.1. 内存： 最小1G，推荐2G或者更高 查看命令：grep MemTotal /proc/meminfo 1.2. swap RAW Swap 1G至2G 1.5倍 2G至16G 同RAW相等 16G以上 16G 查看命</description>
+    </item>
+    
+  </channel>
+</rss>

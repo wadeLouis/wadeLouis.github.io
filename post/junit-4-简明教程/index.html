@@ -1,0 +1,2828 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>单元测试和自动化脚本简要教程 - 韦昊斯的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Little Mice" /><meta name="description" content="单元测试和自动化脚本简要教程" /><meta name="keywords" content="软件测试, 单元测试, Junit" />
+
+
+
+<meta name="google-site-verification" content="iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI" />
+
+
+<meta name="generator" content="Hugo 0.53 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://www.weihaosi.me/post/junit-4-%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="单元测试和自动化脚本简要教程" />
+<meta property="og:description" content="单元测试和自动化脚本简要教程" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.weihaosi.me/post/junit-4-%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" /><meta property="article:published_time" content="2016-12-08T14:51:28&#43;08:00"/>
+<meta property="article:modified_time" content="2016-12-08T14:51:28&#43;08:00"/>
+
+<meta itemprop="name" content="单元测试和自动化脚本简要教程">
+<meta itemprop="description" content="单元测试和自动化脚本简要教程">
+
+
+<meta itemprop="datePublished" content="2016-12-08T14:51:28&#43;08:00" />
+<meta itemprop="dateModified" content="2016-12-08T14:51:28&#43;08:00" />
+<meta itemprop="wordCount" content="9786">
+
+
+
+<meta itemprop="keywords" content="软件测试,单元测试,Junit," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="单元测试和自动化脚本简要教程"/>
+<meta name="twitter:description" content="单元测试和自动化脚本简要教程"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">韦昊斯的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/life/">
+        <li class="mobile-menu-item">记事</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">韦昊斯的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/life/">记事</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">单元测试和自动化脚本简要教程</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-12-08 </span>
+        <div class="post-category">
+            <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/"> 软件测试 </a>
+            <a href="/categories/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"> 单元测试 </a>
+            <a href="/categories/junit/"> Junit </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#junit-4-简明教程">Junit 4 简明教程</a>
+<ul>
+<li><a href="#规范与要求">规范与要求</a></li>
+<li><a href="#junit核心1-断言">Junit核心1 - 断言</a></li>
+<li><a href="#junit核心2-注解">Junit核心2 - 注解</a></li>
+<li><a href="#junit-异常测试">Junit 异常测试</a></li>
+<li><a href="#junit-限时测试">Junit 限时测试</a></li>
+<li><a href="#junit-参数化测试">Junit 参数化测试</a></li>
+<li><a href="#junit-打包测试">Junit 打包测试</a></li>
+</ul></li>
+<li><a href="#spring-和junit结合测试">Spring 和junit结合测试</a>
+<ul>
+<li><a href="#基本用法">基本用法</a></li>
+<li><a href="#事务的用法">事务的用法</a></li>
+<li><a href="#client端的测试">Client端的测试</a></li>
+<li><a href="#spring-安全认证测试">Spring 安全认证测试</a></li>
+</ul></li>
+<li><a href="#spring-test注解说明">spring test注解说明</a>
+<ul>
+<li><a href="#spring-测试支持的注解">spring 测试支持的注解</a></li>
+<li><a href="#标准注解">标准注解</a></li>
+<li><a href="#spring-junit-4-支持的注解">spring junit 4 支持的注解</a></li>
+<li><a href="#元注解的支持">元注解的支持</a></li>
+</ul></li>
+<li><a href="#spring-testcontext-测试框架体系结构">Spring TestContext 测试框架体系结构</a></li>
+<li><a href="#关于测试范围和自测代码编写原则">关于测试范围和自测代码编写原则</a></li>
+<li><a href="#其他说明">其他说明</a></li>
+<li><a href="#关于spring-contextconfiguration加载配置文件的说明">关于spring ContextConfiguration加载配置文件的说明</a></li>
+<li><a href="#相关资料查询">相关资料查询</a></li>
+<li><a href="#关于自动化集成代码的配置">关于自动化集成代码的配置</a></li>
+<li><a href="#附录-常见spring-test-的一些方法">附录 - 常见Spring test 的一些方法</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<h1 id="junit-4-简明教程">Junit 4 简明教程</h1>
+
+<h2 id="规范与要求">规范与要求</h2>
+
+<ol>
+<li>Junit 需要使用的版本都是4.x以上的版本，不可以使用3.x以下的版本</li>
+<li>Junit 测试脚本在Maven项目中统一放在在<code>src/main/test/java</code>目录下面，脚本相关的配置文件或者参数文件统一放在<code>src/main/test/resources</code>下面</li>
+<li>测试脚本文件名:被测类名+test.java ，测试类名为：被测试类+test，测试方法名为：test+测试方法名，测试方法名首字母大写</li>
+</ol>
+
+<h2 id="junit核心1-断言">Junit核心1 - 断言</h2>
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>assertArrayEquals(expecteds, actuals)</td>
+<td>查看两个数组是否相等。</td>
+</tr>
+
+<tr>
+<td>assertEquals(expected, actual)</td>
+<td>查看两个对象是否相等。类似于字符串比较使用的equals()方法</td>
+</tr>
+
+<tr>
+<td>assertNotEquals(first, second)</td>
+<td>查看两个对象是否不相等。</td>
+</tr>
+
+<tr>
+<td>assertNull(object)</td>
+<td>查看对象是否为空。</td>
+</tr>
+
+<tr>
+<td>assertNotNull(object)</td>
+<td>查看对象是否不为空。</td>
+</tr>
+
+<tr>
+<td>assertSame(expected, actual)</td>
+<td>查看两个对象的引用是否相等。类似于使用“==”比较两个对象</td>
+</tr>
+
+<tr>
+<td>assertNotSame(unexpected, actual)</td>
+<td>查看两个对象的引用是否不相等。类似于使用“!=”比较两个对象</td>
+</tr>
+
+<tr>
+<td>assertTrue(condition)</td>
+<td>查看运行结果是否为true。</td>
+</tr>
+
+<tr>
+<td>assertFalse(condition)</td>
+<td>查看运行结果是否为false。</td>
+</tr>
+
+<tr>
+<td>assertThat(actual, matcher)</td>
+<td>查看实际值是否满足指定的条件</td>
+</tr>
+
+<tr>
+<td>fail()</td>
+<td>让测试失败</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="junit核心2-注解">Junit核心2 - 注解</h2>
+
+<table>
+<thead>
+<tr>
+<th>注解</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Before</td>
+<td>初始化方法</td>
+</tr>
+
+<tr>
+<td>After</td>
+<td>释放资源</td>
+</tr>
+
+<tr>
+<td>@Test</td>
+<td>测试方法，在这里可以测试期望异常和超时时间</td>
+</tr>
+
+<tr>
+<td>@Ignore</td>
+<td>忽略的测试方法</td>
+</tr>
+
+<tr>
+<td>@BeforeClass</td>
+<td>针对所有测试，只执行一次，且必须为static void</td>
+</tr>
+
+<tr>
+<td>@AfterClass</td>
+<td>针对所有测试，只执行一次，且必须为static void</td>
+</tr>
+
+<tr>
+<td>@RunWith</td>
+<td>指定测试类使用某个运行器</td>
+</tr>
+
+<tr>
+<td>@Parameters</td>
+<td>指定测试类的测试数据集合</td>
+</tr>
+
+<tr>
+<td>@Rule</td>
+<td>允许灵活添加或重新定义测试类中的每个测试方法的行为</td>
+</tr>
+
+<tr>
+<td>@FixMethodOrder</td>
+<td>指定测试方法的执行顺序</td>
+</tr>
+</tbody>
+</table>
+
+<p><strong>执行顺序</strong>
+一个测试类单元测试的执行顺序为：
+<code>@BeforeClass –&gt; @Before –&gt; @Test –&gt; @After –&gt; @AfterClass</code>
+每一个测试方法的调用顺序为：
+<code>@Before –&gt; @Test –&gt; @After</code></p>
+
+<h2 id="junit-异常测试">Junit 异常测试</h2>
+
+<p>异常测试与普通断言测试不同，共有三种方法，其中最为灵活的是第三种，可以与断言结合使用</p>
+
+<p>第一种：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span><span class="o">(</span><span class="n">expected</span><span class="o">=</span> <span class="n">IndexOutOfBoundsException</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">empty</span><span class="o">()</span> <span class="o">{</span>
+     <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;().</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>第二种：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testExceptionMessage</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;().</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+        <span class="n">fail</span><span class="o">(</span><span class="s">&#34;Expected an IndexOutOfBoundsException to be thrown&#34;</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IndexOutOfBoundsException</span> <span class="n">anIndexOutOfBoundsException</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">assertThat</span><span class="o">(</span><span class="n">anIndexOutOfBoundsException</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(),</span> <span class="n">is</span><span class="o">(</span><span class="s">&#34;Index: 0, Size: 0&#34;</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>第三种：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Rule</span>
+<span class="kd">public</span> <span class="n">ExpectedException</span> <span class="n">thrown</span> <span class="o">=</span> <span class="n">ExpectedException</span><span class="o">.</span><span class="na">none</span><span class="o">();</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">shouldTestExceptionMessage</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">IndexOutOfBoundsException</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;();</span>
+
+    <span class="n">thrown</span><span class="o">.</span><span class="na">expect</span><span class="o">(</span><span class="n">IndexOutOfBoundsException</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">thrown</span><span class="o">.</span><span class="na">expectMessage</span><span class="o">(</span><span class="s">&#34;Index: 0, Size: 0&#34;</span><span class="o">);</span>
+    <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+    <span class="n">Assert</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">0</span><span class="o">));</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="junit-限时测试">Junit 限时测试</h2>
+
+<p>有时为了防止出现死循环或者方法执行过长（或检查方法效率），而需要使用到限时测试。顾名思义，就是超出设定时间即视为测试失败。共有两种写法。
+第一种：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Test</span><span class="o">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">1000</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testWithTimeout</span><span class="o">()</span> <span class="o">{</span>
+  <span class="o">...</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>第二种：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HasGlobalTimeout</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="n">String</span> <span class="n">log</span><span class="o">;</span>
+
+    <span class="nd">@Rule</span>
+    <span class="kd">public</span> <span class="n">Timeout</span> <span class="n">globalTimeout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Timeout</span><span class="o">(</span><span class="n">10000</span><span class="o">);</span> <span class="c1">// 10 seconds max per method tested
+</span><span class="c1"></span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInfiniteLoop1</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">log</span> <span class="o">+=</span> <span class="s">&#34;ran1&#34;</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(;;)</span> <span class="o">{</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInfiniteLoop2</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">log</span> <span class="o">+=</span> <span class="s">&#34;ran2&#34;</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(;;)</span> <span class="o">{</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="junit-参数化测试">Junit 参数化测试</h2>
+
+<p>这里略过，暂时不需要参数化测试，有兴趣的可以自行百度。主要是使用了<code>@Parameters</code>的注解。</p>
+
+<h2 id="junit-打包测试">Junit 打包测试</h2>
+
+<p>这里略过，因为直接<code>mvn test</code>就会自动执行所有测试，所以没必要打包起来一起测试。主要是使用了<code>@RunWith(Suite.class)</code>和<code>@Suite.SuiteClasses</code>两个注解 。</p>
+
+<h1 id="spring-和junit结合测试">Spring 和junit结合测试</h1>
+
+<p>Spring提供了一套扩展于Junit测试用例的测试套件<code>org.springframework.test</code>，让我们测试Spring的应用更加方便。</p>
+
+<h2 id="基本用法">基本用法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.lin.controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.Before</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.runner.RunWith</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.ContextConfiguration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.junit4.SpringJUnit4ClassRunner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.web.WebAppConfiguration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.web.servlet.MockMvc</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.web.servlet.request.MockMvcRequestBuilders</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.web.servlet.result.MockMvcResultHandlers</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.web.servlet.result.MockMvcResultMatchers</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.web.servlet.setup.MockMvcBuilders</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.context.WebApplicationContext</span><span class="o">;</span>
+
+<span class="nd">@RunWith</span><span class="o">(</span><span class="n">SpringJUnit4ClassRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@WebAppConfiguration</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">locations</span> <span class="o">=</span> <span class="o">{</span> <span class="s">&#34;classpath:application.xml&#34;</span><span class="o">,</span><span class="s">&#34;classpath:springmvc/*.xml&#34;</span> <span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserRestControllerTest</span> <span class="o">{</span>
+	<span class="kd">protected</span> <span class="n">MockMvc</span> <span class="n">mockMvc</span><span class="o">;</span>
+	<span class="nd">@Autowired</span>
+	<span class="kd">private</span> <span class="n">WebApplicationContext</span> <span class="n">webApplicationContext</span><span class="o">;</span>
+	<span class="nd">@Before</span>
+	<span class="kd">public</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">initMockMvc</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+		<span class="n">mockMvc</span> <span class="o">=</span> <span class="n">MockMvcBuilders</span><span class="o">.</span><span class="na">webAppContextSetup</span><span class="o">(</span><span class="n">webApplicationContext</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+	<span class="o">}</span>
+  <span class="nd">@Test</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">postUserByIdTest</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">try</span> <span class="o">{</span>
+
+			<span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">MockMvcRequestBuilders</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">&#34;/user/2&#34;</span><span class="o">))</span>
+			<span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">MockMvcResultMatchers</span><span class="o">.</span><span class="na">status</span><span class="o">().</span><span class="na">isOk</span><span class="o">())</span>
+			<span class="o">.</span><span class="na">andDo</span><span class="o">(</span><span class="n">MockMvcResultHandlers</span><span class="o">.</span><span class="na">print</span><span class="o">());</span>
+		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="c1">// TODO Auto-generated catch block
+</span><span class="c1"></span>			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p><code>@RunWith(SpringJUnit4ClassRunner.class)</code>用于配置spring中测试的环境
+<code>@ContextConfiguration(locations = { &quot;classpath:application.xml&quot;,&quot;classpath:springmvc/*.xml&quot; })</code>用于指定配置文件所在的位置。<strong>注意</strong>:Spring MVC的项目需要制定web的content的配置和MVC的serverlet配置。
+<code>@Autowired</code>注入Spring容器Bean对象，注意与<code>@Resource</code>区别</p>
+
+<h2 id="事务的用法">事务的用法</h2>
+
+<p>在写单元测试的时候，一般是对数据库进行增删改查的操作，这个时候，如果之前删除了某条记录，自然后面的程序就找不到这条记录了，所以可以通过配置spring的事务管理或者测试框架来回滚，减少工作量，同时也保证每一次测试的数据都是干净的。
+例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.lin.dao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.Assert</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.runner.RunWith</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.slf4j.Logger</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.slf4j.LoggerFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.annotation.Rollback</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.ContextConfiguration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.junit4.SpringJUnit4ClassRunner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.web.WebAppConfiguration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.transaction.annotation.Transactional</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.transaction.TransactionConfiguration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.lin.domain.User</span><span class="o">;</span>
+
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">locations</span> <span class="o">=</span> <span class="o">{</span> <span class="s">&#34;classpath:application.xml&#34;</span><span class="o">,</span><span class="s">&#34;classpath:springmvc/*.xml&#34;</span> <span class="o">})</span>
+<span class="c1">//使用标准的JUnit @RunWith注释来告诉JUnit使用Spring TestRunner
+</span><span class="c1"></span><span class="nd">@WebAppConfiguration</span>
+<span class="nd">@RunWith</span><span class="o">(</span><span class="n">SpringJUnit4ClassRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User2</span>   <span class="kd">extends</span> <span class="n">AbstractTransactionalJUnit4SpringContextTests</span> <span class="o">{</span>
+	<span class="kd">protected</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">getClass</span><span class="o">());</span>
+	<span class="nd">@Autowired</span>
+	<span class="kd">private</span> <span class="n">UserDao</span> <span class="n">userDao</span><span class="o">;</span>
+
+	<span class="nd">@Test</span>
+  <span class="nd">@Transactional</span>
+  <span class="nd">@Rollback</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testInsertUser</span><span class="o">(){</span>
+		<span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">();</span>
+		<span class="n">user</span><span class="o">.</span><span class="na">setUserName</span><span class="o">(</span><span class="s">&#34;test123&#34;</span><span class="o">);</span>
+		<span class="n">user</span><span class="o">.</span><span class="na">setUserPassword</span><span class="o">(</span><span class="s">&#34;abcdefg&#34;</span><span class="o">);</span>
+		<span class="n">user</span><span class="o">.</span><span class="na">setUserEmail</span><span class="o">(</span><span class="s">&#34;test@test.com&#34;</span><span class="o">);</span>
+		<span class="n">userDao</span><span class="o">.</span><span class="na">insertUser</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+		<span class="n">User</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">userDao</span><span class="o">.</span><span class="na">selectUserByName</span><span class="o">(</span><span class="s">&#34;test123&#34;</span><span class="o">);</span>
+		<span class="n">Assert</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">user2</span><span class="o">.</span><span class="na">getUserName</span><span class="o">(),</span><span class="s">&#34;test123&#34;</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>测试类应该继承与<code>AbstractJUnit4SpringContextTests</code>  或 <code>AbstractTransactionalJUnit4SpringContextTests</code>。
+如果再你的测试类中，需要用到事务管理（比如要在测试结果出来之后回滚测试内容），就可以使用<code>AbstractTransactionalJUnit4SpringTests</code>类。事务管理的使用方法和正常使用Spring事务管理是一样的。再此需要注意的是，如果想要使用声明式事务管理，即使用<code>AbstractTransactionalJUnitSpringContextTests</code>类，请在<code>applicationContext.xml</code>文件中加入<code>transactionManager bean</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">&#34;transactionManager&#34;</span>
+    <span class="na">class=</span><span class="s">&#34;org.springframework.jdbc.datasource.DataSourceTransactionManager&#34;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&#34;dataSource&#34;</span> <span class="na">ref=</span><span class="s">&#34;dataSource&#34;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/bean&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>如果没有添加上述bean，将会抛出<code>NoSuchBeanDefinitionException</code>，指明 <code>No bean named 'transactionManager' is definded</code>.
+同时需要添加<code>&lt;tx:annotation-driven transaction-manager=&quot;transactionManager&quot; proxy-target-class=&quot;true&quot; &gt;&lt;/tx:annotation-driven&gt;</code>让注解生效。
+<code>@Transactional</code>开启事务。可放到类或方法上，类上作用于所有方法。
+<code>@Rollback</code>事务回滚配置。只能放到方法上。
+<code>AbstractTransactionalJUnit4SpringContextTests</code>:这个类为我们解决了在web.xml中配置OpenSessionInview所解决的session生命周期延长的问题，所以要继承这个类。该类已经在类级别预先配置了好了事物支持，因此不必再配置<code>@Transactional</code>和<code>@RunWith</code>,你配置上去也没关系。</p>
+
+<p><code>@BeforeTransaction</code>在事务之前执行
+<code>@AfterTransaction</code>在事务之后执行
+<code>@NotTransactional</code>不开启事务
+上面三个注解都只能在方法上使用。</p>
+
+<h2 id="client端的测试">Client端的测试</h2>
+
+<p>例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.lin.client</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.junit.Before</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.runner.RunWith</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.MediaType</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.ContextConfiguration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.junit4.SpringJUnit4ClassRunner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.web.WebAppConfiguration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.web.client.MockRestServiceServer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.client.RestTemplate</span><span class="o">;</span>
+<span class="kn">import static</span> <span class="nn">org.springframework.test.web.client.match.MockRestRequestMatchers.*</span><span class="o">;</span>
+<span class="kn">import static</span> <span class="nn">org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess</span><span class="o">;</span>
+<span class="nd">@RunWith</span><span class="o">(</span><span class="n">SpringJUnit4ClassRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@WebAppConfiguration</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">locations</span> <span class="o">=</span> <span class="o">{</span> <span class="s">&#34;classpath:application.xml&#34;</span><span class="o">,</span><span class="s">&#34;classpath:springmvc/*.xml&#34;</span> <span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">clientTest</span> <span class="o">{</span>
+	<span class="kd">private</span> <span class="n">RestTemplate</span> <span class="n">restTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RestTemplate</span><span class="o">();</span>
+
+	<span class="kd">private</span> <span class="n">MockRestServiceServer</span> <span class="n">mockServer</span><span class="o">;</span>
+	<span class="nd">@Before</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setup</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span><span class="o">{</span>
+		<span class="n">mockServer</span> <span class="o">=</span>  <span class="n">MockRestServiceServer</span><span class="o">.</span><span class="na">createServer</span><span class="o">(</span><span class="n">restTemplate</span><span class="o">);</span>
+	<span class="o">}</span>
+	<span class="nd">@Test</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testSelectUserById</span><span class="o">(){</span>
+		<span class="n">mockServer</span><span class="o">.</span><span class="na">expect</span><span class="o">(</span><span class="n">requestTo</span><span class="o">(</span><span class="s">&#34;/&#34;</span><span class="o">)).</span><span class="na">andRespond</span><span class="o">(</span><span class="n">withSuccess</span><span class="o">(</span><span class="s">&#34;Hello world&#34;</span><span class="o">,</span> <span class="n">MediaType</span><span class="o">.</span><span class="na">TEXT_HTML</span><span class="o">));</span>
+
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>客户端这里就是mock了一个server出来，然后对地址进行请求，和服务端区别的一点是，服务端的测试并不是mock出服务端去完成测试，而是加载你需要的配置去完成的。</p>
+
+<h2 id="spring-安全认证测试">Spring 安全认证测试</h2>
+
+<p>官方文档地址：<a href="http://docs.spring.io/spring-security/site/docs/current/reference/html/test-method.html">Testing Method Security</a>
+这里先略过。</p>
+
+<h1 id="spring-test注解说明">spring test注解说明</h1>
+
+<h2 id="spring-测试支持的注解">spring 测试支持的注解</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@BootstrapWith</span> <span class="c1">// 类级别注解。用来表明`Spring TestContext Framework `是如何启动的，
+</span><span class="c1"></span><span class="nd">@ContextConfiguration</span>
+<span class="nd">@WebAppConfiguration</span>
+<span class="nd">@ContextHierarchy</span>
+<span class="nd">@ActiveProfiles</span>
+<span class="nd">@TestPropertySource</span>
+<span class="nd">@DirtiesContext</span>
+<span class="nd">@TestExecutionListeners</span>
+<span class="nd">@Commit</span>
+<span class="nd">@Rollback</span>
+<span class="nd">@BeforeTransaction</span>
+<span class="nd">@AfterTransaction</span>
+<span class="nd">@Sql</span>
+<span class="nd">@SqlConfig</span>
+<span class="nd">@SqlGroup</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="标准注解">标准注解</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@Autowired</span>
+<span class="nd">@Qualifier</span>
+<span class="nd">@Resource</span> <span class="o">(</span><span class="n">javax</span><span class="o">.</span><span class="na">annotation</span><span class="o">)</span> <span class="k">if</span> <span class="n">JSR</span><span class="o">-</span><span class="n">250</span> <span class="n">is</span> <span class="n">present</span>
+<span class="nd">@ManagedBean</span> <span class="o">(</span><span class="n">javax</span><span class="o">.</span><span class="na">annotation</span><span class="o">)</span> <span class="k">if</span> <span class="n">JSR</span><span class="o">-</span><span class="n">250</span> <span class="n">is</span> <span class="n">present</span>
+<span class="nd">@Inject</span> <span class="o">(</span><span class="n">javax</span><span class="o">.</span><span class="na">inject</span><span class="o">)</span> <span class="k">if</span> <span class="n">JSR</span><span class="o">-</span><span class="n">330</span> <span class="n">is</span> <span class="n">present</span>
+<span class="nd">@Named</span> <span class="o">(</span><span class="n">javax</span><span class="o">.</span><span class="na">inject</span><span class="o">)</span> <span class="k">if</span> <span class="n">JSR</span><span class="o">-</span><span class="n">330</span> <span class="n">is</span> <span class="n">present</span>
+<span class="nd">@PersistenceContext</span> <span class="o">(</span><span class="n">javax</span><span class="o">.</span><span class="na">persistence</span><span class="o">)</span> <span class="k">if</span> <span class="n">JPA</span> <span class="n">is</span> <span class="n">present</span>
+<span class="nd">@PersistenceUnit</span> <span class="o">(</span><span class="n">javax</span><span class="o">.</span><span class="na">persistence</span><span class="o">)</span> <span class="k">if</span> <span class="n">JPA</span> <span class="n">is</span> <span class="n">present</span>
+<span class="nd">@Required</span>
+<span class="nd">@Transactional</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="spring-junit-4-支持的注解">spring junit 4 支持的注解</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@IfProfileValue</span>
+<span class="nd">@ProfileValueSourceConfiguration</span>
+<span class="nd">@Timed</span>
+<span class="nd">@Repeat</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="元注解的支持">元注解的支持</h2>
+
+<p>意思和元类一样的。这些注解如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@BootstrapWith</span>
+<span class="nd">@ContextConfiguration</span>
+<span class="nd">@ContextHierarchy</span>
+<span class="nd">@ActiveProfiles</span>
+<span class="nd">@TestPropertySource</span>
+<span class="nd">@DirtiesContext</span>
+<span class="nd">@WebAppConfiguration</span>
+<span class="nd">@TestExecutionListeners</span>
+<span class="nd">@Transactional</span>
+<span class="nd">@BeforeTransaction</span>
+<span class="nd">@AfterTransaction</span>
+<span class="nd">@Commit</span>
+<span class="nd">@Rollback</span>
+<span class="nd">@Sql</span>
+<span class="nd">@SqlConfig</span>
+<span class="nd">@SqlGroup</span>
+<span class="nd">@Repeat</span>
+<span class="nd">@Timed</span>
+<span class="nd">@IfProfileValue</span>
+<span class="nd">@ProfileValueSourceConfiguration</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="spring-testcontext-测试框架体系结构">Spring TestContext 测试框架体系结构</h1>
+
+<p>直接通过扩展 AbstractTransactionalJUnit4SpringContextTests 编写测试用例，在了解了编写基于 TestContext 测试框架的测试用例后，现在是了解 TestContext 测试框架本身的时候了。
+* TestContext 核心类、支持类以及注解类
+* TestContext 测试框架的核心由 org.springframework.test.context 包中三个类组成，分别是 TestContext 和 * * TestContextManager 类以及 TestExecutionListener 接口。其类图如下 图 2 所示：</p>
+
+<p><code>TestContext</code>：它封装了运行测试用例的上下文；
+<code>TestContextManager</code>：它是进入 Spring TestContext 框架的程序主入口，它管理着一个 TestContext 实例，并在适合的执行点上向所有注册在 <code>TestContextManager</code> 中的 <code>TestExecutionListener</code> 监听器发布事件：比如测试用例实例的准备，测试方法执行前后方法的调用等。
+<code>TestExecutionListener</code>：该接口负责响应 <code>TestContextManager</code> 发布的事件。
+Spring TestContext 允许在测试用例类中通过 @TestExecutionListeners 注解向 TestContextManager 注册多个监听器，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@TestExecutionListeners</span><span class="o">(</span> <span class="o">{</span>
+    <span class="n">DependencyInjectionTestExecutionListener</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
+    <span class="n">DirtiesContextTestExecutionListener</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestXxxService</span><span class="o">{</span>
+    <span class="err">…</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>Spring 提供了几个 <code>TestExecutionListener</code> 接口实现类，分别说明如下：
+<code>DependencyInjectionTestExecutionListener</code>：该监听器提供了自动注入的功能，它负责解析测试用例中 @Autowried 注解并完成自动注入；
+<code>DirtiesContextTestExecutionListener</code>：一般情况下测试方法并不会对 Spring 容器上下文造成破坏（改变 Bean 的配置信息等），如果某个测试方法确实会破坏 Spring 容器上下文，你可以显式地为该测试方法添加 @DirtiesContext 注解，以便 Spring TestContext 在测试该方法后刷新 Spring 容器的上下文，而 <code>DirtiesContextTestExecutionListener</code> 监听器的工作就是解析 <code>@DirtiesContext</code> 注解；
+<code>TransactionalTestExecutionListener</code>：它负责解析 <code>@Transaction</code>、<code>@NotTransactional</code> 以及 <code>@Rollback</code> 等事务注解的注解。<code>@Transaction</code> 注解让测试方法工作于事务环境中，不过在测试方法返回前事务会被回滚。你可以使用 @Rollback(false) 让测试方法返回前提交事务。而 <code>@NotTransactional</code> 注解则让测试方法不工作于事务环境中。此外，你还可以使用类或方法级别的 <code>@TransactionConfiguration</code>注解改变事务管理策略，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@TransactionConfiguration</span><span class="o">(</span><span class="n">transactionManager</span><span class="o">=</span><span class="s">&#34;txMgr&#34;</span><span class="o">,</span> <span class="n">defaultRollback</span><span class="o">=</span><span class="kc">false</span><span class="o">)</span>
+<span class="nd">@Transactional</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestUserService</span> <span class="o">{</span>
+    <span class="err">…</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>我们知道在 JUnit 4.4 中可以通过 <code>@RunWith</code> 注解指定测试用例的运行器，Spring TestContext 框架提供了扩展于 <code>org.junit.internal.runners.JUnit4ClassRunner</code>的 SpringJUnit4ClassRunner 运行器，它负责总装 Spring <code>TestContext</code> 测试框架并将其统一到 JUnit 4.4 框架中。
+<code>TestContext</code>所提供的抽象测试用例
+Spring TestContext 为基于 JUnit 4.4 测试框架提供了两个抽象测试用例类，分别是 <code>AbstractJUnit4SpringContextTests</code> 和 <code>AbstractTransactionalJUnit4SpringContextTests</code>，而后者扩展于前者。让我们来看一下这两个抽象测试用例类的骨架代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@RunWith</span><span class="o">(</span><span class="n">SpringJUnit4ClassRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span> <span class="c1">//① 指定测试用例运行器
+</span><span class="c1"></span><span class="nd">@TestExecutionListeners</span><span class="o">(</span>                 <span class="c1">//② 注册了两个TestExecutionListener监听器
+</span><span class="c1"></span>    <span class="o">{</span> <span class="n">DependencyInjectionTestExecutionListener</span><span class="o">.</span><span class="na">class</span><span class="o">,</span>
+    <span class="n">DirtiesContextTestExecutionListener</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AbstractJUnit4SpringContextTests</span> <span class="kd">implements</span> <span class="n">ApplicationContextAware</span> <span class="o">{</span>
+    <span class="err">…</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>① 处将 SpringJUnit4ClassRunner 指定为测试用例运行器，它负责无缝地将 TestContext 测试框架移花接木到 JUnit 4.4 测试框架中，它是 Spring TestContext 可以运行起来的根本所在。
+② 处通过<code>@TestExecutionListeners</code> 注解向测试用例类中注册了两个<code>TestExecutionListener</code> 监听器，这两个监听器分别负责对<code>@Autowired</code>和 <code>@DirtiesContext</code> 注解进行处理，为测试用例提供自动注入和重新刷新 Spring 容器上下文的功能。
+<code>AbstractTransactionalJUnit4SpringContextTests</code> 扩展于 <code>AbstractJUnit4SpringContextTests</code>，提供了事务管理的支持，其骨架代码如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//① 注册测试用例事务管理的监听器
+</span><span class="c1"></span><span class="nd">@TestExecutionListeners</span><span class="o">(</span> <span class="o">{</span> <span class="n">TransactionalTestExecutionListener</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="nd">@Transactional</span>    <span class="c1">//② 使测试用例的所有方法都将工作于事务环境下
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AbstractTransactionalJUnit4SpringContextTests</span>
+<span class="kd">extends</span> <span class="n">AbstractJUnit4SpringContextTests</span> <span class="o">{</span>
+    <span class="err">…</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>在 ① 处，<code>AbstractTransactionalJUnit4SpringContextTests</code> 向测试用例类中注册了 <code>TransactionalTestExecutionListener</code>监听器，这样测试用例中的 <code>@Transaction</code>、<code>@NotTransaction</code>以及 <code>@Rollback</code> 等注解就可以正确地工作起来了。注意，你不需要在 Spring 配置文件通过 <code>&lt;tx:annotation-driven /&gt;</code>和 <code>&lt;context:annotation-config/&gt;</code>为测试用例类启用注解事务驱动和注解自动注入，这个工作完全于 TestContext 自身来解决（通过注册 <code>DependencyInjectionTestExecutionListener</code> 和 <code>TransactionalTestExecutionListener</code> 监听器），毕竟测试用例类没有注册到 Spring 容器中，没有成为 Spring 的 Bean。</p>
+
+<h1 id="关于测试范围和自测代码编写原则">关于测试范围和自测代码编写原则</h1>
+
+<ol>
+<li>所有的Controller都应该覆盖到。</li>
+<li>核心的service和没有被contoller覆盖的service都需要测试。</li>
+<li>Dao层抽核心业务进行测试。</li>
+<li>有更删改的操作都需要做实物回滚。</li>
+<li>每个测试点都需要包含一次正常测试和一次异常测试，同时要验证返回值的格式是否一致。</li>
+<li>提交代码前需要保证<code>mvn install</code>能执行通过。</li>
+</ol>
+
+<h1 id="其他说明">其他说明</h1>
+
+<p>使用<code>perform()</code>来发送任何HTTP请求都很简单：
+<code>mockMvc.perform(post(&quot;/hotels/{id}&quot;, 42).accept(MediaType.APPLICATION_JSON));</code>
+ <code>perform()</code>内部使用 <code>MockMultipartHttpServletRequest</code>  对象发送文件上传请求
+ <code>mockMvc.perform(fileUpload(&quot;/doc&quot;).file(&quot;a1&quot;, &quot;ABC&quot;.getBytes(&quot;UTF-8&quot;)));</code>
+ 可以使用URI模板（URI template）的方式设置参数
+ <code>mockMvc.perform(get(&quot;/hotels?foo={foo}&quot;, &quot;bar&quot;));</code>
+ 以表单参数（query of form parameters）方式增加一个请求参数
+ <code>mockMvc.perform(get(&quot;/hotels&quot;).param(&quot;foo&quot;, &quot;bar&quot;));</code>
+ 需要注意的是，如果使用URI模板方式，这些参数将会被解码（decoded），而使用 param(…​) 方式的话，则这些参数会被看做早已解码了，也就不在解码了
+ 确实需要测试完整的URI，请确保设置好了相应的 contextPath和 servletPath  ，这样请求映射（request mapping） 才能起作用
+<code>mockMvc.perform(get(&quot;/app/main/hotels/{id}&quot;).contextPath(&quot;/app&quot;).servletPath(&quot;/main&quot;))</code>
+ 如果每发送一个模拟请求都设置一下 contextPath 和 servletPath，那是相当的麻烦
+<code>
+      mockMvc = standaloneSetup(new AccountController())
+      .defaultRequest(get(&quot;/&quot;)
+      .contextPath(&quot;/app&quot;).servletPath(&quot;/main&quot;)
+      .accept(MediaType.APPLICATION_JSON).build();
+</code>
+ 运行结果期望可以在perform()方法后附加一个或多个 .andExpect(..) 来定义
+ <code>mockMvc.perform(get(&quot;/accounts/1&quot;)).andExpect(status().isOk());</code>
+<code>MockMvcResultMatchers.*</code> 类下面提供了一系列期望，一些还嵌套了更具体的期望。
+ 这些期望可以分为两大类。第一类断言验证响应的属性，例如，响应的状态，响应头，响应内容。
+ 第二类断言放在响应的后面。
+ 假设数据绑定或校验失败
+ <code>mockMvc.perform(post(&quot;/persons&quot;))
+.andExpect(status().isOk())
+.andExpect(model().attributeHasErrors(&quot;person&quot;));</code>
+ 断言需要并且只能在请求执行结果中验证，这可以通过在末尾添加一个 .andReturn()方法来实现
+ MvcResult mvcResult = mockMvc.perform(post(&ldquo;/persons&rdquo;)).andExpect(status().isOk()).andReturn();
+ 假如一个断言需要多次出现在不同的测试中，则可以设置成公共断言，绑定到 MockMvc 实例上
+<code>standaloneSetup(new SimpleController())
+    .alwaysExpect(status().isOk())
+    .alwaysExpect(content().contentType(&quot;application/json;charset=UTF-8&quot;))
+    .build()</code>
+ 需要注意的是，公共断言每次测试都会执行并且不会被在测试方法内部创建的独立的 MockMvc 对象覆盖掉。
+ 如果控制器返回的是是JSON类型的响应
+<code>mockMvc.perform(get(&quot;/people&quot;).accept(MediaType.APPLICATION_JSON))
+            .andExpect(jsonPath(&quot;$.links[?(@.rel == ''self'')].href&quot;).value(&quot;http://localhost:8080/people&quot;));</code></p>
+
+<h1 id="关于spring-contextconfiguration加载配置文件的说明">关于spring ContextConfiguration加载配置文件的说明</h1>
+
+<p>配置文件放在class目录下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">ApplicationContext applicationContext = new ClassPathXmlApplicationContext(&#34;springMVCForm-servlet.xml&#34;);  </pre></td></tr></table>
+</div>
+</div>
+<p>WEB-INF下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">ApplicationContext</span> <span class="n">applicationContext</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileSystemXmlApplicationContext</span><span class="o">(</span><span class="s">&#34;WebContent/WEB-INF/springMVCForm-servlet.xml&#34;</span><span class="o">);</span>  </code></pre></td></tr></table>
+</div>
+</div>
+<p>多个文件可用*表示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">ApplicationContext</span> <span class="n">applicationContext</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileSystemXmlApplicationContext</span><span class="o">(</span><span class="s">&#34;WebContent/WEB-INF/springMVCForm-*.xml&#34;</span><span class="o">);</span>  </code></pre></td></tr></table>
+</div>
+</div>
+<p>注解方式：
+配置文件放在class目录下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">locations</span><span class="o">={</span><span class="s">&#34;classpath:springMVCForm-servlet.xml&#34;</span><span class="o">})</span>  
+<span class="err">````</span>
+<span class="n">WEB</span><span class="o">-</span><span class="n">INF下</span><span class="err">：</span>
+<span class="err">```</span><span class="n">java</span>
+<span class="nd">@ContextConfiguration</span><span class="o">(</span><span class="n">locations</span><span class="o">={</span><span class="s">&#34;file:WebContent/WEB-INF/springMVCForm-servlet.xml&#34;</span><span class="o">})</span>  
+<span class="err">````</span>
+<span class="err">#</span> <span class="n">springframework</span> <span class="n">test</span> <span class="n">依赖的包</span>
+<span class="err">```</span><span class="n">xml</span>
+<span class="o">&lt;</span><span class="n">properties</span><span class="o">&gt;</span>
+        <span class="o">&lt;!--</span> <span class="n">spring版本号</span> <span class="o">--&gt;</span>
+        <span class="o">&lt;</span><span class="n">spring</span><span class="o">.</span><span class="na">version</span><span class="o">&gt;</span><span class="n">4</span><span class="o">.</span><span class="na">3</span><span class="o">.</span><span class="na">6</span><span class="o">.</span><span class="na">RELEASE</span><span class="o">&lt;/</span><span class="n">spring</span><span class="o">.</span><span class="na">version</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">hamcrest</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">version</span><span class="o">&gt;</span><span class="n">1</span><span class="o">.</span><span class="na">3</span><span class="o">&lt;/</span><span class="n">hamcrest</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">version</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">mockito</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">version</span><span class="o">&gt;</span><span class="n">1</span><span class="o">.</span><span class="na">9</span><span class="o">.</span><span class="na">5</span><span class="o">&lt;/</span><span class="n">mockito</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">version</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">properties</span><span class="o">&gt;</span>
+	 <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">junit</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">junit</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="n">4</span><span class="o">.</span><span class="na">12</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">scope</span><span class="o">&gt;</span><span class="n">test</span><span class="o">&lt;/</span><span class="n">scope</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+	 <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="o">.</span><span class="na">springframework</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">spring</span><span class="o">-</span><span class="n">test</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="n">$</span><span class="o">{</span><span class="n">spring</span><span class="o">.</span><span class="na">version</span><span class="o">}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="o">.</span><span class="na">hamcrest</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">hamcrest</span><span class="o">-</span><span class="n">core</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="n">$</span><span class="o">{</span><span class="n">hamcrest</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">version</span><span class="o">}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">scope</span><span class="o">&gt;</span><span class="n">test</span><span class="o">&lt;/</span><span class="n">scope</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="o">.</span><span class="na">mockito</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">mockito</span><span class="o">-</span><span class="n">core</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="n">$</span><span class="o">{</span><span class="n">mockito</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">version</span><span class="o">}&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">scope</span><span class="o">&gt;</span><span class="n">test</span><span class="o">&lt;/</span><span class="n">scope</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">javax</span><span class="o">.</span><span class="na">servlet</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">javax</span><span class="o">.</span><span class="na">servlet</span><span class="o">-</span><span class="n">api</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="n">3</span><span class="o">.</span><span class="na">1</span><span class="o">.</span><span class="na">0</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">com</span><span class="o">.</span><span class="na">fasterxml</span><span class="o">.</span><span class="na">jackson</span><span class="o">.</span><span class="na">core</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">jackson</span><span class="o">-</span><span class="n">core</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="n">2</span><span class="o">.</span><span class="na">8</span><span class="o">.</span><span class="na">6</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="o">.</span><span class="na">codehaus</span><span class="o">.</span><span class="na">jackson</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">jackson</span><span class="o">-</span><span class="n">core</span><span class="o">-</span><span class="n">asl</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="n">1</span><span class="o">.</span><span class="na">9</span><span class="o">.</span><span class="na">13</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">org</span><span class="o">.</span><span class="na">codehaus</span><span class="o">.</span><span class="na">jackson</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">jackson</span><span class="o">-</span><span class="n">mapper</span><span class="o">-</span><span class="n">asl</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="n">1</span><span class="o">.</span><span class="na">9</span><span class="o">.</span><span class="na">13</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">com</span><span class="o">.</span><span class="na">fasterxml</span><span class="o">.</span><span class="na">jackson</span><span class="o">.</span><span class="na">core</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">jackson</span><span class="o">-</span><span class="n">databind</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="n">2</span><span class="o">.</span><span class="na">8</span><span class="o">.</span><span class="na">6</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">com</span><span class="o">.</span><span class="na">jayway</span><span class="o">.</span><span class="na">jsonpath</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">json</span><span class="o">-</span><span class="n">path</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="n">2</span><span class="o">.</span><span class="na">2</span><span class="o">.</span><span class="na">0</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">groupId</span><span class="o">&gt;</span><span class="n">javax</span><span class="o">.</span><span class="na">servlet</span><span class="o">&lt;/</span><span class="n">groupId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">artifactId</span><span class="o">&gt;</span><span class="n">jstl</span><span class="o">&lt;/</span><span class="n">artifactId</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">version</span><span class="o">&gt;</span><span class="n">1</span><span class="o">.</span><span class="na">2</span><span class="o">&lt;/</span><span class="n">version</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">dependency</span><span class="o">&gt;</span></code></pre></td></tr></table>
+</div>
+</div>
+<h1 id="相关资料查询">相关资料查询</h1>
+
+<p><a href="http://docs.spring.io/spring/docs/current/javadoc-api/overview-summary.html">spring 官方API文档</a>
+<a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#spring-mvc-test-server-htmlunit">spring 官方文档</a>
+<a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#testing">spring 测试文档</a></p>
+
+<h1 id="关于自动化集成代码的配置">关于自动化集成代码的配置</h1>
+
+<p>配置例子如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">node</span> <span class="o">{</span>
+   <span class="n">def</span> <span class="n">mvnHome</span>
+   <span class="n">def</span> <span class="n">remote_user</span><span class="o">=</span><span class="s">&#34;root&#34;</span>
+   <span class="n">def</span> <span class="n">remote_host</span><span class="o">=</span><span class="s">&#34;172.18.121.12&#34;</span>
+   <span class="n">def</span> <span class="n">Remote_Tomcat</span> <span class="o">=</span> <span class="s">&#34;/opt/tomcat/apache-tomcat-7.0.75_web&#34;</span>
+   <span class="n">def</span> <span class="n">identity_file</span> <span class="o">=</span> <span class="s">&#34;/root/.ssh/id_rsa_12&#34;</span>
+   <span class="n">def</span> <span class="n">project</span><span class="o">=</span><span class="s">&#34;faceplatformweb&#34;</span>
+   <span class="n">def</span> <span class="n">svnRepo</span><span class="o">=</span><span class="s">&#34;svn://hvserver/repos_PlatformDept/Frontend/FaceRecognition/Code/FacePlatformWeb&#34;</span>
+  <span class="c1">// def svnRepo=&#34;svn://hvserver/repos_PlatformDept/UtilityTool/ssh_integrated_spring&#34;
+</span><span class="c1"></span>   <span class="n">stage</span><span class="o">(</span><span class="err">&#39;</span><span class="n">检出</span><span class="err">&#39;</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// for display purposes
+</span><span class="c1"></span>      <span class="n">checkout</span><span class="o">([</span><span class="nl">$class:</span> <span class="err">&#39;</span><span class="n">SubversionSCM</span><span class="err">&#39;</span><span class="o">,</span> <span class="nl">additionalCredentials:</span> <span class="o">[],</span> <span class="nl">excludedCommitMessages:</span> <span class="err">&#39;&#39;</span><span class="o">,</span> <span class="nl">
+</span><span class="nl">                    excludedRegions:</span> <span class="err">&#39;&#39;</span><span class="o">,</span> <span class="nl">excludedRevprop:</span> <span class="err">&#39;&#39;</span><span class="o">,</span> <span class="nl">excludedUsers:</span> <span class="err">&#39;&#39;</span><span class="o">,</span><span class="nl">
+</span><span class="nl">                    filterChangelog:</span> <span class="kc">false</span><span class="o">,</span> <span class="nl">ignoreDirPropChanges:</span> <span class="kc">false</span><span class="o">,</span> <span class="nl">includedRegions:</span> <span class="err">&#39;&#39;</span><span class="o">,</span><span class="nl">
+</span><span class="nl">                    locations:</span> <span class="o">[[</span><span class="nl">credentialsId:</span> <span class="err">&#39;</span><span class="n">b4961598</span><span class="o">-</span><span class="n">5be8</span><span class="o">-</span><span class="n">4a95</span><span class="o">-</span><span class="n">8b99</span><span class="o">-</span><span class="n">da2e41ce8985</span><span class="err">&#39;</span><span class="o">,</span> <span class="nl">
+</span><span class="nl">                    depthOption:</span> <span class="err">&#39;</span><span class="n">infinity</span><span class="err">&#39;</span><span class="o">,</span><span class="nl">
+</span><span class="nl">                    ignoreExternalsOption:</span> <span class="kc">true</span><span class="o">,</span> <span class="nl">
+</span><span class="nl">                    local:</span> <span class="sc">&#39;.&#39;</span><span class="o">,</span> <span class="nl">
+</span><span class="nl">                    remote:</span> <span class="err">&#39;</span><span class="nl">svn:</span><span class="c1">//hvserver/repos_PlatformDept/Frontend/FaceRecognition/Code/FacePlatformWeb&#39;]], 
+</span><span class="c1"></span>                    <span class="nl">workspaceUpdater:</span> <span class="o">[</span><span class="nl">$class:</span> <span class="err">&#39;</span><span class="n">UpdateUpdater</span><span class="err">&#39;</span><span class="o">]])</span>
+      <span class="n">mvnHome</span> <span class="o">=</span> <span class="n">tool</span> <span class="err">&#39;</span><span class="n">M3</span><span class="err">&#39;</span>
+   <span class="o">}</span>
+   <span class="n">stage</span><span class="o">(</span><span class="err">&#39;</span><span class="n">编译</span><span class="err">&#39;</span><span class="o">)</span> <span class="o">{</span>
+      <span class="c1">// Run the maven build
+</span><span class="c1"></span>      <span class="k">if</span> <span class="o">(</span><span class="n">isUnix</span><span class="o">())</span> <span class="o">{</span>
+         <span class="n">sh</span> <span class="s">&#34;&#39;${mvnHome}/bin/mvn&#39; -Dmaven.test.failure.ignore clean package&#34;</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+         <span class="n">bat</span><span class="o">(/</span><span class="s">&#34;${mvnHome}\bin\mvn&#34;</span> <span class="o">-</span><span class="n">Dmaven</span><span class="o">.</span><span class="na">test</span><span class="o">.</span><span class="na">failure</span><span class="o">.</span><span class="na">ignore</span> <span class="n">clean</span> <span class="n">package</span><span class="o">/)</span>
+      <span class="o">}</span>
+   <span class="o">}</span>
+   <span class="n">stage</span><span class="o">(</span><span class="err">&#39;</span><span class="n">白盒测试</span><span class="err">&#39;</span><span class="o">)</span> <span class="o">{</span>
+      <span class="c1">// Run the maven build
+</span><span class="c1"></span>      <span class="k">if</span> <span class="o">(</span><span class="n">isUnix</span><span class="o">())</span> <span class="o">{</span>
+         <span class="n">sh</span> <span class="s">&#34;&#39;${mvnHome}/bin/mvn&#39; test&#34;</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+         <span class="n">bat</span><span class="o">(/</span><span class="s">&#34;${mvnHome}\bin\mvn&#34;</span> <span class="n">test</span><span class="o">/)</span>
+      <span class="o">}</span>
+   <span class="o">}</span>
+   <span class="n">stage</span><span class="o">(</span><span class="err">&#39;</span><span class="n">打包结果</span><span class="err">&#39;</span><span class="o">)</span> <span class="o">{</span>
+        
+            <span class="n">parallel</span><span class="o">(</span>
+              <span class="s">&#34;Junit report&#34;</span><span class="o">:{</span><span class="n">junit</span> <span class="err">&#39;</span><span class="o">**/</span><span class="n">target</span><span class="o">/</span><span class="n">surefire</span><span class="o">-</span><span class="n">reports</span><span class="o">/</span><span class="n">TEST</span><span class="o">-*.</span><span class="na">xml</span><span class="err">&#39;</span><span class="o">},</span>
+              <span class="s">&#34;Package war&#34;</span><span class="o">:{</span><span class="n">archive</span> <span class="err">&#39;</span><span class="n">target</span><span class="o">/*.</span><span class="na">war</span><span class="err">&#39;</span><span class="o">}</span>
+            <span class="o">)</span>
+      
+   <span class="o">}</span>
+   <span class="n">stage</span><span class="o">(</span><span class="err">&#39;</span><span class="n">部署</span><span class="err">&#39;</span><span class="o">){</span>
+        <span class="n">sh</span> <span class="s">&#34;echo ${Remote_Tomcat}&#34;</span>
+        <span class="n">sh</span> <span class="s">&#34;echo ${WORKSPACE} &#34;</span>
+		<span class="n">sh</span> <span class="s">&#34;chmod +x ../${JOB_NAME}@script/cleanFile.sh&#34;</span>
+		<span class="n">sh</span> <span class="s">&#34;../${JOB_NAME}@script/cleanFile.sh ${remote_user} ${remote_host} ${Remote_Tomcat}/webapps/${project}*&#34;</span>
+		<span class="c1">//sh &#34;ssh -i ${remote_user}@${remote_host} \&#34;rm -rf ${Remote_Tomcat}/webapps/${project}*\&#34;&#34;
+</span><span class="c1"></span>        <span class="n">sh</span> <span class="s">&#34;scp -i ${identity_file} ${WORKSPACE}/target/*.war   ${remote_user}@${remote_host}:${Remote_Tomcat}/webapps&#34;</span>
+        <span class="n">sh</span> <span class="s">&#34;ssh -i ${identity_file} -l ${remote_user} ${remote_host} tomcat restart &#34;</span>
+    
+   <span class="o">}</span>
+   <span class="n">stage</span><span class="o">(</span><span class="err">&#39;</span><span class="n">冒烟测试</span><span class="err">&#39;</span><span class="o">){</span>
+       <span class="n">parallel</span><span class="o">(</span>
+           <span class="s">&#34;接口测试&#34;</span><span class="o">:{</span>
+                <span class="n">echo</span> <span class="s">&#34;接口测试&#34;</span>
+            <span class="o">},</span>
+            <span class="s">&#34;页面测试&#34;</span><span class="o">:{</span>
+               <span class="n">echo</span>  <span class="s">&#34;页面测试&#34;</span>
+            <span class="o">}</span>
+        <span class="o">)</span>
+   <span class="o">}</span>
+   <span class="n">stage</span><span class="o">(</span><span class="err">&#39;</span><span class="n">发布</span><span class="err">&#39;</span><span class="o">){</span>
+       <span class="n">echo</span>  <span class="s">&#34;发布&#34;</span>
+   <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>配置写道Jenkinsfile文件中，并且保存到项目根的jenkins目录下。</p>
+
+<h1 id="附录-常见spring-test-的一些方法">附录 - 常见Spring test 的一些方法</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java?linenums" data-lang="java?linenums"><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span><span class="lnt">281
+</span><span class="lnt">282
+</span><span class="lnt">283
+</span><span class="lnt">284
+</span><span class="lnt">285
+</span><span class="lnt">286
+</span><span class="lnt">287
+</span><span class="lnt">288
+</span><span class="lnt">289
+</span><span class="lnt">290
+</span><span class="lnt">291
+</span><span class="lnt">292
+</span><span class="lnt">293
+</span><span class="lnt">294
+</span><span class="lnt">295
+</span><span class="lnt">296
+</span><span class="lnt">297
+</span><span class="lnt">298
+</span><span class="lnt">299
+</span><span class="lnt">300
+</span><span class="lnt">301
+</span><span class="lnt">302
+</span><span class="lnt">303
+</span><span class="lnt">304
+</span><span class="lnt">305
+</span><span class="lnt">306
+</span><span class="lnt">307
+</span><span class="lnt">308
+</span><span class="lnt">309
+</span><span class="lnt">310
+</span><span class="lnt">311
+</span><span class="lnt">312
+</span><span class="lnt">313
+</span><span class="lnt">314
+</span><span class="lnt">315
+</span><span class="lnt">316
+</span><span class="lnt">317
+</span><span class="lnt">318
+</span><span class="lnt">319
+</span><span class="lnt">320
+</span><span class="lnt">321
+</span><span class="lnt">322
+</span><span class="lnt">323
+</span><span class="lnt">324
+</span><span class="lnt">325
+</span><span class="lnt">326
+</span><span class="lnt">327
+</span><span class="lnt">328
+</span><span class="lnt">329
+</span><span class="lnt">330
+</span><span class="lnt">331
+</span><span class="lnt">332
+</span><span class="lnt">333
+</span><span class="lnt">334
+</span><span class="lnt">335
+</span><span class="lnt">336
+</span><span class="lnt">337
+</span><span class="lnt">338
+</span><span class="lnt">339
+</span><span class="lnt">340
+</span><span class="lnt">341
+</span><span class="lnt">342
+</span><span class="lnt">343
+</span><span class="lnt">344
+</span><span class="lnt">345
+</span><span class="lnt">346
+</span><span class="lnt">347
+</span><span class="lnt">348
+</span><span class="lnt">349
+</span><span class="lnt">350
+</span><span class="lnt">351
+</span><span class="lnt">352
+</span><span class="lnt">353
+</span><span class="lnt">354
+</span><span class="lnt">355
+</span><span class="lnt">356
+</span><span class="lnt">357
+</span><span class="lnt">358
+</span><span class="lnt">359
+</span><span class="lnt">360
+</span><span class="lnt">361
+</span><span class="lnt">362
+</span><span class="lnt">363
+</span><span class="lnt">364
+</span><span class="lnt">365
+</span><span class="lnt">366
+</span><span class="lnt">367
+</span><span class="lnt">368
+</span><span class="lnt">369
+</span><span class="lnt">370
+</span><span class="lnt">371
+</span><span class="lnt">372
+</span><span class="lnt">373
+</span><span class="lnt">374
+</span><span class="lnt">375
+</span><span class="lnt">376
+</span><span class="lnt">377
+</span><span class="lnt">378
+</span><span class="lnt">379
+</span><span class="lnt">380
+</span><span class="lnt">381
+</span><span class="lnt">382
+</span><span class="lnt">383
+</span><span class="lnt">384
+</span><span class="lnt">385
+</span><span class="lnt">386
+</span><span class="lnt">387
+</span><span class="lnt">388
+</span><span class="lnt">389
+</span><span class="lnt">390
+</span><span class="lnt">391
+</span><span class="lnt">392
+</span><span class="lnt">393
+</span><span class="lnt">394
+</span><span class="lnt">395
+</span><span class="lnt">396
+</span><span class="lnt">397
+</span><span class="lnt">398
+</span><span class="lnt">399
+</span><span class="lnt">400
+</span><span class="lnt">401
+</span><span class="lnt">402
+</span><span class="lnt">403
+</span><span class="lnt">404
+</span><span class="lnt">405
+</span><span class="lnt">406
+</span><span class="lnt">407
+</span><span class="lnt">408
+</span><span class="lnt">409
+</span><span class="lnt">410
+</span><span class="lnt">411
+</span><span class="lnt">412
+</span><span class="lnt">413
+</span><span class="lnt">414
+</span><span class="lnt">415
+</span><span class="lnt">416
+</span><span class="lnt">417
+</span><span class="lnt">418
+</span><span class="lnt">419
+</span><span class="lnt">420
+</span><span class="lnt">421
+</span><span class="lnt">422
+</span><span class="lnt">423
+</span><span class="lnt">424
+</span><span class="lnt">425
+</span><span class="lnt">426
+</span><span class="lnt">427
+</span><span class="lnt">428
+</span><span class="lnt">429
+</span><span class="lnt">430
+</span><span class="lnt">431
+</span><span class="lnt">432
+</span><span class="lnt">433
+</span><span class="lnt">434
+</span><span class="lnt">435
+</span><span class="lnt">436
+</span><span class="lnt">437
+</span><span class="lnt">438
+</span><span class="lnt">439
+</span><span class="lnt">440
+</span><span class="lnt">441
+</span><span class="lnt">442
+</span><span class="lnt">443
+</span><span class="lnt">444
+</span><span class="lnt">445
+</span><span class="lnt">446
+</span><span class="lnt">447
+</span><span class="lnt">448
+</span><span class="lnt">449
+</span><span class="lnt">450
+</span><span class="lnt">451
+</span><span class="lnt">452
+</span><span class="lnt">453
+</span><span class="lnt">454
+</span><span class="lnt">455
+</span><span class="lnt">456
+</span><span class="lnt">457
+</span><span class="lnt">458
+</span><span class="lnt">459
+</span><span class="lnt">460
+</span><span class="lnt">461
+</span><span class="lnt">462
+</span><span class="lnt">463
+</span><span class="lnt">464
+</span><span class="lnt">465
+</span><span class="lnt">466
+</span><span class="lnt">467
+</span><span class="lnt">468
+</span><span class="lnt">469
+</span><span class="lnt">470
+</span><span class="lnt">471
+</span><span class="lnt">472
+</span><span class="lnt">473
+</span><span class="lnt">474
+</span><span class="lnt">475
+</span><span class="lnt">476
+</span><span class="lnt">477
+</span><span class="lnt">478
+</span><span class="lnt">479
+</span><span class="lnt">480
+</span><span class="lnt">481
+</span><span class="lnt">482
+</span><span class="lnt">483
+</span><span class="lnt">484
+</span><span class="lnt">485
+</span><span class="lnt">486
+</span><span class="lnt">487
+</span><span class="lnt">488
+</span><span class="lnt">489
+</span><span class="lnt">490
+</span><span class="lnt">491
+</span><span class="lnt">492
+</span><span class="lnt">493
+</span><span class="lnt">494
+</span><span class="lnt">495
+</span><span class="lnt">496
+</span><span class="lnt">497
+</span><span class="lnt">498
+</span><span class="lnt">499
+</span><span class="lnt">500
+</span><span class="lnt">501
+</span><span class="lnt">502
+</span><span class="lnt">503
+</span><span class="lnt">504
+</span><span class="lnt">505
+</span><span class="lnt">506
+</span><span class="lnt">507
+</span><span class="lnt">508
+</span><span class="lnt">509
+</span><span class="lnt">510
+</span><span class="lnt">511
+</span><span class="lnt">512
+</span><span class="lnt">513
+</span><span class="lnt">514
+</span><span class="lnt">515
+</span><span class="lnt">516
+</span><span class="lnt">517
+</span><span class="lnt">518
+</span><span class="lnt">519
+</span><span class="lnt">520
+</span><span class="lnt">521
+</span><span class="lnt">522
+</span><span class="lnt">523
+</span><span class="lnt">524
+</span><span class="lnt">525
+</span><span class="lnt">526
+</span><span class="lnt">527
+</span><span class="lnt">528
+</span><span class="lnt">529
+</span><span class="lnt">530
+</span><span class="lnt">531
+</span><span class="lnt">532
+</span><span class="lnt">533
+</span><span class="lnt">534
+</span><span class="lnt">535
+</span><span class="lnt">536
+</span><span class="lnt">537
+</span><span class="lnt">538
+</span><span class="lnt">539
+</span><span class="lnt">540
+</span><span class="lnt">541
+</span><span class="lnt">542
+</span><span class="lnt">543
+</span><span class="lnt">544
+</span><span class="lnt">545
+</span><span class="lnt">546
+</span><span class="lnt">547
+</span><span class="lnt">548
+</span><span class="lnt">549
+</span><span class="lnt">550
+</span><span class="lnt">551
+</span><span class="lnt">552
+</span><span class="lnt">553
+</span><span class="lnt">554
+</span><span class="lnt">555
+</span><span class="lnt">556
+</span><span class="lnt">557
+</span><span class="lnt">558
+</span><span class="lnt">559
+</span><span class="lnt">560
+</span><span class="lnt">561
+</span><span class="lnt">562
+</span><span class="lnt">563
+</span><span class="lnt">564
+</span><span class="lnt">565
+</span><span class="lnt">566
+</span><span class="lnt">567
+</span><span class="lnt">568
+</span><span class="lnt">569
+</span><span class="lnt">570
+</span><span class="lnt">571
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java?linenums" data-lang="java?linenums">public abstract class AbstractClientTest {
+// 一个抽象的测试类，用来作为其他客户端侧测试类的主类，
+    static RestTemplate restTemplate;
+    ObjectMapper objectMapper;//JSON
+    Jaxb2Marshaller marshaller;//XML
+    String baseUri = &#34;http://localhost:8080/users&#34;;
+
+    @Before
+    public void setUp() throws Exception {
+        objectMapper = new ObjectMapper(); //需要添加jackson jar包
+
+        marshaller = new Jaxb2Marshaller(); //需要添加jaxb2实现（如xstream）
+        marshaller.setPackagesToScan(new String[]{&#34;com.sishuok&#34;});
+        marshaller.afterPropertiesSet();
+
+        restTemplate = new RestTemplate();
+    }
+}
+
+public class MockServerClientTest extends AbstractClientTest {
+
+    private MockRestServiceServer mockServer; //模拟rest服务端
+
+    @Before
+    public void setUp() throws Exception {
+        super.setUp();
+        //模拟一个服务器
+        mockServer = createServer(restTemplate);
+    }
+
+   @Test
+   public void testFindById() throws JsonProcessingException {
+       String uri = baseUri + &#34;/{id}&#34;;
+       Long id = 1L;
+       User user = new User();
+       user.setId(1L);
+       user.setName(&#34;zhang&#34;);
+       String userJson = objectMapper.writeValueAsString(user);
+       String requestUri = UriComponentsBuilder.fromUriString(uri).buildAndExpand(id).toUriString();
+
+       //添加服务器端断言
+       mockServer
+               .expect(requestTo(requestUri))
+               .andExpect(method(HttpMethod.GET))
+               .andRespond(withSuccess(userJson, MediaType.APPLICATION_JSON));
+
+       //2、访问URI（与API交互）
+       ResponseEntity&lt;User&gt; entity = restTemplate.getForEntity(uri, User.class, id);
+
+       //3.1、客户端验证
+       assertEquals(HttpStatus.OK, entity.getStatusCode());
+       assertThat(entity.getHeaders().getContentType().toString(), containsString(MediaType.APPLICATION_JSON_VALUE));
+       assertThat(entity.getBody(), hasProperty(&#34;name&#34;, is(&#34;zhang&#34;)));
+
+       //3.2、服务器端验证（验证之前添加的服务器端断言）
+       mockServer.verify();
+   }
+
+   @Test
+   public void testSaveWithJson() throws Exception {
+       User user = new User();
+       user.setId(1L);
+       user.setName(&#34;zhang&#34;);
+       String userJson = objectMapper.writeValueAsString(user);
+
+       String uri = baseUri;
+       String createdLocation = baseUri + &#34;/&#34; + 1;
+
+       mockServer
+               .expect(requestTo(uri))  //验证请求URI
+               .andExpect(jsonPath(&#34;$.name&#34;).value(user.getName())) //验证请求的JSON数据
+               .andRespond(withCreatedEntity(URI.create(createdLocation)).body(userJson).contentType(MediaType.APPLICATION_JSON)); //添加响应信息
+
+
+        restTemplate.setMessageConverters(Arrays.&lt;HttpMessageConverter&lt;?&gt;&gt;asList(new MappingJackson2HttpMessageConverter()));
+        ResponseEntity&lt;User&gt; responseEntity = restTemplate.postForEntity(uri, user, User.class);
+
+        assertEquals(createdLocation, responseEntity.getHeaders().get(&#34;Location&#34;).get(0));
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+        assertEquals(user, responseEntity.getBody());
+
+        mockServer.verify();
+    }
+
+
+    @Test
+    public void testSaveWithXML() throws Exception {
+        User user = new User();
+        user.setId(1L);
+        user.setName(&#34;zhang&#34;);
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        marshaller.marshal(user, new StreamResult(bos));
+        String userXml = bos.toString();
+
+        String uri = baseUri;
+        String createdLocation = baseUri + &#34;/&#34; + 1;
+
+        mockServer
+                .expect(requestTo(uri))  //验证请求URI
+                .andExpect(xpath(&#34;/user/name/text()&#34;).string(user.getName())) //验证请求的JSON数据
+                .andRespond(withCreatedEntity(URI.create(createdLocation)).body(userXml).contentType(MediaType.APPLICATION_XML)); //添加响应信息
+
+        restTemplate.setMessageConverters(Arrays.&lt;HttpMessageConverter&lt;?&gt;&gt;asList(new Jaxb2RootElementHttpMessageConverter()));
+        ResponseEntity&lt;User&gt; responseEntity = restTemplate.postForEntity(uri, user, User.class);
+
+        assertEquals(createdLocation, responseEntity.getHeaders().get(&#34;Location&#34;).get(0));
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+
+        assertEquals(user, responseEntity.getBody());
+
+        mockServer.verify();
+    }
+
+    @Test
+    public void testUpdate() throws Exception {
+        User user = new User();
+        user.setId(1L);
+        user.setName(&#34;zhang&#34;);
+
+        String uri = baseUri + &#34;/{id}&#34;;
+
+        mockServer
+                .expect(requestTo(uri))  //验证请求URI
+                .andExpect(jsonPath(&#34;$.name&#34;).value(user.getName())) //验证请求的JSON数据
+                .andRespond(withNoContent()); //添加响应信息
+
+        restTemplate.setMessageConverters(Arrays.&lt;HttpMessageConverter&lt;?&gt;&gt;asList(new MappingJackson2HttpMessageConverter()));
+        ResponseEntity responseEntity = restTemplate.exchange(uri, HttpMethod.PUT, new HttpEntity&lt;&gt;(user), (Class) null, user.getId());
+
+        assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
+
+        mockServer.verify();
+    }
+
+    @Test
+    public void testDelete() throws Exception {
+        String uri = baseUri + &#34;/{id}&#34;;
+        Long id = 1L;
+
+        mockServer
+                .expect(requestTo(baseUri + &#34;/&#34; + id))  //验证请求URI
+                .andRespond(withSuccess()); //添加响应信息
+
+        ResponseEntity responseEntity = restTemplate.exchange(uri, HttpMethod.DELETE, HttpEntity.EMPTY, (Class) null, id);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+
+        mockServer.verify();
+    }
+}
+
+//下面是一个模拟springboot的客户端侧的测试
+
+public class SpringBootClientTest extends AbstractClientTest {
+
+    private static ApplicationContext ctx;
+
+    @BeforeClass
+    public static void beforeClass() throws Exception {
+        ctx = SpringApplication.run(Config.class); //启动服务器 加载Config指定的组件
+    }
+
+    @AfterClass
+    public static void afterClass() throws Exception {
+        SpringApplication.exit(ctx);//退出服务器
+    }
+
+
+    @Test
+    public void testFindById() throws Exception {
+        ResponseEntity&lt;User&gt; entity = restTemplate.getForEntity(baseUri + &#34;/{id}&#34;, User.class, 1L);
+
+        assertEquals(HttpStatus.OK, entity.getStatusCode());
+        assertThat(entity.getHeaders().getContentType().toString(), containsString(MediaType.APPLICATION_JSON_VALUE));
+        assertThat(entity.getBody(), hasProperty(&#34;name&#34;, is(&#34;zhang&#34;)));
+    }
+
+
+    @Test
+    public void testSaveWithJson() throws Exception {
+        User user = new User();
+        user.setId(1L);
+        user.setName(&#34;zhang&#34;);
+
+        String uri = baseUri;
+        String createdLocation = baseUri + &#34;/&#34; + 1;
+
+        restTemplate.setMessageConverters(Arrays.&lt;HttpMessageConverter&lt;?&gt;&gt;asList(new MappingJackson2HttpMessageConverter()));
+        ResponseEntity&lt;User&gt; responseEntity = restTemplate.postForEntity(uri, user, User.class);
+
+        assertEquals(createdLocation, responseEntity.getHeaders().get(&#34;Location&#34;).get(0));
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+        assertEquals(user, responseEntity.getBody());
+    }
+
+
+    @Test
+    public void testSaveWithXML() throws Exception {
+        User user = new User();
+        user.setId(1L);
+        user.setName(&#34;zhang&#34;);
+
+        String uri = baseUri;
+        String createdLocation = baseUri + &#34;/&#34; + 1;
+
+        restTemplate.setMessageConverters(Arrays.&lt;HttpMessageConverter&lt;?&gt;&gt;asList(new Jaxb2RootElementHttpMessageConverter()));
+        ResponseEntity&lt;User&gt; responseEntity = restTemplate.postForEntity(uri, user, User.class);
+
+        assertEquals(createdLocation, responseEntity.getHeaders().get(&#34;Location&#34;).get(0));
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+
+        assertEquals(user, responseEntity.getBody());
+    }
+
+    @Test
+    public void testUpdate() throws Exception {
+        User user = new User();
+        user.setId(1L);
+        user.setName(&#34;zhang&#34;);
+
+        String uri = baseUri + &#34;/{id}&#34;;
+
+        restTemplate.setMessageConverters(Arrays.&lt;HttpMessageConverter&lt;?&gt;&gt;asList(new MappingJackson2HttpMessageConverter()));
+        ResponseEntity responseEntity = restTemplate.exchange(uri, HttpMethod.PUT, new HttpEntity&lt;&gt;(user), (Class) null, user.getId());
+
+        assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
+    }
+
+    @Test
+    public void testDelete() throws Exception {
+        String uri = baseUri + &#34;/{id}&#34;;
+        Long id = 1L;
+
+        ResponseEntity responseEntity = restTemplate.exchange(uri, HttpMethod.DELETE, HttpEntity.EMPTY, (Class) null, id);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+    }
+
+
+    @Configuration
+    @EnableAutoConfiguration
+    static class Config {
+
+        @Bean
+        public EmbeddedServletContainerFactory servletContainer() {
+            return new JettyEmbeddedServletContainerFactory();
+        }
+
+        @Bean
+        public UserRestController userController() {
+            return new UserRestController(userService());
+        }
+
+        @Bean
+        public UserService userService() {
+            //Mockito请参考 http://stamen.iteye.com/blog/1470066
+            UserService userService = Mockito.mock(UserService.class);
+            User user = new User();
+            user.setId(1L);
+            user.setName(&#34;zhang&#34;);
+            Mockito.when(userService.findById(Mockito.any(Long.class))).thenReturn(user);
+            return userService;
+//            return new UserServiceImpl(); //此处也可以返回真实的UserService实现
+        }
+    }
+
+}
+// 下面是常见的controller层的测试
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration(value = &#34;spring-mvc-test/src/main/webapp&#34;)
+@ContextHierarchy({
+        @ContextConfiguration(name = &#34;parent&#34;, locations = &#34;classpath:spring-config.xml&#34;),
+        @ContextConfiguration(name = &#34;child&#34;, locations = &#34;classpath:spring-mvc.xml&#34;)
+})
+public class ServerControllerTest {
+
+    @Autowired
+    private WebApplicationContext wac;
+
+    private MockMvc mockMvc;
+
+    @Before
+    public void setUp() {
+        mockMvc = webAppContextSetup(wac).build();
+    }
+
+
+    @Test
+    public void test1() throws Exception {
+
+        //测试普通控制器
+        mockMvc.perform(get(&#34;/user/{id}&#34;, 1)) //执行请求
+                .andExpect(model().attributeExists(&#34;user&#34;)) //验证存储模型数据
+                .andExpect(model().attribute(&#34;user&#34;, hasProperty(&#34;name&#34;, equalTo(&#34;zhang&#34;)))) //验证存储模型数据
+                .andExpect(view().name(&#34;user/view&#34;)) //验证viewName
+                .andExpect(forwardedUrl(&#34;/WEB-INF/jsp/user/view.jsp&#34;))//验证视图渲染时forward到的jsp
+                .andExpect(status().isOk())//验证状态码
+                .andDo(print()); //输出MvcResult到控制台
+    }
+
+
+    @Test
+    public void test2() throws Exception {
+        //找不到控制器，404测试
+        MvcResult result = mockMvc.perform(get(&#34;/user2/{id}&#34;, 1)) //执行请求
+                .andDo(print())
+                .andExpect(status().isNotFound()) //验证控制器不存在
+                .andReturn();
+        Assert.assertNull(result.getModelAndView()); //自定义断言
+    }
+
+    @Test
+    public void test3() throws Exception {
+        //得到MvcResult自己验证
+        MvcResult result = mockMvc.perform(get(&#34;/user/{id}&#34;, 1))//执行请求
+                .andReturn(); //返回MvcResult
+        Assert.assertNotNull(result.getModelAndView().getModel().get(&#34;user&#34;)); //自定义断言
+    }
+
+
+    @Test
+    public void test4() throws Exception {
+        //验证请求参数绑定
+        mockMvc.perform(post(&#34;/user&#34;).param(&#34;name&#34;, &#34;zhang&#34;)) //执行传递参数的POST请求(也可以post(&#34;/user?name=zhang&#34;))
+                .andExpect(handler().handlerType(UserController.class)) //验证执行的控制器类型
+                .andExpect(handler().methodName(&#34;create&#34;)) //验证执行的控制器方法名
+                .andExpect(model().hasNoErrors()) //验证页面没有错误
+                .andExpect(flash().attributeExists(&#34;success&#34;)) //验证存在flash属性
+                .andExpect(view().name(&#34;redirect:/user&#34;)); //验证视图
+    }
+
+    @Test
+    public void test5() throws Exception {
+        //验证请求参数验证失败
+        mockMvc.perform(post(&#34;/user&#34;).param(&#34;name&#34;, &#34;admin&#34;)) //执行请求
+                .andExpect(model().hasErrors()) //验证模型有错误
+                .andExpect(model().attributeDoesNotExist(&#34;name&#34;)) //验证存在错误的属性
+                .andExpect(view().name(&#34;showCreateForm&#34;)); //验证视图
+    }
+
+
+    @Test
+    public void test6() throws Exception {
+        //文件上传
+        byte[] bytes = new byte[]{1, 2};
+        mockMvc.perform(fileUpload(&#34;/user/{id}/icon&#34;, 1L).file(&#34;icon&#34;, bytes)) //执行文件上传
+                .andExpect(model().attribute(&#34;icon&#34;, bytes)) //验证属性相等性
+                .andExpect(view().name(&#34;success&#34;)); //验证视图
+    }
+
+    @Test
+    public void test7() throws Exception {
+        //JSON请求/响应
+        String requestBody = &#34;{\&#34;id\&#34;:1, \&#34;name\&#34;:\&#34;zhang\&#34;}&#34;;
+        mockMvc.perform(post(&#34;/user&#34;)
+                .contentType(MediaType.APPLICATION_JSON).content(requestBody)
+                .accept(MediaType.APPLICATION_JSON)) //执行请求
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON)) //验证响应contentType
+                .andExpect(jsonPath(&#34;$.id&#34;).value(1)); //使用Json path验证JSON 请参考http://goessner.net/articles/JsonPath/
+
+        String errorBody = &#34;{id:1, name:zhang}&#34;;
+        MvcResult result = mockMvc.perform(post(&#34;/user&#34;)
+                .contentType(MediaType.APPLICATION_JSON).content(errorBody)
+                .accept(MediaType.APPLICATION_JSON)) //执行请求
+                .andExpect(status().isBadRequest()) //400错误请求
+                .andReturn();
+
+        Assert.assertTrue(HttpMessageNotReadableException.class.isAssignableFrom(result.getResolvedException().getClass()));  //错误的请求内容体
+    }
+
+    @Test
+    public void test8() throws Exception {
+        //XML请求/响应
+        String requestBody = &#34;&lt;user&gt;&lt;id&gt;1&lt;/id&gt;&lt;name&gt;zhang&lt;/name&gt;&lt;/user&gt;&#34;;
+        mockMvc.perform(post(&#34;/user&#34;)
+                .contentType(MediaType.APPLICATION_XML).content(requestBody)
+                .accept(MediaType.APPLICATION_XML)) //执行请求
+                .andDo(print())
+                .andExpect(content().contentType(MediaType.APPLICATION_XML)) //验证响应contentType
+                .andExpect(xpath(&#34;/user/id/text()&#34;).string(&#34;1&#34;)); //使用XPath表达式验证XML 请参考http://www.w3school.com.cn/xpath/
+
+        String errorBody = &#34;&lt;user&gt;&lt;id&gt;1&lt;/id&gt;&lt;name&gt;zhang&lt;/name&gt;&#34;;
+        MvcResult result = mockMvc.perform(post(&#34;/user&#34;)
+                .contentType(MediaType.APPLICATION_XML).content(errorBody)
+                .accept(MediaType.APPLICATION_XML)) //执行请求
+                .andExpect(status().isBadRequest()) //400错误请求
+                .andReturn();
+
+        Assert.assertTrue(HttpMessageNotReadableException.class.isAssignableFrom(result.getResolvedException().getClass()));//错误的请求内容体
+    }
+
+    @Test
+    public void test9() throws Exception {
+        //异常处理
+        MvcResult result = mockMvc.perform(get(&#34;/user/exception&#34;)) //执行请求
+                .andExpect(status().isInternalServerError()) //验证服务器内部错误
+                .andReturn();
+
+        Assert.assertTrue(IllegalArgumentException.class.isAssignableFrom(result.getResolvedException().getClass()));
+    }
+
+
+    @Test
+    public void test10() throws Exception {
+        //静态资源
+        mockMvc.perform(get(&#34;/static/app.js&#34;)) //执行请求
+                .andExpect(status().isOk()) //验证状态码200
+                .andExpect(content().string(CoreMatchers.containsString(&#34;var&#34;)));//验证渲染后的视图内容包含var
+
+
+        mockMvc.perform(get(&#34;/static/app1.js&#34;)) //执行请求
+                .andExpect(status().isNotFound());  //验证状态码404
+    }
+
+    @Test
+    public void test11() throws Exception {
+        //异步测试
+
+        //Callable
+        MvcResult result = mockMvc.perform(get(&#34;/user/async1?id=1&amp;name=zhang&#34;)) //执行请求
+                .andExpect(request().asyncStarted())
+                .andExpect(request().asyncResult(CoreMatchers.instanceOf(User.class))) //默认会等10秒超时
+                .andReturn();
+
+
+        mockMvc.perform(asyncDispatch(result))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath(&#34;$.id&#34;).value(1));
+
+        //DeferredResult
+        result = mockMvc.perform(get(&#34;/user/async2?id=1&amp;name=zhang&#34;)) //执行请求
+                .andExpect(request().asyncStarted())
+                .andExpect(request().asyncResult(CoreMatchers.instanceOf(User.class)))  //默认会等10秒超时
+                .andReturn();
+
+
+        mockMvc.perform(asyncDispatch(result))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath(&#34;$.id&#34;).value(1));
+    }
+
+
+    @Test
+    public void test12() throws Exception {
+        //Filter
+        mockMvc = webAppContextSetup(wac).addFilter(new MyFilter(), &#34;/*&#34;).build();
+        mockMvc.perform(get(&#34;/user/1&#34;))
+                .andExpect(request().attribute(&#34;filter&#34;, true));
+
+    }
+
+    @Test
+    public void test13() throws Exception {
+        //全局配置
+        mockMvc = webAppContextSetup(wac)
+                .defaultRequest(get(&#34;/user/1&#34;).requestAttr(&#34;default&#34;, true)) //默认请求 如果其是Mergeable类型的，会自动合并的哦mockMvc.perform中的RequestBuilder
+                .alwaysDo(print())  //默认每次执行请求后都做的动作
+                .alwaysExpect(request().attribute(&#34;default&#34;, true)) //默认每次执行后进行验证的断言
+                .build();
+
+        mockMvc.perform(get(&#34;/user/1&#34;))
+                .andExpect(model().attributeExists(&#34;user&#34;));
+
+    }
+
+    private static class MyFilter implements Filter {
+        @Override
+        public void init(FilterConfig filterConfig) throws ServletException {
+        }
+
+        @Override
+        public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+            request.setAttribute(&#34;filter&#34;, true);
+            chain.doFilter(request, response);
+        }
+
+        @Override
+        public void destroy() {
+        }
+    }
+
+
+    @Test
+    public void testNestedProperty() {
+        List&lt;User&gt; userlist = new ArrayList&lt;User&gt;();
+        User user1 = new User();
+        user1.setId(1L);
+        user1.setName(&#34;zhang&#34;);
+
+        User user2 = new User();
+        user2.setId(2L);
+        user2.setName(&#34;admin&#34;);
+//        user2.setUser2(user2);
+
+        userlist.add(user1);
+        userlist.add(user2);
+
+        assertThat((List&lt;Object&gt;) (List) userlist, hasItem(
+//                HasPropertyWithValue.hasProperty(&#34;user2.name&#34;, is(&#34;admin&#34;))
+                HasProperty.hasProperty(&#34;user2.name&#34;)
+        ));
+
+    }
+
+}
+//下面是一个独立对一个controller进行测试的方式
+public class UserControllerStandaloneSetupTest {
+
+    private MockMvc mockMvc;
+
+    @Before
+    public void setUp() {
+        UserController userController = new UserController();
+        mockMvc = standaloneSetup(userController).build();
+    }
+
+    @Test
+    public void testView() throws Exception {
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get(&#34;/user/1&#34;))
+                .andExpect(MockMvcResultMatchers.view().name(&#34;user/view&#34;))
+                .andExpect(MockMvcResultMatchers.model().attributeExists(&#34;user&#34;))
+                .andDo(MockMvcResultHandlers.print())
+                .andReturn();
+
+        Assert.assertNotNull(result.getModelAndView().getModel().get(&#34;user&#34;));
+    }
+
+}
+//下面是webApp模式的测试
+
+//XML风格
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration(value = &#34;src/main/webapp&#34;)
+@ContextHierarchy({
+        @ContextConfiguration(name = &#34;parent&#34;, locations = &#34;classpath:spring-config.xml&#34;),
+        @ContextConfiguration(name = &#34;child&#34;, locations = &#34;classpath:spring-mvc.xml&#34;)
+})
+
+//注解风格
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@WebAppConfiguration(value = &#34;src/main/webapp&#34;)
+//@ContextHierarchy({
+//        @ContextConfiguration(name = &#34;parent&#34;, classes = AppConfig.class),
+//        @ContextConfiguration(name = &#34;child&#34;, classes = MvcConfig.class)
+//})
+public class UserControllerWebAppContextSetupTest {
+
+    @Autowired
+    private WebApplicationContext wac;
+    private MockMvc mockMvc;
+
+    @Before
+    public void setUp() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+    }
+
+    @Test
+    public void testView() throws Exception {
+        mockMvc
+                .perform(get(&#34;/user/1&#34;))
+                .andExpect(view().name(&#34;user/view&#34;))
+                .andExpect(forwardedUrl(&#34;/WEB-INF/jsp/user/view.jsp&#34;))
+                .andExpect(model().attributeExists(&#34;user&#34;))
+                .andExpect(content().string(Matchers.contains(&#34;你好&#34;)))
+                .andExpect(status().isOk())
+                .andDo(print());
+    }
+
+
+}
+	</code></pre></td></tr></table>
+</div>
+</div>
+<p>下面是对matcher的一些类做的初步封装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">HasProperty</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">TypeSafeMatcher</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">propertyNames</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">HasProperty</span><span class="o">(</span><span class="n">String</span> <span class="n">propertyNames</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">propertyNames</span> <span class="o">=</span> <span class="n">propertyNames</span><span class="o">;</span>
+    <span class="o">}</span>
+
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">matchesSafely</span><span class="o">(</span><span class="n">T</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">BeanWrapperImpl</span> <span class="n">beanWrapper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BeanWrapperImpl</span><span class="o">(</span><span class="n">obj</span><span class="o">);</span>
+            <span class="k">return</span> <span class="n">beanWrapper</span><span class="o">.</span><span class="na">getPropertyValue</span><span class="o">(</span><span class="n">propertyNames</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">describeMismatchSafely</span><span class="o">(</span><span class="n">T</span> <span class="n">item</span><span class="o">,</span> <span class="n">Description</span> <span class="n">mismatchDescription</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mismatchDescription</span><span class="o">.</span><span class="na">appendText</span><span class="o">(</span><span class="s">&#34;no &#34;</span><span class="o">).</span><span class="na">appendValue</span><span class="o">(</span><span class="n">propertyNames</span><span class="o">).</span><span class="na">appendText</span><span class="o">(</span><span class="s">&#34; in &#34;</span><span class="o">).</span><span class="na">appendValue</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">describeTo</span><span class="o">(</span><span class="n">Description</span> <span class="n">description</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">description</span><span class="o">.</span><span class="na">appendText</span><span class="o">(</span><span class="s">&#34;hasProperty(&#34;</span><span class="o">).</span><span class="na">appendValue</span><span class="o">(</span><span class="n">propertyNames</span><span class="o">).</span><span class="na">appendText</span><span class="o">(</span><span class="s">&#34;)&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Factory</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Matcher</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">hasProperty</span><span class="o">(</span><span class="n">String</span> <span class="n">propertyNames</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">HasProperty</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;(</span><span class="n">propertyNames</span><span class="o">);</span>
+    <span class="o">}</span>
+
+
+<span class="o">}</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HasPropertyWithValue</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">TypeSafeDiagnosingMatcher</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">propertyNames</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="n">Matcher</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="n">valueMatcher</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">HasPropertyWithValue</span><span class="o">(</span><span class="n">String</span> <span class="n">propertyNames</span><span class="o">,</span> <span class="n">Matcher</span><span class="o">&lt;?&gt;</span> <span class="n">valueMatcher</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">propertyNames</span> <span class="o">=</span> <span class="n">propertyNames</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">valueMatcher</span> <span class="o">=</span> <span class="n">nastyGenericsWorkaround</span><span class="o">(</span><span class="n">valueMatcher</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">matchesSafely</span><span class="o">(</span><span class="n">T</span> <span class="n">bean</span><span class="o">,</span> <span class="n">Description</span> <span class="n">mismatch</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">withPropertyValue</span><span class="o">(</span><span class="n">bean</span><span class="o">,</span> <span class="n">mismatch</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">matching</span><span class="o">(</span><span class="n">valueMatcher</span><span class="o">,</span> <span class="s">&#34;property &#39;&#34;</span> <span class="o">+</span> <span class="n">propertyNames</span> <span class="o">+</span> <span class="s">&#34;&#39; &#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">describeTo</span><span class="o">(</span><span class="n">Description</span> <span class="n">description</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">description</span><span class="o">.</span><span class="na">appendText</span><span class="o">(</span><span class="s">&#34;hasProperty(&#34;</span><span class="o">).</span><span class="na">appendValue</span><span class="o">(</span><span class="n">propertyNames</span><span class="o">).</span><span class="na">appendText</span><span class="o">(</span><span class="s">&#34;, &#34;</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">appendDescriptionOf</span><span class="o">(</span><span class="n">valueMatcher</span><span class="o">).</span><span class="na">appendText</span><span class="o">(</span><span class="s">&#34;)&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="n">Condition</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="nf">withPropertyValue</span><span class="o">(</span><span class="n">T</span> <span class="n">bean</span><span class="o">,</span> <span class="n">Description</span> <span class="n">mismatch</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">BeanWrapperImpl</span> <span class="n">beanWrapper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BeanWrapperImpl</span><span class="o">(</span><span class="n">bean</span><span class="o">);</span>
+            <span class="n">Object</span> <span class="n">property</span> <span class="o">=</span> <span class="n">beanWrapper</span><span class="o">.</span><span class="na">getPropertyValue</span><span class="o">(</span><span class="n">propertyNames</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">property</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">mismatch</span><span class="o">.</span><span class="na">appendText</span><span class="o">(</span><span class="s">&#34;No property \&#34;&#34;</span> <span class="o">+</span> <span class="n">propertyNames</span> <span class="o">+</span> <span class="s">&#34;\&#34;&#34;</span><span class="o">);</span>
+                <span class="k">return</span> <span class="n">notMatched</span><span class="o">();</span>
+            <span class="o">}</span>
+
+            <span class="k">return</span> <span class="n">matched</span><span class="o">(</span><span class="n">property</span><span class="o">,</span> <span class="n">mismatch</span><span class="o">);</span>
+
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">mismatch</span><span class="o">.</span><span class="na">appendText</span><span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
+            <span class="k">return</span> <span class="n">notMatched</span><span class="o">();</span>
+        <span class="o">}</span>
+
+    <span class="o">}</span>
+
+
+    <span class="nd">@SuppressWarnings</span><span class="o">(</span><span class="s">&#34;unchecked&#34;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Matcher</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;</span> <span class="nf">nastyGenericsWorkaround</span><span class="o">(</span><span class="n">Matcher</span><span class="o">&lt;?&gt;</span> <span class="n">valueMatcher</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="o">(</span><span class="n">Matcher</span><span class="o">&lt;</span><span class="n">Object</span><span class="o">&gt;)</span> <span class="n">valueMatcher</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Factory</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">Matcher</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="nf">hasProperty</span><span class="o">(</span><span class="n">String</span> <span class="n">propertyName</span><span class="o">,</span> <span class="n">Matcher</span><span class="o">&lt;?&gt;</span> <span class="n">valueMatcher</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">HasPropertyWithValue</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;(</span><span class="n">propertyName</span><span class="o">,</span> <span class="n">valueMatcher</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Little Mice</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2016-12-08
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a>
+          <a href="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">单元测试</a>
+          <a href="/tags/junit/">Junit</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/ubuntubootrecuse/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">ubuntu引导修复和emergenc mode修复</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2016-12-05-python-%E8%A3%85%E9%A5%B0%E5%99%A8%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0/">
+            <span class="next-text nav-default">Python 装饰器深入学习 - 基础</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:whsfightup@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/wadeLouis" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.weihaosi.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">West</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tomcat on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/categories/tomcat/</link>
+    <description>Recent content in Tomcat on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 08 Dec 2016 14:51:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/categories/tomcat/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tomcat 启动关闭重启脚本</title>
+      <link>http://www.weihaosi.me/post/tomcat-%E5%90%AF%E5%8A%A8%E5%85%B3%E9%97%AD%E9%87%8D%E5%90%AF%E8%84%9A%E6%9C%AC/</link>
+      <pubDate>Thu, 08 Dec 2016 14:51:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/tomcat-%E5%90%AF%E5%8A%A8%E5%85%B3%E9%97%AD%E9%87%8D%E5%90%AF%E8%84%9A%E6%9C%AC/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;这个脚本是从网上服务之过来使用的，具体是谁的我这里已经找不到了，如果作者看到可以给我信息，我会把原链接补充上。&lt;/p&gt;
+
+&lt;p&gt;脚本做了一些改动，主要是获取PID的时候缺少了一些过滤&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

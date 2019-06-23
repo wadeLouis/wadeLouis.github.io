@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Systemctl on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/categories/systemctl/</link>
+    <description>Recent content in Systemctl on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 20 Mar 2017 16:18:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/categories/systemctl/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Centos Systemctl服务配置例子</title>
+      <link>http://www.weihaosi.me/post/centos-systemctl-%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE%E4%BE%8B%E5%AD%90/</link>
+      <pubDate>Mon, 20 Mar 2017 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/centos-systemctl-%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE%E4%BE%8B%E5%AD%90/</guid>
+      <description>CentOS 7的服务systemctl脚本存放在：/usr/lib/systemd/，有系统（system）和用户（user）之分，需要开机不登陆就能</description>
+    </item>
+    
+  </channel>
+</rss>

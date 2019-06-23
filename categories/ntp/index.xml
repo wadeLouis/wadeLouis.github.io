@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ntp on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/categories/ntp/</link>
+    <description>Recent content in ntp on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 16 Jan 2019 15:35:25 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/categories/ntp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>阿里云NTP时间同步服务器</title>
+      <link>http://www.weihaosi.me/post/%E9%98%BF%E9%87%8C%E4%BA%91ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8/</link>
+      <pubDate>Wed, 16 Jan 2019 15:35:25 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/%E9%98%BF%E9%87%8C%E4%BA%91ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8/</guid>
+      <description>1 2 3 4 5 6 7 ntp1.aliyun.com ntp2.aliyun.com ntp3.aliyun.com ntp4.aliyun.com ntp5.aliyun.com ntp6.aliyun.com ntp7.aliyun.com</description>
+    </item>
+    
+  </channel>
+</rss>

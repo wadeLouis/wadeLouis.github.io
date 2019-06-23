@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Python Nose测试框架命令行详解 - 韦昊斯的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="West" /><meta name="description" content="-V, &amp;ndash;version
+Output nose version and exit 打印nose的版本号
+-p, &amp;ndash;plugins
+Output list of available plugins and exit. Combine with higher verbosity for greater detail
+-v=DEFAULT, &amp;ndash;verbose=DEFAULT
+Be more verbose. [NOSE_VERBOSE] nose日志输出等级
+&amp;ndash;verbosity=VERBOSITY
+Set verbosity; –verbosity=2 is the same as -v 和上面-v是一样
+-q=DEFAULT, &amp;ndash;quiet=DEFAULT
+Be less verbose 精简的日志输出
+" /><meta name="keywords" content="韦昊斯, 软件测试, 自动化测试, 性能测试, 软件实施, 运维" />
+
+
+
+<meta name="google-site-verification" content="iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI" />
+
+
+<meta name="generator" content="Hugo 0.53 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://www.weihaosi.me/post/python-nose%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%A6%E8%A7%A3/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Python Nose测试框架命令行详解" />
+<meta property="og:description" content="-V, &ndash;version
+
+Output nose version and exit  打印nose的版本号
+
+-p, &ndash;plugins
+
+Output list of available plugins and exit. Combine with higher verbosity for greater detail
+
+-v=DEFAULT, &ndash;verbose=DEFAULT
+
+Be more verbose. [NOSE_VERBOSE]  nose日志输出等级
+
+&ndash;verbosity=VERBOSITY
+
+Set verbosity; –verbosity=2 is the same as -v 和上面-v是一样
+
+-q=DEFAULT, &ndash;quiet=DEFAULT
+
+Be less verbose 精简的日志输出" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.weihaosi.me/post/python-nose%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%A6%E8%A7%A3/" /><meta property="article:published_time" content="2019-01-16T15:41:59&#43;08:00"/>
+<meta property="article:modified_time" content="2019-01-16T15:41:59&#43;08:00"/>
+
+<meta itemprop="name" content="Python Nose测试框架命令行详解">
+<meta itemprop="description" content="-V, &ndash;version
+
+Output nose version and exit  打印nose的版本号
+
+-p, &ndash;plugins
+
+Output list of available plugins and exit. Combine with higher verbosity for greater detail
+
+-v=DEFAULT, &ndash;verbose=DEFAULT
+
+Be more verbose. [NOSE_VERBOSE]  nose日志输出等级
+
+&ndash;verbosity=VERBOSITY
+
+Set verbosity; –verbosity=2 is the same as -v 和上面-v是一样
+
+-q=DEFAULT, &ndash;quiet=DEFAULT
+
+Be less verbose 精简的日志输出">
+
+
+<meta itemprop="datePublished" content="2019-01-16T15:41:59&#43;08:00" />
+<meta itemprop="dateModified" content="2019-01-16T15:41:59&#43;08:00" />
+<meta itemprop="wordCount" content="2934">
+
+
+
+<meta itemprop="keywords" content="Python,单元测试,nose," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python Nose测试框架命令行详解"/>
+<meta name="twitter:description" content="-V, &ndash;version
+
+Output nose version and exit  打印nose的版本号
+
+-p, &ndash;plugins
+
+Output list of available plugins and exit. Combine with higher verbosity for greater detail
+
+-v=DEFAULT, &ndash;verbose=DEFAULT
+
+Be more verbose. [NOSE_VERBOSE]  nose日志输出等级
+
+&ndash;verbosity=VERBOSITY
+
+Set verbosity; –verbosity=2 is the same as -v 和上面-v是一样
+
+-q=DEFAULT, &ndash;quiet=DEFAULT
+
+Be less verbose 精简的日志输出"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">韦昊斯的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/life/">
+        <li class="mobile-menu-item">记事</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">韦昊斯的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/life/">记事</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Python Nose测试框架命令行详解</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-01-16 </span>
+        <div class="post-category">
+            <a href="/categories/python/"> Python </a>
+            <a href="/categories/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"> 单元测试 </a>
+            <a href="/categories/nose/"> nose </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    
+  </div>
+</div>
+    <div class="post-content">
+      <p><strong>-V, &ndash;version</strong></p>
+
+<p>Output nose version and exit  打印nose的版本号</p>
+
+<p><strong>-p, &ndash;plugins</strong></p>
+
+<p>Output list of available plugins and exit. Combine with higher verbosity for greater detail</p>
+
+<p><strong>-v=DEFAULT, &ndash;verbose=DEFAULT</strong></p>
+
+<p>Be more verbose. [NOSE_VERBOSE]  nose日志输出等级</p>
+
+<p><strong>&ndash;verbosity=VERBOSITY</strong></p>
+
+<p>Set verbosity; –verbosity=2 is the same as -v 和上面-v是一样</p>
+
+<p><strong>-q=DEFAULT, &ndash;quiet=DEFAULT</strong></p>
+
+<p>Be less verbose 精简的日志输出</p>
+
+<p><strong>-c=FILES, &ndash;config=FILES</strong></p>
+
+<p>Load configuration from config file(s). May be specified multiple times; in that case, all config files will be loaded and combined</p>
+
+<p>读取配置文件，可以指定多个，在这种情况下，所有配置文件将被加载和组合</p>
+
+<p><strong>-w=WHERE, &ndash;where=WHERE</strong></p>
+
+<p>Look for tests in this directory. May be specified multiple times. The first directory passed will be used as the working directory, in place of the current working directory, which is the default. Others will be added to the list of tests toexecute. [NOSE_WHERE]</p>
+
+<p>在这个目录中查找测试。可以指定多次。通过将第一个目录作为工作目录，在当前工作目录下，这是默认的工作目录。其他人将被添加到测试执行的名单。</p>
+
+<p><strong>&ndash;py3where=PY3WHERE</strong></p>
+
+<p>Look for tests in this directory under Python 3.x. Functions the same as ‘where’, but only applies if running under Python 3.x or above. Note that, if present under 3.x, this option completely replaces any directories specified with ‘where’, so the ‘where’ option becomes ineffective. [NOSE_PY3WHERE]</p>
+
+<p>在当前目录下寻找使用python3.x 的测试文件。只支持python3.x以上版本的测试文件。</p>
+
+<p><strong>-m=REGEX, &ndash;match=REGEX, &ndash;testmatch=REGEX</strong></p>
+
+<p>Files, directories, function names, and class names that match this regular expression are considered tests. Default: (?:^|[b_./-])[Tt]est [NOSE_TESTMATCH]</p>
+
+<p>文件，目录，函数名和匹配这个正则表达式的类名称被认为是测试。正则表达式默认是 (?:^|[b_./-])[Tt]est</p>
+
+<p><strong>&ndash;tests=NAMES</strong></p>
+
+<p>Run these tests (comma-separated list). This argument is useful mainly from configuration(配置) files; on the command line, just pass the tests to run as additional(附加的) arguments with no switch.</p>
+
+<p>运行这些测试（用逗号分隔的列表）。这些参数可以很方便的从配置文件中读取。</p>
+
+<p><strong>-l=DEFAULT, &ndash;debug=DEFAULT</strong></p>
+
+<p>Activate debug  logging for one or more systems. Available debug loggers: nose, nose.importer, nose.inspector, nose.plugins, nose.result and nose.selector. Separate multiple names with a comma.</p>
+
+<p><strong>&ndash;debug-log=FILE</strong></p>
+
+<p>Log debug messages to this file (default: sys.stderr)</p>
+
+<p><strong>&ndash;logging-config=FILE, &ndash;log-config=FILE</strong></p>
+
+<p>Load logging config(配置) from this file – bypasses(旁路) all other logging config settings.</p>
+
+<p><strong>-I=REGEX, &ndash;ignore-files=REGEX</strong></p>
+
+<p>Completely ignore(驳回诉讼) any file that matches this regular expression. Takes precedence(优先) over any other settings or plugins(插件). Specifying(指定) this option will replace the default setting. Specify this option multiple times to add more regular expressions [NOSE_IGNORE_FILES]</p>
+
+<p><strong>-e=REGEX, &ndash;exclude=REGEX</strong></p>
+
+<p>Don’t run tests that match regular expression [NOSE_EXCLUDE]</p>
+
+<p><strong>-i=REGEX, &ndash;include=REGEX</strong></p>
+
+<p>This regular expression will be applied to files, directories, function names, and class names for a chance to include additional(附加的) tests that do not match TESTMATCH. Specify(指定) this option multiple times to add more regular expressions [NOSE_INCLUDE]</p>
+
+<p><strong>-x, &ndash;stop</strong></p>
+
+<p>Stop running tests after the first error or failure</p>
+
+<p><strong>-P, &ndash;no-path-adjustment</strong></p>
+
+<p>Don’t make any changes to sys.path when loading tests [NOSE_NOPATH]</p>
+
+<p><strong>&ndash;exe</strong></p>
+
+<p>Look for tests in python(巨蟒) modules that are executable(可执行的). Normal behavior(行为) is to exclude(排除) executable modules, since they may not be import-safe [NOSE_INCLUDE_EXE]</p>
+
+<p><strong>&ndash;noexe</strong></p>
+
+<p>DO NOT look for tests in python(巨蟒) modules that are executable(可执行的). (The default on the windows platform is to do so.)</p>
+
+<p><strong>&ndash;traverse-namespace</strong></p>
+
+<p>Traverse(穿过) through all path entries of a namespace package
+&ndash;first-package-wins, &ndash;first-pkg-wins, &ndash;1st-pkg-wins
+nose’s importer will normally evict(驱逐) a package from sys.modules if it sees a package with the same name in a different location. Set this option to disable that behavior(行为).</p>
+
+<p><strong>&ndash;no-byte-compile</strong></p>
+
+<p>Prevent nose from byte-compiling the source into .pyc files while nose is scanning(扫描) for and running tests.</p>
+
+<p><strong>-a=ATTR, &ndash;attr=ATTR</strong></p>
+
+<p>Run only tests that have attributes(属性) specified(指定) by ATTR [NOSE_ATTR]</p>
+
+<p><strong>-A=EXPR, &ndash;eval-attr=EXPR</strong></p>
+
+<p>Run only tests for whose attributes the Python expression EXPR evaluates(评价) to True [NOSE_EVAL_ATTR]</p>
+
+<p><strong>-s, &ndash;nocapture</strong></p>
+
+<p>Don’t capture(俘获) stdout (any stdout output(输出) will be printed immediately) [NOSE_NOCAPTURE]</p>
+
+<p><strong>&ndash;nologcapture</strong></p>
+
+<p>Disable logging capture plugin(插件). Logging configuration(配置) will be left intact(完整的). [NOSE_NOLOGCAPTURE]</p>
+
+<p><strong>&ndash;logging-format=FORMAT</strong></p>
+
+<p>Specify(指定) custom format to print statements(声明). Uses the same format as used by standard logging handlers. [NOSE_LOGFORMAT]</p>
+
+<p><strong>&ndash;logging-datefmt=FORMAT</strong></p>
+
+<p>Specify custom date/time format to print statements. Uses the same format as used by standard logging handlers. [NOSE_LOGDATEFMT]</p>
+
+<p><strong>&ndash;logging-filter=FILTER</strong></p>
+
+<p>Specify which statements to filter in/out. By default, everything is captured(俘获). If the output(输出) is too verbose(冗长的), use this option to filter out needless(不必要的) output. Example: filter=foo will capture statements issued ONLY to foo or foo.what.ever.sub but not foobar or other logger. Specify multiple loggers with comma: filter=foo,bar,baz. If any logger name is prefixed(有前缀的) with a minus, eg filter=-foo, it will be excluded(排除) rather than included. Default: exclude logging messages from nose itself (-nose). [NOSE_LOGFILTER]</p>
+
+<p><strong>&ndash;logging-clear-handlers</strong></p>
+
+<p>Clear all other logging handlers</p>
+
+<p><strong>&ndash;logging-level=DEFAULT</strong></p>
+
+<p>Set the log level to capture</p>
+
+<p><strong>&ndash;with-coverage</strong></p>
+
+<p>Enable plugin(插件) Coverage(覆盖): Activate(刺激) a coverage report using Ned Batchelder’s coverage module. [NOSE_WITH_COVERAGE]</p>
+
+<p><strong>&ndash;cover-package=PACKAGE</strong></p>
+
+<p>Restrict coverage(覆盖) output(输出) to selected packages [NOSE_COVER_PACKAGE]</p>
+
+<p><strong>&ndash;cover-erase</strong></p>
+
+<p>Erase previously collected coverage statistics(统计) before run</p>
+
+<p><strong>&ndash;cover-tests</strong></p>
+
+<p>Include test modules in coverage report [NOSE_COVER_TESTS]</p>
+
+<p><strong>&ndash;cover-min-percentage=DEFAULT</strong></p>
+
+<p>Minimum(最小值) percentage of coverage for tests to pass [NOSE_COVER_MIN_PERCENTAGE]</p>
+
+<p><strong>&ndash;cover-inclusive</strong></p>
+
+<p>Include all python(巨蟒) files under working directory in coverage report. Useful for discovering holes in test coverage if not all files are imported by the test suite. [NOSE_COVER_INCLUSIVE]</p>
+
+<p><strong>&ndash;cover-html</strong></p>
+
+<p>Produce HTML coverage information</p>
+
+<p><strong>&ndash;cover-html-dir=DIR</strong></p>
+
+<p>Produce HTML coverage(覆盖) information in dir</p>
+
+<p><strong>&ndash;cover-branches</strong></p>
+
+<p>Include branch coverage in coverage report [NOSE_COVER_BRANCHES]</p>
+
+<p><strong>&ndash;cover-xml</strong></p>
+
+<p>Produce XML coverage information</p>
+
+<p><strong>&ndash;cover-xml-file=FILE</strong></p>
+
+<p>Produce XML coverage information in file</p>
+
+<p><strong>&ndash;pdb</strong></p>
+
+<p>Drop into debugger(调试) on failures or errors</p>
+
+<p><strong>&ndash;pdb-failures</strong></p>
+
+<p>Drop into debugger on failures</p>
+
+<p><strong>&ndash;pdb-errors</strong></p>
+
+<p>Drop into debugger(调试) on errors</p>
+
+<p><strong>&ndash;no-deprecated</strong></p>
+
+<p>Disable special handling of DeprecatedTest exceptions(例外).</p>
+
+<p><strong>&ndash;with-doctest</strong></p>
+
+<p>Enable plugin(插件) Doctest: Activate(刺激) doctest plugin to find and run doctests in non-test modules. [NOSE_WITH_DOCTEST]</p>
+
+<p><strong>&ndash;doctest-tests</strong></p>
+
+<p>Also look for doctests in test modules. Note that classes, methods and functions should have either doctests or non-doctest tests, not both. [NOSE_DOCTEST_TESTS]</p>
+
+<p><strong>&ndash;doctest-extension=EXT</strong></p>
+
+<p>Also look for doctests in files with this extension(延长) [NOSE_DOCTEST_EXTENSION]</p>
+
+<p><strong>&ndash;doctest-result-variable=VAR</strong></p>
+
+<p>Change the variable(变量的) name set to the result of the last interpreter(解释者) command from the default ‘_’. Can be used to avoid conflicts(冲突) with the _() function used for text translation. [NOSE_DOCTEST_RESULT_VAR]</p>
+
+<p><strong>&ndash;doctest-fixtures=SUFFIX</strong></p>
+
+<p>Find fixtures(设备) for a doctest file in module with this name appended(附加) to the base name of the doctest file</p>
+
+<p><strong>&ndash;doctest-options=OPTIONS</strong></p>
+
+<p>Specify(指定) options to pass to doctest. Eg. ‘+ELLIPSIS,+NORMALIZE_WHITESPACE’</p>
+
+<p><strong>&ndash;with-isolation</strong></p>
+
+<p>Enable plugin(插件) IsolationPlugin: Activate(刺激) the isolation(隔离) plugin to isolate(隔离) changes to external(外部的) modules to a single test module or package. The isolation plugin resets(重新设定) the contents of sys.modules after each test module or package runs to its state before the test. PLEASE NOTE that this plugin should not be used with the coverage(覆盖) plugin, or in any other case where module reloading(重复荷载) may produceundesirable(不良的) side-effects. [NOSE_WITH_ISOLATION]</p>
+
+<p><strong>-d, &ndash;detailed-errors, &ndash;failure-detail</strong></p>
+
+<p>Add detail to error output(输出) by attempting to evaluate(评价) failed asserts(维护) [NOSE_DETAILED_ERRORS]</p>
+
+<p><strong>&ndash;with-profile</strong></p>
+
+<p>Enable plugin Profile: Use this plugin to run tests using the hotshot profiler. [NOSE_WITH_PROFILE]</p>
+
+<p>使用分析器插件：使用这个插件去让测试使用 hotshot profiler</p>
+
+<p><strong>&ndash;profile-sort=SORT</strong></p>
+
+<p>Set sort order for profiler output</p>
+
+<p>设置分析器输出的排序顺序</p>
+
+<p><strong>&ndash;profile-stats-file=FILE</strong></p>
+
+<p>Profiler stats file; default is a new temp file on each run</p>
+
+<p>分析器统计文件；默认情况下每次测试都是一个新的临时文件</p>
+
+<p><strong>&ndash;profile-restrict=RESTRICT</strong></p>
+
+<p>Restrict profiler output. See help for pstats.Stats for details</p>
+
+<p>限制分析器输出。看到帮助pstats.Stats 详情。</p>
+
+<p><strong>&ndash;no-skip</strong></p>
+
+<p>Disable special handling of SkipTest exceptions.</p>
+
+<p>禁用skiptest例外特殊处理。</p>
+
+<p><strong>&ndash;with-id</strong></p>
+
+<p>Enable plugin TestId: Activate to add a test id (like #1) to each test name output. Activate with –failed to rerun  failing tests only. [NOSE_WITH_ID]</p>
+
+<p>启动测试ID插件：自动在输出的时候在测试名称前加上id号。只在使用-failed</p>
+
+<p><strong>&ndash;id-file=FILE</strong></p>
+
+<p>Store test ids found in test runs in this file. Default is the file .noseids in the working directory.</p>
+
+<p>保存测试过程中的测试id到文件中。默认的文件是工作目录下的.noseids</p>
+
+<p><strong>&ndash;failed</strong></p>
+
+<p>Run the tests that failed in the last test run.
+运行上一次测试失败的测试</p>
+
+<p><strong>&ndash;processes=NUM</strong></p>
+
+<p>Spread test run among this many processes. Set a number equal to the number of processors  or cores in your machine for best results. Pass a negative  number to have the number of processes automatically  set to the number of cores. Passing 0 means to disable parallel  testing. Default is 0 unless NOSE_PROCESSES is set. [NOSE_PROCESSES]</p>
+
+<p>通过多处理器加速测试过程。可以根据你的设备设置多少个核心来测试。负数表示默认使用系统的核心数。0表示不使用。默认是0 除非NOSE_PROCESSES被设置了。</p>
+
+<p><strong>&ndash;process-timeout=SECONDS</strong></p>
+
+<p>Set timeout for return of results from each test runner process. Default is 10. [NOSE_PROCESS_TIMEOUT]</p>
+
+<p>为每个测试者进程返回结果设置超时时间。默认为10。</p>
+
+<p><strong>&ndash;process-restartworker</strong></p>
+
+<p>If set, will restart  each worker process once their tests are done, this helps control memory leaks from killing the system. [NOSE_PROCESS_RESTARTWORKER]</p>
+
+<p>如果配置这一项，那测试完成后将会重启测试工作，这可以帮助保证不因为内存泄露导致系统崩溃</p>
+
+<p><strong>&ndash;with-xunit</strong></p>
+
+<p>Enable plugin Xunit: This plugin provides test results in the standard XUnit XML format. [NOSE_WITH_XUNIT]</p>
+
+<p>启用xunit插件：这个插件提供测试结果生成到一个标准的xunit xml文件格式</p>
+
+<p><strong>&ndash;xunit-file=FILE</strong>
+Path to xml file to store the xunit report in. Default is nosetests.xml in the working directory [NOSE_XUNIT_FILE]
+存
+储xunit 报告的的xml路径。默认是在工作目录下的nosetests.xml</p>
+
+<p>Name of the testsuite in the xunit xml, generated by plugin. Default test suite name is nosetests.</p>
+
+<p>在xunit.xml中配置的测试集的名称，这个是通过插件生成的。默认的测试集是nosetests</p>
+
+<p><strong>&ndash;all-modules</strong></p>
+
+<p>Enable plugin AllModules: Collect tests from all python  modules. [NOSE_ALL_MODULES]</p>
+
+<p>启用所有模块的测试：收集所有python的模块</p>
+
+<p><strong>&ndash;collect-only</strong></p>
+
+<p>Enable collect-only: Collect and output  test names only, don’t run any tests. [COLLECT_ONLY]</p>
+
+<p>只收集和输出测试的名称</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">West</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2019-01-16
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">Python</a>
+          <a href="/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">单元测试</a>
+          <a href="/tags/nose/">nose</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/appium-%E7%9A%84-android-%E5%B9%B3%E5%8F%B0%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E8%BD%AC%E8%BD%BD/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Appium 的 Android 平台源码分析[转载]</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/%E9%98%BF%E9%87%8C%E4%BA%91ntp%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+            <span class="next-text nav-default">阿里云NTP时间同步服务器</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:whsfightup@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/wadeLouis" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.weihaosi.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">West</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

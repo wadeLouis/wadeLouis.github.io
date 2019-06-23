@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nose on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/tags/nose/</link>
+    <description>Recent content in nose on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 16 Jan 2019 15:41:59 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/tags/nose/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python Nose测试框架命令行详解</title>
+      <link>http://www.weihaosi.me/post/python-nose%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Wed, 16 Jan 2019 15:41:59 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/python-nose%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%A6%E8%A7%A3/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;-V, &amp;ndash;version&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Output nose version and exit  打印nose的版本号&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;-p, &amp;ndash;plugins&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Output list of available plugins and exit. Combine with higher verbosity for greater detail&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;-v=DEFAULT, &amp;ndash;verbose=DEFAULT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Be more verbose. [NOSE_VERBOSE]  nose日志输出等级&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&amp;ndash;verbosity=VERBOSITY&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Set verbosity; –verbosity=2 is the same as -v 和上面-v是一样&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;-q=DEFAULT, &amp;ndash;quiet=DEFAULT&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Be less verbose 精简的日志输出&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

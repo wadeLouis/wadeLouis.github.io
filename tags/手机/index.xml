@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>手机 on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/tags/%E6%89%8B%E6%9C%BA/</link>
+    <description>Recent content in 手机 on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 16 Jan 2019 15:31:43 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/tags/%E6%89%8B%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>华为手机优化办法</title>
+      <link>http://www.weihaosi.me/post/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%9C%BA%E4%BC%98%E5%8C%96%E5%8A%9E%E6%B3%95/</link>
+      <pubDate>Wed, 16 Jan 2019 15:31:43 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/%E5%8D%8E%E4%B8%BA%E6%89%8B%E6%9C%BA%E4%BC%98%E5%8C%96%E5%8A%9E%E6%B3%95/</guid>
+      <description>查看所有的已经安装的包名： adb shell pm list packages 无ROOT停用内置应用： adb shell pm disable-user &amp;lt;name of package&amp;gt; 无root卸载内置应用： pm uninstall -k --user 0 &amp;lt;name of package&amp;gt; 9.0 系统启用第三方桌面： 第一</description>
+    </item>
+    
+  </channel>
+</rss>

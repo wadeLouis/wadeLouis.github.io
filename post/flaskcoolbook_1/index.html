@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>《Flask Framework Cookbook》 学习笔记 - Flask 应用的配置 - 韦昊斯的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Little Mice" /><meta name="description" content="《Flask Framework Cookbook》 学习笔记 - Flask 应用的配置" /><meta name="keywords" content="Python, Flask" />
+
+
+
+<meta name="google-site-verification" content="iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI" />
+
+
+<meta name="generator" content="Hugo 0.53 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://www.weihaosi.me/post/flaskcoolbook_1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="《Flask Framework Cookbook》 学习笔记 - Flask 应用的配置" />
+<meta property="og:description" content="《Flask Framework Cookbook》 学习笔记 - Flask 应用的配置" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.weihaosi.me/post/flaskcoolbook_1/" /><meta property="article:published_time" content="2017-03-20T16:18:28&#43;08:00"/>
+<meta property="article:modified_time" content="2017-03-20T16:18:28&#43;08:00"/>
+
+<meta itemprop="name" content="《Flask Framework Cookbook》 学习笔记 - Flask 应用的配置">
+<meta itemprop="description" content="《Flask Framework Cookbook》 学习笔记 - Flask 应用的配置">
+
+
+<meta itemprop="datePublished" content="2017-03-20T16:18:28&#43;08:00" />
+<meta itemprop="dateModified" content="2017-03-20T16:18:28&#43;08:00" />
+<meta itemprop="wordCount" content="1404">
+
+
+
+<meta itemprop="keywords" content="Python,Flask," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="《Flask Framework Cookbook》 学习笔记 - Flask 应用的配置"/>
+<meta name="twitter:description" content="《Flask Framework Cookbook》 学习笔记 - Flask 应用的配置"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">韦昊斯的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/life/">
+        <li class="mobile-menu-item">记事</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">韦昊斯的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/life/">记事</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">《Flask Framework Cookbook》 学习笔记 - Flask 应用的配置</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-03-20 </span>
+        <div class="post-category">
+            <a href="/categories/python/"> Python </a>
+            <a href="/categories/flask/"> Flask </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-基础的配置">1. 基础的配置</a></li>
+<li><a href="#2-常见的配置方式">2. 常见的配置方式</a></li>
+<li><a href="#3-类对象配置基本例子">3. 类对象配置基本例子</a></li>
+<li><a href="#4-静态文件">4. 静态文件</a></li>
+<li><a href="#5-instance目录自动配置">5. instance目录自动配置</a></li>
+<li><a href="#6-视图和实体配置">6. 视图和实体配置</a></li>
+<li><a href="#7-使用蓝图">7. 使用蓝图</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>简单的Flask例子和安装就不讲了，大家去看官网的文档吧。</p>
+</blockquote>
+
+<h2 id="1-基础的配置">1. 基础的配置</h2>
+
+<p>想让我们的程序运行在调试模式下，可以这样配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;DEBUG&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>这个布尔值也可以通过Flask对象来设置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="n">app</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>一般情况下，我们都使用最开始那种方式去配置这个选项。</p>
+
+<h2 id="2-常见的配置方式">2. 常见的配置方式</h2>
+
+<ol>
+<li>通过外部文件（*.cfg）等配置
+<code>python
+    app.config.from_pyfile('myconfig.cfg')
+</code></li>
+<li>通过一个对象来配置，一般这个对象是一个类，当然也可以是模块等等
+<code>python
+    app.config.from_object('myapplication.default_settings')
+    # 如果是要加载当前文件的配置，我们可以使用下面的方式
+    app.config.from_object(__name__) #To load from same file
+</code></li>
+
+<li><p>通过系统环境变量来配置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_envvar</span><span class="p">(</span><span class="s1">&#39;PATH_TO_CONFIG_FILE&#39;</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>在windows中可以这样设置PATH_TO_CONFIG_FILE这个变量：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">    <span class="nb">set</span> <span class="nv">PATH_TO_CONFIG_FILE</span><span class="o">=</span>c:<span class="se">\\</span>config.cfg</code></pre></td></tr></table>
+</div>
+</div>
+<p>在linux中可以这样设置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">    <span class="nb">export</span> <span class="nv">PATH_TO_CONFIG_FILE</span><span class="o">=</span>c:<span class="se">\\</span>config.cfg</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="3-类对象配置基本例子">3. 类对象配置基本例子</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">BaseConfig</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="s1">&#39;Base config class&#39;</span>
+    <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;A random secret key&#39;</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">TESTING</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">NEW_CONFIG_VARIABLE</span> <span class="o">=</span> <span class="s1">&#39;my value&#39;</span>
+<span class="k">class</span> <span class="nc">ProductionConfig</span><span class="p">(</span><span class="n">BaseConfig</span><span class="p">):</span>
+    <span class="s1">&#39;Production specific config&#39;</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/path/to/secret/file&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">class</span> <span class="nc">StagingConfig</span><span class="p">(</span><span class="n">BaseConfig</span><span class="p">):</span>
+    <span class="s1">&#39;Staging specific config&#39;</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="k">class</span> <span class="nc">DevelopmentConfig</span><span class="p">(</span><span class="n">BaseConfig</span><span class="p">):</span>
+    <span class="s1">&#39;Development environment specific config&#39;</span>
+    <span class="n">DEBUG</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">TESTING</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s1">&#39;Another random secret key&#39;</span>
+<span class="c1">## 可以这样使用</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_object</span><span class="p">(</span><span class="s1">&#39;configuration.DevelopmentConfig‘)</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="4-静态文件">4. 静态文件</h2>
+
+<p>一般默认情况下，会在应用同级目录下建立一个名为static的目录既可以。
+*. 包模式
+```shell
+├── my_app
+│   ├── <strong>init</strong>.py
+│   ├── <strong>init</strong>.pyc
+│   ├── product
+│   │   ├── <strong>init</strong>.py
+│   │   ├── <strong>init</strong>.pyc
+│   │   ├── models.py
+│   │   ├── models.pyc
+│   │   ├── views.py
+│   │   └── views.pyc
+│   ├── static
+│   │   ├── css
+│   │   │   ├── bootstrap.min.css
+│   │   │   └── main.css
+│   │   └── js
+│   │       └── bootstrap.min.js
+│   └── templates
+│       ├── base.html
+│       ├── home.html
+│       └── product.html
+├── run.py
+└── setup.py</p></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></pre></td>
+<td class="lntd">
+<pre class="chroma">当然也可以通过配置进行指定：
+```python
+    app = Flask(__name__, static_folder=&#39;/path/to/static/folder&#39;)</pre></td></tr></table>
+</div>
+</div>
+<p>如果要使用bootstrap.min.js，可以这样写：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">    <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;/static/js/bootstrap.min.js&#34;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>如果存在这样的配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">static_url_path</span><span class="o">=</span><span class="s1">&#39;/differentstatic&#39;</span><span class="p">,</span><span class="n">static_folder</span><span class="o">=</span><span class="s1">&#39;/path/to/static/folder&#39;</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>那么可以这样使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">    <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;/differentstatic/bootstrap.min.js&#34;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<p>** 平常我们都不是这样用，下面方式才是最推荐使用的：**</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">    <span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;{{ url_for(&#39;static&#39;, filename=&#39;js/bootstrap.min.js&#39;) }}&#34;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="5-instance目录自动配置">5. instance目录自动配置</h2>
+
+<p>如果和应用同级下，存在instance这样一个目录，那么应用将会自动导入instance目录下的配置信息。
+可以在配置文件中指定这个目录的地址：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">instance_path</span><span class="o">=</span><span class="s1">&#39;/absolute/path/to/instance/folder&#39;</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>** 为了加载这个目录下的配置，我们需要设置instance_relative_config **</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">instance_relative_config</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>** 通过这样读取配置 **</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">    <span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">from_pyfile</span><span class="p">(</span><span class="s1">&#39;config.cfg&#39;</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="6-视图和实体配置">6. 视图和实体配置</h2>
+
+<blockquote>
+<p>当我们的应用越来越大的时候，我们需要组织和结构化我们的应用。
+如何做呢？
+1. 新建一个目录，并把我们的项目文件全部复制进去，创建<strong>init</strong>.py文件。即相当于把我们的项目做成一个包。
+2. 在这个目录同级建立一个run.py的文件，用来运行应用。
+3. 建立需要的包
+如下图：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">├── my_app
+│   ├── __init__.py
+│   ├── __init__.pyc
+│   ├── product
+│   │   ├── __init__.py
+│   │   ├── __init__.pyc
+│   │   ├── models.py
+│   │   ├── models.pyc
+│   │   ├── views.py
+│   │   └── views.pyc
+│   ├── static
+│   │   ├── css
+│   │   │   ├── bootstrap.min.css
+│   │   │   └── main.css
+│   │   └── js
+│   │       └── bootstrap.min.js
+│   └── templates
+│       ├── base.html
+│       ├── home.html
+│       └── product.html
+├── run.py
+└── setup.py</code></pre></td></tr></table>
+</div>
+</div>
+<ul>
+<li>在run.py中编辑：
+<code>python
+from my_app import app
+app.run(debug=True)
+</code></li>
+<li>在my_app/<strong>init</strong>.py中编辑：
+<code>python
+	from flask import Flask
+	app = Flask(__name__)
+	import my_app.hello.views
+</code></li>
+<li>my_app/hello/<strong>init</strong>.py 留空白，让hello作为一个包存在就可以</li>
+<li>my_app/hello/models.py 中写一个字典，用来存储数据
+<code>python
+	MESSAGES = {
+	'default': 'Hello to the World of Flask!',
+	}
+</code></li>
+
+<li><p>my_app/hello/views.py 编辑如下：
+<code>python
+	from my_app import app
+	from my_app.hello.models import MESSAGES
+	@app.route('/')
+	@app.route('/hello')
+	def hello_world():
+		return MESSAGES['default']
+	@app.route('/show/&lt;key&gt;')
+	def get_message(key):
+		return MESSAGES.get(key) or &quot;%s not found!&quot; % key
+	@app.route('/add/&lt;key&gt;/&lt;message&gt;')
+	def add_or_update_message(key, message):
+		MESSAGES[key] = message
+		return &quot;%s Added/Updated&quot; % key
+</code>`</p>
+
+<h2 id="7-使用蓝图">7. 使用蓝图</h2>
+
+<p>在第6节的基础上，我们只要变动两个地方就可以实现：</p></li>
+
+<li><p>my_app/<strong>init</strong>.py 文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">	<span class="kn">import</span> <span class="nn">my_app.hello.views</span>  <span class="o">--&gt;</span>  <span class="n">app</span><span class="o">.</span><span class="n">register_blueprint</span><span class="p">(</span><span class="n">hello</span><span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</blockquote>
+
+<ol>
+<li>my_app/hello/views.py 文件：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python">	<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Blueprint</span> <span class="c1"># 导入包</span>
+	<span class="n">hello</span> <span class="o">=</span> <span class="n">Blueprint</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="vm">__name__</span><span class="p">)</span> <span class="c1"># 创建蓝图</span>
+	<span class="c1">## 所有的app对象转换成蓝图对象</span>
+	<span class="nd">@hello.route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+	<span class="nd">@hello.route</span><span class="p">(</span><span class="s1">&#39;/hello&#39;</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
+		<span class="k">return</span> <span class="n">MESSAGES</span><span class="p">[</span><span class="s1">&#39;default&#39;</span><span class="p">]</span>
+	<span class="nd">@hello.route</span><span class="p">(</span><span class="s1">&#39;/show/&lt;key&gt;&#39;</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">get_message</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+		<span class="k">return</span> <span class="n">MESSAGES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&#34;</span><span class="si">%s</span><span class="s2"> not found!&#34;</span> <span class="o">%</span> <span class="n">key</span>
+	<span class="nd">@hello.route</span><span class="p">(</span><span class="s1">&#39;/add/&lt;key&gt;/&lt;message&gt;&#39;</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">add_or_update_message</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+		<span class="n">MESSAGES</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">message</span>
+		<span class="k">return</span> <span class="s2">&#34;</span><span class="si">%s</span><span class="s2"> Added/Updated&#34;</span> <span class="o">%</span> <span class="n">key</span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Little Mice</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2017-03-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">Python</a>
+          <a href="/tags/flask/">Flask</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2017-03-20-linux-iptables-%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91%E9%85%8D%E7%BD%AE-%E5%9F%BA%E4%BA%8Eubuntu/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Linux iptables 端口转发配置 -- 基于ubuntu</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/2017-03-10-%E8%BD%AC-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B9%8Bchrome%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95/">
+            <span class="next-text nav-default">[转]移动端之Chrome远程调试</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:whsfightup@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/wadeLouis" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.weihaosi.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">West</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>《Flask Framework Cookbook》 学习笔记 - Facebook、Google、Twitter等认证 - 韦昊斯的博客</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Little Mice" /><meta name="description" content="Flask Framework Cookbook》 学习笔记 - Flask 用户认证 - Facebook、Google、Twitter等认证" /><meta name="keywords" content="Flask, Cookbook, 用户认证, Facebook、Google、Twitter等认证" />
+
+
+
+<meta name="google-site-verification" content="iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI" />
+
+
+<meta name="generator" content="Hugo 0.53 with even 4.0.0" />
+
+
+<link rel="canonical" href="http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-3/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+<link href="/dist/even.c2a46f00.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="《Flask Framework Cookbook》 学习笔记 - Facebook、Google、Twitter等认证" />
+<meta property="og:description" content="Flask Framework Cookbook》 学习笔记 - Flask 用户认证 - Facebook、Google、Twitter等认证" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://www.weihaosi.me/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-3/" /><meta property="article:published_time" content="2016-11-23T15:02:28&#43;08:00"/>
+<meta property="article:modified_time" content="2016-11-23T15:02:28&#43;08:00"/>
+
+<meta itemprop="name" content="《Flask Framework Cookbook》 学习笔记 - Facebook、Google、Twitter等认证">
+<meta itemprop="description" content="Flask Framework Cookbook》 学习笔记 - Flask 用户认证 - Facebook、Google、Twitter等认证">
+
+
+<meta itemprop="datePublished" content="2016-11-23T15:02:28&#43;08:00" />
+<meta itemprop="dateModified" content="2016-11-23T15:02:28&#43;08:00" />
+<meta itemprop="wordCount" content="475">
+
+
+
+<meta itemprop="keywords" content="Python,Flask," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="《Flask Framework Cookbook》 学习笔记 - Facebook、Google、Twitter等认证"/>
+<meta name="twitter:description" content="Flask Framework Cookbook》 学习笔记 - Flask 用户认证 - Facebook、Google、Twitter等认证"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">韦昊斯的博客</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">首页</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">标签</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">分类</li>
+      </a><a href="/life/">
+        <li class="mobile-menu-item">记事</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">韦昊斯的博客</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">首页</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">标签</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">分类</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/life/">记事</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">《Flask Framework Cookbook》 学习笔记 - Facebook、Google、Twitter等认证</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-11-23 </span>
+        <div class="post-category">
+            <a href="/categories/python/"> Python </a>
+            <a href="/categories/flask/"> Flask </a>
+            </div>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#安装插件">安装插件</a></li>
+<li><a href="#qq例子">QQ例子</a>
+<ul>
+<li><a href="#前期准备流程">前期准备流程</a></li>
+<li><a href="#初始化">初始化</a></li>
+<li><a href="#views修改">views修改</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      
+
+<blockquote>
+<p>这些第三方的登录认证方式都是采用了Oauth2.0的授权机制，所以方法都是类似的。
+在做这个之前，首先要到各个相关网站去注册相应的开发者账号，拿到相关的id等
+这方面的步骤具体可以去google或者百度，这里提供一些链接地址：
+* <a href="http://open.weibo.com/wiki/%E6%96%B0%E6%89%8B%E6%8C%87%E5%8D%97">新浪微博</a>
+* <a href="http://open.qq.com/">腾讯相关</a>
+* <a href="http://app.baidu.com/">百度</a>
+<!-- more --></p>
+
+<h1 id="安装插件">安装插件</h1>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">pip install Flask-OAuth</code></pre></td></tr></table>
+</div>
+</div></blockquote>
+
+<h1 id="qq例子">QQ例子</h1>
+
+<h2 id="前期准备流程">前期准备流程</h2>
+
+<ol>
+<li>访问QQ互联网站 <a href="http://connect.qq.com/">http://connect.qq.com/</a> 注册成为开发者，并申请应用，申请应用时需要验证网站所有权；</li>
+<li>应用申请好之后，把QQ_APP_ID和QQ_APP_KEY替换为你的应用的；</li>
+</ol>
+
+<h2 id="初始化">初始化</h2>
+
+<p>修改自己的<strong>init</strong>.py文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">flask_oauthlib.client</span> <span class="kn">import</span> <span class="n">OAuth</span>
+<span class="n">QQ_APP_ID</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;QQ_APP_ID&#39;</span><span class="p">,</span> <span class="s1">&#39;101187283&#39;</span><span class="p">)</span>
+<span class="n">QQ_APP_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;QQ_APP_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;993983549da49e384d03adfead8b2489&#39;</span><span class="p">)</span>
+<span class="n">oauth</span> <span class="o">=</span> <span class="n">OAuth</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">qq</span> <span class="o">=</span> <span class="n">oauth</span><span class="o">.</span><span class="n">remote_app</span><span class="p">(</span><span class="s1">&#39;qq&#39;</span><span class="p">,</span>
+    <span class="n">consumer_key</span><span class="o">=</span><span class="n">QQ_APP_ID</span><span class="p">,</span>
+    <span class="n">consumer_secret</span><span class="o">=</span><span class="n">QQ_APP_KEY</span><span class="p">,</span>
+    <span class="n">base_url</span><span class="o">=</span><span class="s1">&#39;https://graph.qq.com&#39;</span><span class="p">,</span>
+    <span class="n">request_token_url</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+    <span class="n">request_token_params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;scope&#39;</span><span class="p">:</span> <span class="s1">&#39;get_user_info&#39;</span><span class="p">},</span>
+    <span class="n">access_token_url</span><span class="o">=</span><span class="s1">&#39;/oauth2.0/token&#39;</span><span class="p">,</span>
+    <span class="n">authorize_url</span><span class="o">=</span><span class="s1">&#39;/oauth2.0/authorize&#39;</span><span class="p">,</span>
+<span class="p">)</span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="views修改">views修改</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@qq.tokengetter</span>
+<span class="k">def</span> <span class="nf">get_qq_oauth_token</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;qq_token&#39;</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/login&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">qq</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;authorized&#39;</span><span class="p">,</span> <span class="n">_external</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/login/authorized&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">authorized</span><span class="p">():</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">qq</span><span class="o">.</span><span class="n">authorized_response</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">resp</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;Access denied: reason=</span><span class="si">%s</span><span class="s1"> error=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;error_reason&#39;</span><span class="p">],</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;error_description&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+    <span class="n">session</span><span class="p">[</span><span class="s1">&#39;qq_token&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">resp</span><span class="p">[</span><span class="s1">&#39;access_token&#39;</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Get openid via access_token, openid and access_token are needed for API calls</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">qq</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/oauth2.0/me&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;access_token&#39;</span><span class="p">:</span> <span class="n">session</span><span class="p">[</span><span class="s1">&#39;qq_token&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]})</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">json_to_dict</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">resp</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">session</span><span class="p">[</span><span class="s1">&#39;qq_openid&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;openid&#39;</span><span class="p">)</span>
+    <span class="c1">### 这里可以写具体干些啥</span>
+    <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="n">url_for</span><span class="p">(</span><span class="s1">&#39;auth.home&#39;</span><span class="p">))</span></code></pre></td></tr></table>
+</div>
+</div>
+<p>PS: 这里只是一个引子一样的例子，具体的方法和方式因为每个平台的接口有点小区别，也存在不少细节不一样，不过只要遵循auth2.0的协议都是大同小异，网上能google到的资料很多，这里就不多阐述。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">Little Mice</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2016-11-23
+        
+    </span>
+  </p>
+  
+  
+</div>
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/wechat.jpg">
+        <span>微信打赏</span>
+      </label>
+    <label class="qr-code-image" for="reward">
+        <img class="image" src="/img/reward/alipay.jpg">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div><footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/python/">Python</a>
+          <a href="/tags/flask/">Flask</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-restful-api/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">《Flask Framework Cookbook》 学习笔记 - RESTful API</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        <a class="next" href="/post/flask-framework-cookbook-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-flask-%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81-2/">
+            <span class="next-text nav-default">《Flask Framework Cookbook》 学习笔记 - Flask 用户认证 - OpenID认证</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:whsfightup@163.com" class="iconfont icon-email" title="email"></a>
+      <a href="https://github.com/wadeLouis" class="iconfont icon-github" title="github"></a>
+  <a href="http://www.weihaosi.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2019
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">West</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/dist/even.26188efa.min.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      showProcessingMessages: false,
+      messageStyle: 'none'
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"  integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'iT0L_lOZIgxvdR3NYt_wnIhDPDzi3Zo3W1DczmxO9YI', 'auto');
+	ga('set', 'anonymizeIp', true);
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+
+
+</body>
+</html>

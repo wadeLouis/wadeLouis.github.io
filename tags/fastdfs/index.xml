@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fastdfs on 韦昊斯的博客</title>
+    <link>http://www.weihaosi.me/tags/fastdfs/</link>
+    <description>Recent content in Fastdfs on 韦昊斯的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 20 Mar 2017 16:18:28 +0800</lastBuildDate>
+    
+	<atom:link href="http://www.weihaosi.me/tags/fastdfs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Fastdfs 并发测试和相关配置说明</title>
+      <link>http://www.weihaosi.me/post/fastdfs-%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Mon, 20 Mar 2017 16:18:28 +0800</pubDate>
+      
+      <guid>http://www.weihaosi.me/post/fastdfs-%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;最近接触了一个新的平台，准备对平台的性能进行测试。开始收集性能需求和问题的时候，反馈最多的是平台的图片加载非常慢，甚至错乱。新平台的图片存储使用了Fastdfs服务进行管理，只有一个tracker和storage。那很明显，这个性能问题首先要从图片服务器Fastdfs开始测试。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
